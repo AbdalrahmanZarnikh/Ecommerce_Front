@@ -1,0 +1,65 @@
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+
+import { forgotPassword } from "../../redux/slice/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+const ForgotPassword = () => {
+  const dispatch = useDispatch();
+  const navigate=useNavigate();
+
+  const { isLoading, info, error } = useSelector((state) => state.authSlice);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    const result = await dispatch(forgotPassword(data));
+
+    if (forgotPassword.fulfilled.match(result)) {
+      console.log("البيانات الجديدة:", result.payload);
+      navigate("/auth/resetCode")
+
+    }
+  };
+
+
+  return (
+    <div className="flex justify-center items-center p-10 h-screen  bg-blue-400">
+      <form
+        className="bg-white shadow-2xl h-fit flex justify-center items-start flex-col w-full md:w-1/3 gap-4 rounded-lg p-10"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h1 className="mx-auto my-10 text-4xl font-bold"> الحصول على رمز التحقق</h1>
+        <label htmlFor="email">الريد الاكتروني</label>
+        <input
+          type="email"
+          id="email"
+          className="w-full p-4 rounded-lg border border-gray-500"
+          placeholder="ادخل البريد الاكتروني"
+          {...register("email", { required: "the email is required" })}
+          />
+        {errors && <p className="text-red-500">{errors?.email?.message}</p>}
+
+        {error && <p className="text-red-500">{error}</p>}
+   
+        <button
+          className="bg-blue-700 w-1/2 text-white p-4 rounded-lg cursor-pointer mx-auto mt-2"
+          type="submit"
+        >
+           {isLoading == "Pending" ? (
+            <p className="text-gray-200">جاري الارسال .....</p>
+          ) : (
+            <p>  ارسال </p>
+          )}
+        </button>
+      </form>
+
+    </div>
+  );
+};
+
+export default ForgotPassword;
