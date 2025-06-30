@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { signup } from "../../redux/slice/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const SignUp = () => {
   const dispatch = useDispatch();
-
+  const naviagte=useNavigate();
   const { isLoading, info, error } = useSelector((state) => state.authSlice);
 
   const {
@@ -20,6 +20,7 @@ const SignUp = () => {
 
     if (signup.fulfilled.match(result)) {
       console.log("البيانات الجديدة:", result.payload);
+      naviagte("/")
     }
   };
 
