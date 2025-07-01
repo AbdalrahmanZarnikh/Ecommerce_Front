@@ -2,17 +2,17 @@ import React from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 
-const ProductCard = () => {
+const ProductCard = ({name,category,price,image}) => {
   return (
     <div className="max-w-80 flex flex-col items-start gap-4 shadow-xl rounded-xl p-5">
-      <img src="/public/test.png" alt="ProductImage" className="w-full " />
+      <img src={image} alt="ProductImage" className="w-full " />
 
       <div className="flex justify-between items-end w-full">
         {/* Info Product */}
         <div>
-          <h1 className="text-gray-500 text-lg mb-4">القسم</h1>
-          <h2 className="text-xl  mb-2">الاسم </h2>
-          <p className="font-bold ">40000 ل س </p>
+          <h1 className="text-gray-500 text-lg mb-4">{category}</h1>
+          <h2 className="text-xl  mb-2"> {name}</h2>
+          <p className="font-bold ">{price} $  </p>
         </div>
         {/* Info Product */}
 

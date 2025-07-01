@@ -5,12 +5,17 @@ import Login from "../pages/auth/Login";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import ResetCode from "../pages/auth/ResetCode";
 import ResetPassword from "../pages/auth/ResetPassword";
+import Products from "../pages/products";
+import NavBar from "../components/NavBar/NavBar";
+import Container from "../components/Container/Container";
 
 const Router = () => {
   return (
     <BrowserRouter>
+        <NavBar />
       <Routes>
-        <Route path="/" element={<App/>}/>
+        <Route path="/" element={<App />} />
+        <Route path="/products" element={<Products />} />
         <Route path="/auth">
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />
