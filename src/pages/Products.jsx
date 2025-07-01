@@ -4,6 +4,11 @@ import Container from "../components/Container/Container";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard/ProductCard";
 import { getProducts } from "../redux/slice/product/productSlice";
+import Lottie from "lottie-react";
+
+
+import loading from "../utils/loading.json"
+import notFound from "../utils/notfound.json"
 
 const Products = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -97,9 +102,9 @@ const Products = () => {
         ) : (
           <div className="flex-2/3">
             {isLoading == "Pending"
-              ? "Please Wait "
+              ? <div style={{width:"10%"}} className="mx-auto mt-40"><Lottie animationData={loading} /></div>
               : isLoading == "Fail"
-              ? "Not Found"
+              ?  <div style={{width:"30%"}} className="mx-auto mt-40"><Lottie animationData={notFound} /></div>
               : ""}
           </div>
         )}
