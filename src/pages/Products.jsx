@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import Container from "../components/Container/Container";
 import { useDispatch, useSelector } from "react-redux";
