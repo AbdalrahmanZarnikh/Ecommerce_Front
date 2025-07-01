@@ -47,7 +47,7 @@ const ForgotPassword = () => {
         {error && <p className="text-red-500">{error}</p>}
    
         <button
-          className="bg-blue-700 w-1/2 text-white p-4 rounded-lg cursor-pointer mx-auto mt-2"
+          className="bg-blue-700 w-1/2 text-white p-4 rounded-lg cursor-pointer mx-auto mt-2 hover:bg-blue-400"
           type="submit"
         >
            {isLoading == "Pending" ? (

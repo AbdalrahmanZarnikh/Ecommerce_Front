@@ -87,7 +87,7 @@ const ResetCode = () => {
         <button
           type="submit"
           disabled={isLoading === "Pending"}
-          className="bg-blue-700 text-white py-3 rounded-lg hover:bg-blue-800 transition"
+          className="bg-blue-700 text-white py-3 rounded-lg hover:bg-blue-400 transition "
         >
           {isLoading === "Pending" ? "جاري الإرسال..." : "إرسال"}
         </button>
