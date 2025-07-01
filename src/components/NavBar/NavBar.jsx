@@ -11,7 +11,7 @@ const NavBar = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <div className="flex justify-between items-center sticky top-0 z-50">
+      <div className="flex justify-between items-center sticky top-0 z-50 mb-10">
         <h1 className="text-blue-700 font-bold text-3xl">متجري</h1>
         <div className="hidden  md:flex justify-center items-center gap-4">
           <Link className="hover:text-blue-400">الرئيسية</Link>
