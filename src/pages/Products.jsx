@@ -21,12 +21,13 @@ const Products = () => {
     handleSubmit(updatedCategoreis);
   };
 
+  const { isLoading } = useSelector((state) => state.productSlice);
+
   const handleSubmit = (categories) => {
     console.log(categories);
   };
 
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     const fn = async () => {
@@ -54,7 +55,7 @@ const Products = () => {
 
       <div className=" flex justify-center items-start gap-4">
         {/* Filter Section */}
-        <div className="shadow-xl p-10 flex-1/3 ">
+        <div className="shadow-xl p-10 flex-1/3 h-fit rounded-lg ">
           <h1 className="mb-4 font-bold text-2xl">الفلاتر</h1>
 
           <form>
@@ -78,19 +79,30 @@ const Products = () => {
         {/* Filter Section */}
 
         {/* Products */}
-        <div className="grid grid-cols-3 gap-2">
-          {products?.map((ele, index) => {
-            return (
-              <ProductCard
-                key={ele._id}
-                name={ele.title}
-                price={ele.price}
-                category={ele.category.name}
-                image={ele.image?.url}
-              />
-            );
-          })}
-        </div>
+
+        {products.length > 0 ? (
+          <div className="grid grid-cols-3 gap-2">
+            {products?.map((ele, index) => {
+              return (
+                <ProductCard
+                  key={ele._id}
+                  name={ele.title}
+                  price={ele.price}
+                  category={ele.category.name}
+                  image={ele.image?.url}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <div className="flex-2/3">
+            {isLoading == "Pending"
+              ? "Please Wait "
+              : isLoading == "Fail"
+              ? "Not Found"
+              : ""}
+          </div>
+        )}
 
         {/* Products */}
       </div>

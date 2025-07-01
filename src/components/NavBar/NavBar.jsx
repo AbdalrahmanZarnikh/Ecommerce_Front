@@ -50,7 +50,7 @@ const NavBar = () => {
               className="hover:text-blue-400 cursor-pointer"
             />
             <button
-              className="hidden md:block text-white bg-blue-600 rounded-lg p-4 hover:bg-blue-400"
+              className="hidden md:block text-white bg-blue-600 rounded-lg p-4 cursor-pointer hover:bg-blue-400"
               onClick={() => navigate("/auth/login")}
             >
               تسجيل الدخول
@@ -67,7 +67,6 @@ const NavBar = () => {
 
       <div className="h-[90px]" />
 
-      {/* القائمة المنسدلة للموبايل */}
       {menuBar && (
         <div className="fixed top-[90px] left-0 w-full flex flex-col items-center justify-center p-5 gap-4 bg-gray-100 md:hidden shadow-lg z-40">
           <Link
