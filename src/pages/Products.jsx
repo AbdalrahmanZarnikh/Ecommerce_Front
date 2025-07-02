@@ -1,36 +1,33 @@
-import  { useEffect, useState } from "react";
-import { BiSearch } from "react-icons/bi";
+import { useEffect, useState } from "react";
+import {
+  BiDownArrow,
+  BiDownArrowAlt,
+  BiDownArrowCircle,
+  BiSearch,
+  BiUpArrowAlt,
+} from "react-icons/bi";
 import Container from "../components/Container/Container";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard/ProductCard";
 import { getProducts } from "../redux/slice/product/productSlice";
 import Lottie from "lottie-react";
 
-
-import loading from "../utils/loading.json"
-import notFound from "../utils/notfound.json"
+import loading from "../utils/loading.json";
+import notFound from "../utils/notfound.json";
 
 const Products = () => {
-  const [selectedCategories, setSelectedCategories] = useState([]);
   const [products, setProducts] = useState([]);
 
-  const handleCheckboxChange = (e) => {
-    const { value, checked, form } = e.target;
+  // test
 
-    const updatedCategoreis = checked
-      ? [...selectedCategories, value]
-      : selectedCategories.filter((category) => category !== value);
+  const [isChooseCategory, setIsChooseCategory] = useState(false);
+  const [chooseCategory, setChooseCategory] = useState("ملابس");
 
-    setSelectedCategories(updatedCategoreis);
+  // test
 
-    handleSubmit(updatedCategoreis);
-  };
 
   const { isLoading } = useSelector((state) => state.productSlice);
 
-  const handleSubmit = (categories) => {
-    console.log(categories);
-  };
 
   const dispatch = useDispatch();
 
@@ -49,44 +46,54 @@ const Products = () => {
   return (
     <Container>
       <h1 className="text-4xl font-bold">المنتجات</h1>
-      <div className="relative ">
-        <input
-          type="text"
-          placeholder="البحث عن المنتجات"
-          className="p-4 w-full rounded-lg border "
-        />
-        <BiSearch className="absolute left-2 top-5 text-gray-500" size={21} />
+      <div className="flex  justify-center items-center  gap-2">
+        {/* Search  */}
+        <div className="relative flex-2/3">
+          <input
+            type="text"
+            placeholder="البحث عن المنتجات"
+            className="p-4 w-full rounded-lg border "
+          />
+          <BiSearch className="absolute left-2 top-5 text-gray-500" size={21} />
+        </div>
+        {/* Search  */}
+
+        {/* Filter New */}
+        <div>
+          <button
+            className=" bg-blue-700 text-white px-4 py-2 rounded-lg flex justify-center items-center gap-2 cursor-pointer mb-2"
+            onClick={() => {
+              setIsChooseCategory(!isChooseCategory);
+            }}
+          >
+            <span>{chooseCategory}</span> {isChooseCategory ?<BiUpArrowAlt/> :<BiDownArrowAlt/>}
+          </button>
+          {isChooseCategory && (
+            <div className="fixed flex flex-col items-center bg-gray-300 rounded-lg p-4">
+              {["ألبسة", "الكترونيات", "أحذية", "مستلزمات منزلية"].map((ele) => {
+                return (
+                  <h1
+                    className="hover:bg-blue-700 cursor-pointer hover:text-white px-4 py-2 rounded-lg "
+                    onClick={() => {
+                      setChooseCategory(ele);
+                      setIsChooseCategory(false)
+                    }}
+                  >
+                    {ele}
+                  </h1>
+                );
+              })}
+            </div>
+          )}
+        </div>
+        {/* Filter New */}
       </div>
 
       <div className=" flex justify-center items-start gap-4">
-        {/* Filter Section */}
-        <div className="shadow-xl p-10 flex-1/3 h-fit rounded-lg ">
-          <h1 className="mb-4 font-bold text-2xl">الفلاتر</h1>
-
-          <form>
-            <h3 className="font-bold mb-2"> الأقسام </h3>
-            {["الكترونيات ", "ملابس ", "أحذية", "مستلزمات منزلية"].map(
-              (category) => (
-                <label key={category} className="block mb-1 ">
-                  <input
-                    type="checkbox"
-                    value={category}
-                    checked={selectedCategories.includes(category)}
-                    onChange={handleCheckboxChange}
-                    className="ml-2 cursor-pointer"
-                  />
-                  <span className=" text-lg">{category}</span>
-                </label>
-              )
-            )}
-          </form>
-        </div>
-        {/* Filter Section */}
-
         {/* Products */}
 
         {products.length > 0 ? (
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid gird-cols-1 md:grid-cols-4 justify-items-center gap-2">
             {products?.map((ele, index) => {
               return (
                 <ProductCard
@@ -101,11 +108,17 @@ const Products = () => {
           </div>
         ) : (
           <div className="flex-2/3">
-            {isLoading == "Pending"
-              ? <div style={{width:"10%"}} className="mx-auto mt-40"><Lottie animationData={loading} /></div>
-              : isLoading == "Fail"
-              ?  <div style={{width:"30%"}} className="mx-auto mt-40"><Lottie animationData={notFound} /></div>
-              : ""}
+            {isLoading == "Pending" ? (
+              <div style={{ width: "10%" }} className="mx-auto mt-40">
+                <Lottie animationData={loading} />
+              </div>
+            ) : isLoading == "Fail" ? (
+              <div style={{ width: "30%" }} className="mx-auto mt-40">
+                <Lottie animationData={notFound} />
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         )}
 

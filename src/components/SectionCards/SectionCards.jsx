@@ -19,7 +19,7 @@ const SectionCards = ({ title }) => {
       </div>
       {/* Content Info */}
 
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-4 justify-items-center gap-2">
         {data?.map((ele, index) => {
           if (index <4) {
             return (
