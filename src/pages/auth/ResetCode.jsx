@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import { resetCode } from "../../redux/slice/auth/authSlice";
+import loading from "../../utils/loading.json";
+import Lottie from "lottie-react";
 
 const ResetCode = () => {
   const dispatch = useDispatch();
@@ -45,7 +47,7 @@ const ResetCode = () => {
   };
 
   const submitCode = async (code) => {
-    const result = await dispatch(resetCode({ resetCode: code })); 
+    const result = await dispatch(resetCode({ resetCode: code }));
 
     if (resetCode.fulfilled.match(result)) {
       navigate("/auth/resetPassword");
@@ -88,8 +90,18 @@ const ResetCode = () => {
           type="submit"
           disabled={isLoading === "Pending"}
           className="bg-blue-700 text-white py-3 rounded-lg hover:bg-blue-400 transition "
+          dir="rtl"
         >
-          {isLoading === "Pending" ? "جاري الإرسال..." : "إرسال"}
+          {isLoading === "Pending" ? (
+            <p className="text-gray-200 flex justify-center items-center gap-2">
+              <p>  جاري الارسال </p>
+              <div className="w-10">
+                <Lottie animationData={loading} />
+              </div>
+            </p>
+          ) : (
+             <p>ارسال</p>
+          )}
         </button>
 
         <Link to={"/auth/login"} className="text-blue-600">
