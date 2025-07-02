@@ -1,44 +1,42 @@
 import { useEffect, useState } from "react";
-import {
-  BiDownArrowAlt,
-  BiSearch,
-  BiUpArrowAlt,
-} from "react-icons/bi";
+import { BiDownArrowAlt, BiSearch, BiUpArrowAlt } from "react-icons/bi";
 import Container from "../components/Container/Container";
-import {  useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard/ProductCard";
 import Lottie from "lottie-react";
 
-import {getCategories,getOneCategory} from "../redux/slice/category/categorySlice"
+import {
+  getCategories,
+  getOneCategory,
+} from "../redux/slice/category/categorySlice";
 
 import loading from "../utils/loading.json";
 import notFound from "../utils/notfound.json";
 
 const Products = () => {
-  const dispatch=useDispatch();
-  const [categories, setCategories] = useState(["ألبسة", "الكترونيات", "أحذية", "مستلزمات منزلية"]);
-
+  const dispatch = useDispatch();
+  const [categories, setCategories] = useState([ ]);
 
   const [isChooseCategory, setIsChooseCategory] = useState(false);
-  const [chooseCategory, setChooseCategory] = useState("ملابس");
+  const [chooseCategory, setChooseCategory] = useState(<div className="w-10">
+    <Lottie animationData={loading}/>
+  </div>);
+
+  useEffect(() => {
+    const fn = async () => {
+      const result = await dispatch(getCategories());
 
 
-  useEffect(()=>{
-     const fn = async()=>{
-      const result=await dispatch(getCategories());
-
-      if(getCategories.fulfilled.match(result)){
+      if (getCategories.fulfilled.match(result)) {
         setCategories(result.payload.data);
+        setChooseCategory(result.payload.data[0].name);
       }
-     }
+    };
 
-     fn();
+    fn();
+  }, []);
 
-
-  },[])
-
-
-  const { isLoading,data } = useSelector((state) => state.productSlice);
+  const { isLoading, data } = useSelector((state) => state.productSlice);
 
   return (
     <Container>
@@ -63,7 +61,10 @@ const Products = () => {
               setIsChooseCategory(!isChooseCategory);
             }}
           >
-            <span>{chooseCategory}</span> {isChooseCategory ?<BiUpArrowAlt/> :<BiDownArrowAlt/>}
+  
+              <span>{chooseCategory}</span>
+
+            {isChooseCategory ? <BiUpArrowAlt /> : <BiDownArrowAlt />}
           </button>
           {isChooseCategory && (
             <div className="fixed flex flex-col items-center bg-gray-50 rounded-lg p-4">
@@ -73,7 +74,7 @@ const Products = () => {
                     className="hover:bg-blue-700 cursor-pointer hover:text-white px-4 py-2 rounded-lg "
                     onClick={() => {
                       setChooseCategory(ele.name);
-                      setIsChooseCategory(false)
+                      setIsChooseCategory(false);
                     }}
                   >
                     {ele.name}
@@ -106,11 +107,11 @@ const Products = () => {
         ) : (
           <div>
             {isLoading == "Pending" ? (
-              <div  className="mx-auto mt-40 w-10">
+              <div className="mx-auto mt-40 w-10">
                 <Lottie animationData={loading} />
               </div>
             ) : isLoading == "Fail" ? (
-              <div  className="mx-auto mt-40 w-20">
+              <div className="mx-auto mt-40 w-20">
                 <Lottie animationData={notFound} />
               </div>
             ) : (
