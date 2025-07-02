@@ -5,9 +5,8 @@ import {
   BiUpArrowAlt,
 } from "react-icons/bi";
 import Container from "../components/Container/Container";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard/ProductCard";
-import { getProducts } from "../redux/slice/product/productSlice";
 import Lottie from "lottie-react";
 
 import loading from "../utils/loading.json";
@@ -42,7 +41,7 @@ const Products = () => {
         {/* Filter New */}
         <div>
           <button
-            className=" bg-blue-700 text-white px-4 py-2 rounded-lg flex justify-center items-center gap-2 cursor-pointer mb-2"
+            className=" bg-blue-700 text-white px-4 py-2 rounded-lg flex justify-center items-center gap-2 cursor-pointer mb-2 hover:bg-blue-400"
             onClick={() => {
               setIsChooseCategory(!isChooseCategory);
             }}
@@ -50,7 +49,7 @@ const Products = () => {
             <span>{chooseCategory}</span> {isChooseCategory ?<BiUpArrowAlt/> :<BiDownArrowAlt/>}
           </button>
           {isChooseCategory && (
-            <div className="fixed flex flex-col items-center bg-gray-300 rounded-lg p-4">
+            <div className="fixed flex flex-col items-center bg-gray-50 rounded-lg p-4">
               {categories.map((ele) => {
                 return (
                   <h1
@@ -88,13 +87,13 @@ const Products = () => {
             })}
           </div>
         ) : (
-          <div className="flex-2/3">
+          <div>
             {isLoading == "Pending" ? (
-              <div style={{ width: "10%" }} className="mx-auto mt-40">
+              <div  className="mx-auto mt-40 w-10">
                 <Lottie animationData={loading} />
               </div>
             ) : isLoading == "Fail" ? (
-              <div style={{ width: "30%" }} className="mx-auto mt-40">
+              <div  className="mx-auto mt-40 w-20">
                 <Lottie animationData={notFound} />
               </div>
             ) : (
