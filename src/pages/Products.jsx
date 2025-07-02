@@ -5,20 +5,37 @@ import {
   BiUpArrowAlt,
 } from "react-icons/bi";
 import Container from "../components/Container/Container";
-import {  useSelector } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard/ProductCard";
 import Lottie from "lottie-react";
+
+import {getCategories,getOneCategory} from "../redux/slice/category/categorySlice"
 
 import loading from "../utils/loading.json";
 import notFound from "../utils/notfound.json";
 
 const Products = () => {
+  const dispatch=useDispatch();
   const [categories, setCategories] = useState(["ألبسة", "الكترونيات", "أحذية", "مستلزمات منزلية"]);
 
 
   const [isChooseCategory, setIsChooseCategory] = useState(false);
   const [chooseCategory, setChooseCategory] = useState("ملابس");
 
+
+  useEffect(()=>{
+     const fn = async()=>{
+      const result=await dispatch(getCategories());
+
+      if(getCategories.fulfilled.match(result)){
+        setCategories(result.payload.data);
+      }
+     }
+
+     fn();
+
+
+  },[])
 
 
   const { isLoading,data } = useSelector((state) => state.productSlice);
@@ -55,11 +72,11 @@ const Products = () => {
                   <h1
                     className="hover:bg-blue-700 cursor-pointer hover:text-white px-4 py-2 rounded-lg "
                     onClick={() => {
-                      setChooseCategory(ele);
+                      setChooseCategory(ele.name);
                       setIsChooseCategory(false)
                     }}
                   >
-                    {ele}
+                    {ele.name}
                   </h1>
                 );
               })}
