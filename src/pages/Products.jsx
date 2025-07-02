@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  BiDownArrow,
   BiDownArrowAlt,
-  BiDownArrowCircle,
   BiSearch,
   BiUpArrowAlt,
 } from "react-icons/bi";
@@ -17,13 +15,12 @@ import notFound from "../utils/notfound.json";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState(["ألبسة", "الكترونيات", "أحذية", "مستلزمات منزلية"]);
 
-  // test
 
   const [isChooseCategory, setIsChooseCategory] = useState(false);
   const [chooseCategory, setChooseCategory] = useState("ملابس");
 
-  // test
 
 
   const { isLoading } = useSelector((state) => state.productSlice);
@@ -46,7 +43,7 @@ const Products = () => {
   return (
     <Container>
       <h1 className="text-4xl font-bold">المنتجات</h1>
-      <div className="flex  justify-center items-center  gap-2">
+      <div className="flex flex-col md:flex-row justify-center items-center  gap-2">
         {/* Search  */}
         <div className="relative flex-2/3">
           <input
@@ -70,7 +67,7 @@ const Products = () => {
           </button>
           {isChooseCategory && (
             <div className="fixed flex flex-col items-center bg-gray-300 rounded-lg p-4">
-              {["ألبسة", "الكترونيات", "أحذية", "مستلزمات منزلية"].map((ele) => {
+              {categories.map((ele) => {
                 return (
                   <h1
                     className="hover:bg-blue-700 cursor-pointer hover:text-white px-4 py-2 rounded-lg "
