@@ -64,7 +64,6 @@ const NavBar = () => {
         </div>
       </div>
 
-
       <div className="h-[90px]" />
 
       {menuBar && (
@@ -72,24 +71,36 @@ const NavBar = () => {
           <Link
             to="/"
             className="bg-gray-200 w-full text-center py-3 rounded-lg hover:bg-gray-300"
+            onClick={() => {
+              setMenuBar(false);
+            }}
           >
             الرئيسية
           </Link>
           <Link
             to="/products"
             className="bg-gray-200 w-full text-center py-3 rounded-lg hover:bg-gray-300"
+            onClick={() => {
+              setMenuBar(false);
+            }}
           >
             المنتجات
           </Link>
           <Link
             to="/categories"
             className="bg-gray-200 w-full text-center py-3 rounded-lg hover:bg-gray-300"
+            onClick={() => {
+              setMenuBar(false);
+            }}
           >
             الأقسام
           </Link>
           <button
-            className="text-white bg-blue-600 rounded-lg px-5 py-3 hover:bg-blue-400"
-            onClick={() => navigate("/auth/login")}
+            className="text-white bg-blue-600 rounded-lg px-5 py-3 hover:bg-blue-400 cursor-pointer"
+            onClick={() => {
+              navigate("/auth/login")
+              setMenuBar(false)
+            }}
           >
             تسجيل الدخول
           </button>

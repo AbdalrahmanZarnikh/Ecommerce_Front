@@ -3,9 +3,27 @@ import ProductCard from "../ProductCard/ProductCard";
 
 
 
-import {  useSelector } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getProducts } from "../../redux/slice/product/productSlice";
 
 const SectionCards = ({ title }) => {
+  const dispatch=useDispatch();
+
+  const [products,setProducts]=useState([]);
+
+  useEffect(()=>{
+    const fn=async ()=>{
+      const result=await dispatch(getProducts());
+
+      if(getProducts.fulfilled.match(result)){
+        setProducts(result.payload.data);
+      }
+    }
+
+    fn();
+  },[])
+
 
   const { data, error, isLoading } = useSelector((state) => state.productSlice);
 
@@ -20,7 +38,7 @@ const SectionCards = ({ title }) => {
       {/* Content Info */}
 
       <div className="grid grid-cols-1 md:grid-cols-4 justify-items-center gap-2">
-        {data?.map((ele, index) => {
+        {products?.map((ele, index) => {
           if (index <4) {
             return (
               <ProductCard  

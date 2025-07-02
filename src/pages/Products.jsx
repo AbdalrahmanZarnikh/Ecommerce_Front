@@ -14,7 +14,6 @@ import loading from "../utils/loading.json";
 import notFound from "../utils/notfound.json";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState(["ألبسة", "الكترونيات", "أحذية", "مستلزمات منزلية"]);
 
 
@@ -23,22 +22,7 @@ const Products = () => {
 
 
 
-  const { isLoading } = useSelector((state) => state.productSlice);
-
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fn = async () => {
-      const result = await dispatch(getProducts());
-
-      if (getProducts.fulfilled.match(result)) {
-        setProducts(result.payload.data);
-      }
-    };
-
-    fn();
-  }, [products]);
+  const { isLoading,data } = useSelector((state) => state.productSlice);
 
   return (
     <Container>
@@ -89,9 +73,9 @@ const Products = () => {
       <div className=" flex justify-center items-start gap-4">
         {/* Products */}
 
-        {products.length > 0 ? (
+        {data?.length > 0 ? (
           <div className="grid gird-cols-1 md:grid-cols-4 justify-items-center gap-2">
-            {products?.map((ele, index) => {
+            {data?.map((ele, index) => {
               return (
                 <ProductCard
                   key={ele._id}
