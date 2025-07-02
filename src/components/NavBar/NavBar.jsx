@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { BiSearch } from "react-icons/bi";
+import React, { useEffect, useState } from "react";
+import { BiLogOut, BiLogOutCircle, BiSearch } from "react-icons/bi";
+import { CgLogOut } from "react-icons/cg";
 import { FaRegHeart } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
-import Container from "../Container/Container";
 
 const NavBar = () => {
   const [menuBar, setMenuBar] = useState(false);
   const navigate = useNavigate();
+  const [token,setToken]=useState(false);
+
 
   return (
     <>
@@ -49,12 +51,27 @@ const NavBar = () => {
               size={25}
               className="hover:text-blue-400 cursor-pointer"
             />
-            <button
-              className="hidden md:block text-white bg-blue-600 rounded-lg p-4 cursor-pointer hover:bg-blue-400"
-              onClick={() => navigate("/auth/login")}
-            >
-              تسجيل الدخول
-            </button>
+            {localStorage.getItem("token") && !token ? (
+              <button
+                className="hidden md:block text-white bg-red-600 rounded-lg p-4 cursor-pointer hover:bg-red-400"
+                onClick={() =>{
+                  localStorage.removeItem("token");
+                  setToken(true);
+                }}
+              >
+                <CgLogOut size={25}/>
+              </button>
+            ) : (
+              <button
+                className="hidden md:block text-white bg-blue-600 rounded-lg p-4 cursor-pointer hover:bg-blue-400"
+                onClick={() => {
+                  setToken(false)
+                  navigate("/auth/login")
+                }}
+              >
+                تسجيل الدخول
+              </button>
+            )}
             <GiHamburgerMenu
               size={25}
               className="hover:text-blue-400 cursor-pointer md:hidden"
@@ -98,8 +115,8 @@ const NavBar = () => {
           <button
             className="text-white bg-blue-600 rounded-lg px-5 py-3 hover:bg-blue-400 cursor-pointer"
             onClick={() => {
-              navigate("/auth/login")
-              setMenuBar(false)
+              navigate("/auth/login");
+              setMenuBar(false);
             }}
           >
             تسجيل الدخول
