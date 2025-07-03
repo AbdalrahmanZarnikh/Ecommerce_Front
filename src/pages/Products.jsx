@@ -7,8 +7,9 @@ import Lottie from "lottie-react";
 
 import {
   getCategories,
-  getOneCategory,
 } from "../redux/slice/category/categorySlice";
+
+import {getProductsByCategory} from "../redux/slice/product/productSlice"
 
 import loading from "../utils/loading.json";
 import notFound from "../utils/notfound.json";
@@ -18,19 +19,19 @@ const Products = () => {
   const [categories, setCategories] = useState([ ]);
 
   const [isChooseCategory, setIsChooseCategory] = useState(false);
-  const [chooseCategory, setChooseCategory] = useState(<div className="w-10">
-    <Lottie animationData={loading}/>
-  </div>);
+  const [chooseCategory, setChooseCategory] = useState("الكل")
 
   useEffect(() => {
     const fn = async () => {
       const result = await dispatch(getCategories());
 
-
+      
       if (getCategories.fulfilled.match(result)) {
         setCategories(result.payload.data);
         setChooseCategory(result.payload.data[0].name);
+  
       }
+
     };
 
     fn();
@@ -75,6 +76,10 @@ const Products = () => {
                     onClick={() => {
                       setChooseCategory(ele.name);
                       setIsChooseCategory(false);
+                      dispatch(getProductsByCategory(ele._id)).then((res)=>{
+                        console.log(res.payload.data)
+                        
+                      });
                     }}
                   >
                     {ele.name}

@@ -60,6 +60,6 @@ const categorySlice = createSlice({
   }
 });
 
-export default createSlice.reducer;
+export default categorySlice.reducer;
 
 export { getCategories,getOneCategory };
