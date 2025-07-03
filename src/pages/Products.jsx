@@ -5,33 +5,33 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard/ProductCard";
 import Lottie from "lottie-react";
 
-import {
-  getCategories,
-} from "../redux/slice/category/categorySlice";
+import { getCategories } from "../redux/slice/category/categorySlice";
 
-import {getProductsByCategory} from "../redux/slice/product/productSlice"
+import {
+  getProductsByCategory,
+  getProducts,
+} from "../redux/slice/product/productSlice";
 
 import loading from "../utils/loading.json";
 import notFound from "../utils/notfound.json";
 
 const Products = () => {
   const dispatch = useDispatch();
-  const [categories, setCategories] = useState([ ]);
+  const [categories, setCategories] = useState([]);
 
   const [isChooseCategory, setIsChooseCategory] = useState(false);
-  const [chooseCategory, setChooseCategory] = useState("الكل")
+  const [chooseCategory, setChooseCategory] = useState("الكل");
 
   useEffect(() => {
     const fn = async () => {
-      const result = await dispatch(getCategories());
+      const categories = await dispatch(getCategories());
 
-      
-      if (getCategories.fulfilled.match(result)) {
-        setCategories(result.payload.data);
-        setChooseCategory(result.payload.data[0].name);
-  
+      if (getCategories.fulfilled.match(categories)) {
+        const backCategories = categories.payload.data;
+        const allCategories = { _id: "", name: "الكل" };
+
+        setCategories([...backCategories, allCategories]);
       }
-
     };
 
     fn();
@@ -62,8 +62,7 @@ const Products = () => {
               setIsChooseCategory(!isChooseCategory);
             }}
           >
-  
-              <span>{chooseCategory}</span>
+            <span>{chooseCategory}</span>
 
             {isChooseCategory ? <BiUpArrowAlt /> : <BiDownArrowAlt />}
           </button>
@@ -76,10 +75,12 @@ const Products = () => {
                     onClick={() => {
                       setChooseCategory(ele.name);
                       setIsChooseCategory(false);
-                      dispatch(getProductsByCategory(ele._id)).then((res)=>{
-                        console.log(res.payload.data)
-                        
-                      });
+                      if (ele.name !== "الكل") {
+                        dispatch(getProductsByCategory(ele._id));
+                      }
+                      else{
+                        dispatch(getProducts());
+                      }
                     }}
                   >
                     {ele.name}
