@@ -33,7 +33,7 @@ const SectionCards = ({ title }) => {
       {/* Content Info */}
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold"> {title}</h1>
-        <Link className="text-blue-700 hover:text-blue-400">عرض الكل</Link>
+        <Link className="text-blue-700 hover:text-blue-400"to={"/products"}>عرض الكل</Link>
       </div>
       {/* Content Info */}
 

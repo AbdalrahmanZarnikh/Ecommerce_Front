@@ -8,7 +8,7 @@ function App() {
   return (
     <Container>
       <SectionCards title={"الأكثر مبيعا"}/>
-      <SectionCards title={"الأعلى  تصنيفا"}/>
+      <SectionCards title={"أحدث المنتجات "}/>
     </Container>
   );
 }
