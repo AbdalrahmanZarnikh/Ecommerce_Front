@@ -99,13 +99,16 @@ const Products = () => {
         {data?.length > 0 ? (
           <div className="grid gird-cols-1 md:grid-cols-4 justify-items-center gap-2">
             {data?.map((ele, index) => {
+              console.log(ele._id)
               return (
                 <ProductCard
+
                   key={ele._id}
                   name={ele.title}
                   price={ele.price}
                   category={ele.category.name}
                   image={ele.image?.url}
+                  id={ele._id}
                 />
               );
             })}

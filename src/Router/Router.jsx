@@ -8,6 +8,7 @@ import ResetPassword from "../pages/auth/ResetPassword";
 import Products from "../pages/products";
 import NavBar from "../components/NavBar/NavBar";
 import Container from "../components/Container/Container";
+import Product from "../pages/Product";
 
 const Router = () => {
   return (
@@ -16,6 +17,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/product/:id" element={<Product />} />
         <Route path="/auth">
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />

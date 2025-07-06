@@ -1,10 +1,15 @@
 import React from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({name,category,price,image}) => {
+const ProductCard = ({name,category,price,image,id}) => {
+  const navigate = useNavigate()
   return (
-    <div className="max-w-80 flex flex-col items-start gap-4 shadow-xl rounded-xl p-5">
+    <div className="max-w-80 flex flex-col items-start gap-4 shadow-xl rounded-xl p-5 "
+                      onClick={() => {navigate(`/product/${id}`)
+                      console.log(id)}}
+>
       <img src={image} alt="ProductImage" className="w-full " />
 
       <div className="flex justify-between items-end w-full">

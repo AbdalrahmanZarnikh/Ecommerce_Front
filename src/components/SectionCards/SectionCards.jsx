@@ -49,6 +49,7 @@ const SectionCards = ({ title }) => {
                     price={ele.price}
                     category={ele.category.name}
                     image={ele.image?.url}
+                    id={ele._id}
                   />
                 );
               }
