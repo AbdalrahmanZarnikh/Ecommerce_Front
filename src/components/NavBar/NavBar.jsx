@@ -50,6 +50,7 @@ const NavBar = () => {
             <FiShoppingCart
               size={25}
               className="hover:text-blue-400 cursor-pointer"
+              onClick={()=>{navigate("/cart")}}
             />
             {localStorage.getItem("token") && !token ? (
               <button

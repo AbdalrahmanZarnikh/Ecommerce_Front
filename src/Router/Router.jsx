@@ -9,13 +9,15 @@ import Products from "../pages/products";
 import NavBar from "../components/NavBar/NavBar";
 import Container from "../components/Container/Container";
 import Product from "../pages/Product";
+import Cart from "../pages/Cart";
 
 const Router = () => {
   return (
     <BrowserRouter>
-        <NavBar />
+      <NavBar />
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/cart" element={<Cart/>}/>
         <Route path="/products" element={<Products />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/auth">
