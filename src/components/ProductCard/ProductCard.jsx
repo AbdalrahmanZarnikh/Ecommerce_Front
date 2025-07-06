@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const ProductCard = ({name,category,price,image,id}) => {
   const navigate = useNavigate()
   return (
-    <div className="max-w-80 flex flex-col items-start gap-4 shadow-xl rounded-xl p-5 "
+    <div className="max-w-80 flex flex-col items-start gap-4 shadow-xl rounded-xl p-5  cursor-pointer hover:scale-105 transition-all duration-300"
                       onClick={() => {navigate(`/product/${id}`)
                       console.log(id)}}
 >
