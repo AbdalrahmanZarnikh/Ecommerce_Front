@@ -8,69 +8,86 @@ import Lottie from "lottie-react";
 
 import loading from "../../utils/loading.json";
 import notFound from "../../utils/notfound.json";
+import CategoryCard from "../CategoryCard/CategoryCard";
 
-const SectionCards = ({ title }) => {
+const SectionCards = ({ title, getThunk, to ,slice}) => {
   const dispatch = useDispatch();
 
-  const [products, setProducts] = useState([]);
+  const [records, setRecords] = useState([]);
+  const [isLoading,setIsLoading]=useState("");
 
   useEffect(() => {
     const fn = async () => {
-      const result = await dispatch(getProducts());
+      const result = await dispatch(getThunk());
 
-      if (getProducts.fulfilled.match(result)) {
-        setProducts(result.payload.data);
+      if (getThunk.fulfilled.match(result)) {
+        setRecords(result.payload.data);
+      }
+      else if(getThunk.pending.match(result)){
+        setIsLoading("Pending")
+      }
+      else if(getThunk.rejected.match(result)){
+        setIsLoading("Fail")
       }
     };
 
     fn();
   }, []);
 
-  const { data, error, isLoading } = useSelector((state) => state.productSlice);
+
 
   return (
     <div>
       {/* Content Info */}
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold"> {title}</h1>
-        <Link className="text-blue-700 hover:text-blue-400"to={"/products"}>عرض الكل</Link>
+        <Link className="text-blue-700 hover:text-blue-400" to={`/${to}`}>
+          عرض الكل
+        </Link>
       </div>
       {/* Content Info */}
 
- 
-        {products?.length > 0 ? (
-          <div className="grid gird-cols-1 md:grid-cols-4 justify-items-center gap-2">
-            {products?.map((ele, index) => {
-              if (index < 4) {
-                return (
-                  <ProductCard
-                    key={ele._id}
-                    name={ele.title}
-                    price={ele.price}
-                    category={ele.category.name}
-                    image={ele.image?.url}
-                    id={ele._id}
-                  />
-                );
-              }
-            })}
-          </div>
-        ) : (
-          <div>
-            {isLoading == "Pending" ? (
-              <div  className="mx-auto mt-20 w-10 ">
-                <Lottie animationData={loading} />
-              </div>
-            ) : isLoading == "Fail" ? (
-              <div  className="mx-auto mt-40 w-20">
-                <Lottie animationData={notFound} />
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        )}
-      </div>
+      {records?.length > 0 ? (
+        <div className="grid gird-cols-1 md:grid-cols-4 justify-items-center gap-2">
+          {records?.map((ele, index) => {
+            if (index < 4 && to == "products") {
+              return (
+                <ProductCard
+                  key={ele._id}
+                  name={ele.title}
+                  price={ele.price}
+                  category={ele.category.name}
+                  image={ele.image?.url}
+                  id={ele._id}
+                />
+              );
+            } else if (index < 4 && to == "categories") {
+              return (
+                <CategoryCard
+                name={ele.name}
+                id={ele._id}
+                image={ele?.image.url}
+                />
+              );
+            }
+          })}
+        </div>
+      ) : (
+        <div>
+          {isLoading == "Pending" ? (
+            <div className="mx-auto mt-20 w-10 ">
+              <Lottie animationData={loading} />
+            </div>
+          ) : isLoading == "Fail" ? (
+            <div className="mx-auto mt-40 w-20">
+              <Lottie animationData={notFound} />
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+      )}
+    </div>
   );
 };
 

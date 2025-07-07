@@ -11,6 +11,8 @@ import Container from "../components/Container/Container";
 import Product from "../pages/Product";
 import Cart from "../pages/Cart";
 import Wishlist from "../pages/Wishlist";
+import Categories from "../pages/Categories";
+import ProductsByCategory from "../pages/ProductsByCategory";
 
 const Router = () => {
   return (
@@ -18,8 +20,11 @@ const Router = () => {
       <NavBar />
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/cart" element={<Cart/>}/>
-        <Route path="/wishlist" element={<Wishlist/>}/>
+        <Route path="/categories" element={<Categories />} />
+
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/productsbycategory/:id" element={<ProductsByCategory />} />
 
         <Route path="/products" element={<Products />} />
         <Route path="/product/:id" element={<Product />} />

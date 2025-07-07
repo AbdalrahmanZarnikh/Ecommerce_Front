@@ -43,17 +43,7 @@ const Products = () => {
     <Container>
       <h1 className="text-4xl font-bold">المنتجات</h1>
       <div className="flex flex-col md:flex-row justify-center items-center  gap-2">
-        {/* Search  */}
-        <div className="relative flex-2/3">
-          <input
-            type="text"
-            placeholder="البحث عن المنتجات"
-            className="p-4 w-full rounded-lg border "
-          />
-          <BiSearch className="absolute left-2 top-5 text-gray-500" size={21} />
-        </div>
-        {/* Search  */}
-
+      
         {/* Filter New */}
         <div>
           <button

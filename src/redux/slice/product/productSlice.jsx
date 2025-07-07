@@ -5,6 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import getProducts from "./act/actgetProducts";
 import getOneProduct from "./act/actgetOneProduct";
 import getProductsByCategory from "./act/actgetProductsByCategory";
+import getProductsBySearch from "./act/actgetProductsBySearch";
 
 import toast from "react-hot-toast";
 
@@ -64,9 +65,23 @@ const productSlice = createSlice({
       state.error = action.payload;
       toast.error(state.error || "Network Error");
     });
+    builder.addCase(getProductsBySearch.pending, (state) => {
+      state.isLoading = "Pending";
+      state.error = null;
+    });
+    builder.addCase(getProductsBySearch.fulfilled, (state, action) => {
+      state.isLoading = "Success";
+      state.error = null;
+      state.data = action.payload.data;
+    });
+    builder.addCase(getProductsBySearch.rejected, (state, action) => {
+      state.isLoading = "Fail";
+      state.error = action.payload;
+      toast.error(state.error || "Network Error");
+    });
   },
 });
 
 export default productSlice.reducer;
 
-export { getOneProduct, getProducts, getProductsByCategory };
+export { getOneProduct, getProducts, getProductsByCategory ,getProductsBySearch};

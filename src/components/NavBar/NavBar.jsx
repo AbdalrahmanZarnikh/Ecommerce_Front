@@ -6,25 +6,48 @@ import { FiShoppingCart } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
 import ShowNumberOfItems from "../ShowNumberOfItems/ShowNumberOfItems";
-import {  useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsFillBagHeartFill, BsHeart, BsHeartFill } from "react-icons/bs";
 import { getLoggedUserCart } from "../../redux/slice/cart/cartSlice";
 import { getLoggedUserWishlist } from "../../redux/slice/wishlist/wishlistSlice";
+import { getProducts, getProductsBySearch } from "../../redux/slice/product/productSlice";
+import toast from "react-hot-toast";
 
 const NavBar = () => {
   const [menuBar, setMenuBar] = useState(false);
   const navigate = useNavigate();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const [token, setToken] = useState(false);
 
-  useEffect(()=>{
+  const [searchTerm, setSearchTerm] = useState("");
+
+
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      if (searchTerm.trim() !== "") {
+        dispatch(getProductsBySearch(searchTerm));
+        navigate("/products");
+      }
+      else{
+        dispatch(getProducts());
+      }
+    }, 500); 
+
+    return () => clearTimeout(delayDebounce);  
+  }, [searchTerm, dispatch, navigate]);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  useEffect(() => {
     dispatch(getLoggedUserCart());
     dispatch(getLoggedUserWishlist());
-  },[dispatch])
+  }, [dispatch]);
 
+  const { dataCart } = useSelector((state) => state.cartSlice);
+  const { dataWishlist } = useSelector((state) => state.wishlistSlice);
 
-  const {dataCart} =useSelector((state)=>state.cartSlice);
-  const {dataWishlist} =useSelector((state)=>state.wishlistSlice);
 
 
   return (
@@ -50,6 +73,9 @@ const NavBar = () => {
               type="text"
               placeholder="البحث عن المنتجات"
               className="p-4 w-full rounded-lg border"
+              onChange={(e) => {
+                handleSearch(e);
+              }}
             />
             <BiSearch
               className="absolute left-2 top-5 text-gray-500"
@@ -63,6 +89,10 @@ const NavBar = () => {
                 size={25}
                 className="hover:text-blue-400 cursor-pointer"
                 onClick={() => {
+                  if (!localStorage.getItem("token")) {
+                    toast.error("قم بتسجيل الدخول اولا");
+                    return;
+                  }
                   navigate("/wishlist");
                 }}
               />
@@ -72,6 +102,10 @@ const NavBar = () => {
                 size={25}
                 className="hover:text-blue-400 cursor-pointer"
                 onClick={() => {
+                  if (!localStorage.getItem("token")) {
+                    toast.error("قم بتسجيل الدخول اولا");
+                    return;
+                  }
                   navigate("/cart");
                 }}
               />
