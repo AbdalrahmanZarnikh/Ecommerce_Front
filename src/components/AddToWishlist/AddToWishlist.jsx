@@ -1,17 +1,30 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaRegHeart } from "react-icons/fa";
+import { addProductToWishlist, removeProductFromWishlist } from "../../redux/slice/wishlist/wishlistSlice";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { useEffect, useState } from "react";
 
-const AddToWishlist = () => {
-    const dispatch=useDispatch();
-    const handleAddProductToWishlist=()=>{
-        //  dispatch(addProductToCart({productId:id}));
+const AddToWishlist = ({ id ,flag}) => {
+  const dispatch = useDispatch();
+  const [clicked,setClicked]=useState(false)
+
+  const handleAddProductToWishlist = () => {
+    setClicked(!clicked);
+    if(!clicked && !flag){
+      dispatch(addProductToWishlist({ productId: id }));
     }
+    else if(flag || clicked){
+      dispatch(removeProductFromWishlist(id))
+    }
+  };
+
   return (
     <button onClick={handleAddProductToWishlist}>
-      <FaRegHeart
-        size={25}
-        className="hover:text-blue-400 cursor-pointer"
-      />
+      {clicked || flag? (
+        <BsHeartFill size={25} className="hover:text-blue-400 cursor-pointer" />
+      ) : (
+        <BsHeart size={25} className="hover:text-blue-400 cursor-pointer" />
+      )}
     </button>
   );
 };

@@ -1,12 +1,12 @@
 import "./App.css";
 import Container from "./components/Container/Container";
-import NavBar from "./components/NavBar/NavBar";
-import ProductCard from "./components/ProductCard/ProductCard";
 import SectionCards from "./components/SectionCards/SectionCards";
 import Hero from "./components/Hero/Hero"
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <>
+    <Toaster/>
     <Hero/>
     <Container>
       <SectionCards title={"الأكثر مبيعا"}/>

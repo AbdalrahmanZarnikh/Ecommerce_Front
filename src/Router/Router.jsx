@@ -5,11 +5,12 @@ import Login from "../pages/auth/Login";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import ResetCode from "../pages/auth/ResetCode";
 import ResetPassword from "../pages/auth/ResetPassword";
-import Products from "../pages/products";
+import Products from "../pages/Products";
 import NavBar from "../components/NavBar/NavBar";
 import Container from "../components/Container/Container";
 import Product from "../pages/Product";
 import Cart from "../pages/Cart";
+import Wishlist from "../pages/Wishlist";
 
 const Router = () => {
   return (
@@ -18,6 +19,8 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/cart" element={<Cart/>}/>
+        <Route path="/wishlist" element={<Wishlist/>}/>
+
         <Route path="/products" element={<Products />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/auth">

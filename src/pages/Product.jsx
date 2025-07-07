@@ -14,6 +14,8 @@ import { FaRegHeart, FaTruck } from "react-icons/fa";
 import timeAgo from "../utils/TimeAgo";
 import Feature from "../components/feature/feature";
 import { AiFillSafetyCertificate } from "react-icons/ai";
+import AddToCart from "../components/AddToCart/AddToCart";
+import AddToWishlist from "../components/AddToWishlist/AddToWishlist";
 const Product = () => {
   const params = useParams();
   const dispatch = useDispatch();
@@ -81,7 +83,7 @@ const Product = () => {
             </svg>
             <span>متوفر في المخزون</span>
           </div>
-          <div className="flex-col items-start sm:flex-row sm:gap-0 gap-[20px] flex items-center mb-6">
+          <div className="flex-col  sm:flex-row sm:gap-0 gap-[20px] flex items-center mb-6">
             <div className="flex items-center ml-4 border border-gray-300 rounded-md overflow-hidden">
               <button
                 className="flex justify-center items-center w-10 h-10 text-gray-600 hover:bg-gray-100"
@@ -102,12 +104,10 @@ const Product = () => {
               </button>
             </div>
             <button className=" flex items-center justify-between gap-2 cursor-pointer text-white px-[16px] py-[8px] bg-blue-600 rounded-lg ml-4 hover:bg-blue-800">
-              <FiShoppingCart size={20} />
+               <AddToCart id={params.id}/>
               اضافة للسلة
             </button>
-            <button className="p-3 flex items-center justify-center rounded-md border-gray-300 text-gray-600 border hover:border-gray-400">
-              <FaRegHeart size={20} />
-            </button>
+            <AddToWishlist id={params.id}/>
           </div>
           {/* features */}
           <Feature title="شحن سريع" desc="توصيل خلال 2-5 ايام">

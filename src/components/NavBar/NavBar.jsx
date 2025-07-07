@@ -5,11 +5,26 @@ import { FaRegHeart } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
+import ShowNumberOfItems from "../ShowNumberOfItems/ShowNumberOfItems";
+import {  useDispatch, useSelector } from "react-redux";
+import { BsFillBagHeartFill, BsHeart, BsHeartFill } from "react-icons/bs";
+import { getLoggedUserCart } from "../../redux/slice/cart/cartSlice";
+import { getLoggedUserWishlist } from "../../redux/slice/wishlist/wishlistSlice";
 
 const NavBar = () => {
   const [menuBar, setMenuBar] = useState(false);
   const navigate = useNavigate();
-  const [token,setToken]=useState(false);
+  const dispatch=useDispatch();
+  const [token, setToken] = useState(false);
+
+  useEffect(()=>{
+    dispatch(getLoggedUserCart());
+    dispatch(getLoggedUserWishlist());
+  },[dispatch])
+
+
+  const {dataCart} =useSelector((state)=>state.cartSlice);
+  const {dataWishlist} =useSelector((state)=>state.wishlistSlice);
 
 
   return (
@@ -43,31 +58,40 @@ const NavBar = () => {
           </div>
 
           <div className="flex justify-center items-center gap-4">
-            <FaRegHeart
-              size={25}
-              className="hover:text-blue-400 cursor-pointer"
-            />
-            <FiShoppingCart
-              size={25}
-              className="hover:text-blue-400 cursor-pointer"
-              onClick={()=>{navigate("/cart")}}
-            />
+            <ShowNumberOfItems numberOfItems={dataWishlist.length}>
+              <BsHeart
+                size={25}
+                className="hover:text-blue-400 cursor-pointer"
+                onClick={() => {
+                  navigate("/wishlist");
+                }}
+              />
+            </ShowNumberOfItems>
+            <ShowNumberOfItems numberOfItems={dataCart?.cartItems?.length}>
+              <FiShoppingCart
+                size={25}
+                className="hover:text-blue-400 cursor-pointer"
+                onClick={() => {
+                  navigate("/cart");
+                }}
+              />
+            </ShowNumberOfItems>
             {localStorage.getItem("token") && !token ? (
               <button
                 className="hidden md:block text-white bg-red-600 rounded-lg p-4 cursor-pointer hover:bg-red-400"
-                onClick={() =>{
+                onClick={() => {
                   localStorage.removeItem("token");
                   setToken(true);
                 }}
               >
-                <CgLogOut size={25}/>
+                <CgLogOut size={25} />
               </button>
             ) : (
               <button
                 className="hidden md:block text-white bg-blue-600 rounded-lg p-4 cursor-pointer hover:bg-blue-400"
                 onClick={() => {
-                  setToken(false)
-                  navigate("/auth/login")
+                  setToken(false);
+                  navigate("/auth/login");
                 }}
               >
                 تسجيل الدخول

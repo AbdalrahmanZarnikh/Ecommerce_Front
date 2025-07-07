@@ -7,19 +7,19 @@ import { useNavigate } from "react-router-dom";
 import AddToCart from "../AddToCart/AddToCart";
 import AddToWishlist from "../AddToWishlist/AddToWishlist";
 
-const ProductCard = ({ name, category, price, image, id }) => {
+const ProductCard = ({ name, category, price, image, id ,flag=false}) => {
   const navigate = useNavigate();
 
 
   return (
     <div
       className="max-w-80 flex flex-col items-start gap-4 shadow-xl rounded-xl p-5  cursor-pointer hover:scale-105 transition-all duration-300"
-      onClick={() => {
+
+    >
+      <img src={image} alt="ProductImage" className="w-full "       onClick={() => {
         navigate(`/product/${id}`);
         console.log(id);
-      }}
-    >
-      <img src={image} alt="ProductImage" className="w-full " />
+      }} />
 
       <div className="flex justify-between items-end w-full">
         {/* Info Product */}
@@ -32,9 +32,9 @@ const ProductCard = ({ name, category, price, image, id }) => {
 
         {/*Buttons  */}
         <div className="flex gap-5 items-center">
-          <AddToWishlist/>
+          <AddToWishlist id={id}  flag={flag}/>
 
-          <AddToCart id={id} />
+          <AddToCart id={id}/>
         </div>
         {/*Buttons  */}
       </div>

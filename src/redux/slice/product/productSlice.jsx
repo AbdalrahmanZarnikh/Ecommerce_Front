@@ -1,27 +1,19 @@
-import {  createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
+// Thunks
 
-// Thunks 
-
-import getProducts from "./act/actgetProducts"
-import getOneProduct from "./act/actgetOneProduct"
-import getProductsByCategory from "./act/actgetProductsByCategory"
+import getProducts from "./act/actgetProducts";
+import getOneProduct from "./act/actgetOneProduct";
+import getProductsByCategory from "./act/actgetProductsByCategory";
 
 import toast from "react-hot-toast";
 
-
-
 // State
 const initialState = {
-  data:[],
+  data: [],
   isLoading: "Idle",
   error: null,
-  
 };
-
-
-
-
 
 // Slice
 const productSlice = createSlice({
@@ -35,47 +27,46 @@ const productSlice = createSlice({
     builder.addCase(getOneProduct.fulfilled, (state, action) => {
       state.isLoading = "Success";
       state.error = null;
-      state.data=action.payload.data;
+      state.data = action.payload.data;
     });
-    builder.addCase(getOneProduct.rejected, (state,action) => {
+    builder.addCase(getOneProduct.rejected, (state, action) => {
       state.isLoading = "Fail";
       state.error = action.payload;
-      toast.error(state.error || "Network Error")
+      toast.error(state.error || "Network Error");
     });
-        builder.addCase(getProducts.pending, (state) => {
+    builder.addCase(getProducts.pending, (state) => {
       state.isLoading = "Pending";
       state.error = null;
     });
+
     builder.addCase(getProducts.fulfilled, (state, action) => {
       state.isLoading = "Success";
       state.error = null;
-      state.data=action.payload.data;
+      state.data = action.payload.data;
     });
-    builder.addCase(getProducts.rejected, (state,action) => {
+
+    builder.addCase(getProducts.rejected, (state, action) => {
       state.isLoading = "Fail";
       state.error = action.payload;
-      toast.error(state.error || "Network Error")
+      toast.error(state.error || "Network Error");
     });
-      builder.addCase(getProductsByCategory.pending, (state) => {
+    builder.addCase(getProductsByCategory.pending, (state) => {
       state.isLoading = "Pending";
       state.error = null;
     });
     builder.addCase(getProductsByCategory.fulfilled, (state, action) => {
       state.isLoading = "Success";
       state.error = null;
-      state.data=action.payload.data;
+      state.data = action.payload.data;
     });
-    builder.addCase(getProductsByCategory.rejected, (state,action) => {
+    builder.addCase(getProductsByCategory.rejected, (state, action) => {
       state.isLoading = "Fail";
       state.error = action.payload;
-      toast.error(state.error || "Network Error")
+      toast.error(state.error || "Network Error");
     });
-
-
-
-  }
+  },
 });
 
 export default productSlice.reducer;
 
-export { getOneProduct,getProducts,getProductsByCategory };
+export { getOneProduct, getProducts, getProductsByCategory };

@@ -4,26 +4,25 @@ import { useDispatch } from "react-redux";
 import { updateCartItemQuantity } from "../../redux/slice/cart/cartSlice";
 import removeSpecificCartItem from "../../redux/slice/cart/act/removeSpecificCartItem";
 
-
 const ItemCart = ({ id, title, category, image, quantity, price }) => {
   const [selectedQuantity, setSelectedQuantity] = useState(quantity);
   const dispatch = useDispatch();
-const handleIncreaseQuantity = () => {
-  const newQuantity = selectedQuantity + 1;
-  setSelectedQuantity(newQuantity);
-  dispatch(updateCartItemQuantity({ id, quantity: newQuantity }));
-};
-
-const handleDecreaseQuantity = () => {
-  const newQuantity = selectedQuantity > 1 ? selectedQuantity - 1 : 0;
-  setSelectedQuantity(newQuantity);
-
-  if (newQuantity === 0) {
-    dispatch(removeSpecificCartItem(id));
-  } else {
+  const handleIncreaseQuantity = () => {
+    const newQuantity = selectedQuantity + 1;
+    setSelectedQuantity(newQuantity);
     dispatch(updateCartItemQuantity({ id, quantity: newQuantity }));
-  }
-};
+  };
+
+  const handleDecreaseQuantity = () => {
+    const newQuantity = selectedQuantity > 1 ? selectedQuantity - 1 : 0;
+    setSelectedQuantity(newQuantity);
+
+    if (newQuantity === 0) {
+      dispatch(removeSpecificCartItem(id));
+    } else {
+      dispatch(updateCartItemQuantity({ id, quantity: newQuantity }));
+    }
+  };
 
   return (
     <div className="flex justify-between items-center mb-4 border-b-2 p-4 border-gray-400">
@@ -60,9 +59,12 @@ const handleDecreaseQuantity = () => {
       {/* left */}
       <div className="flex flex-col items-center gap-10 ">
         <h1 className="text-lg text-gray-600 ">{price} $</h1>
-        <button className="cursor-pointer" onClick={()=>{
-          dispatch(removeSpecificCartItem(id));
-        }}>
+        <button
+          className="cursor-pointer"
+          onClick={() => {
+            dispatch(removeSpecificCartItem(id));
+          }}
+        >
           <MdDelete className="text-3xl text-red-600 hover:text-red-400" />
         </button>
       </div>
