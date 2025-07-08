@@ -11,20 +11,27 @@ import Container from "../components/Container/Container";
 import Product from "../pages/Product";
 import Cart from "../pages/Cart";
 import Wishlist from "../pages/Wishlist";
-import Categories from "../pages/Categories";
-import ProductsByCategory from "../pages/ProductsByCategory";
+import ProductsByCategory from "../pages/ProductsBy";
+import Show from "../pages/Show";
+import {getCategories} from "../redux/slice/category/categorySlice"
+import {getBrands} from "../redux/slice/brand/brandSlice"
+import {getProductsByCategory,getProductsByBrand} from "../redux/slice/product/productSlice"
+import ProductsBy from "../pages/ProductsBy";
 
 const Router = () => {
+
   return (
     <BrowserRouter>
       <NavBar />
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/categories" element={<Categories />} />
+        <Route path="/categories" element={<Show title={"تسوق حسب القسم"} getThunk={getCategories} />} />
+        <Route path="/brands" element={<Show title={"تسوق حسب الماركة"} getThunk={getBrands} />} />
 
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/productsbycategory/:id" element={<ProductsByCategory />} />
+        <Route path="/productsby/categories/:id" element={<ProductsBy getThunk={getProductsByCategory} />} />
+        <Route path="/productsby/brands/:id" element={<ProductsBy getThunk={getProductsByBrand}  />} />
 
         <Route path="/products" element={<Products />} />
         <Route path="/product/:id" element={<Product />} />

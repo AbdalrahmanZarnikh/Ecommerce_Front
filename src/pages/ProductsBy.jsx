@@ -9,24 +9,26 @@ import { getProductsByCategory } from "../redux/slice/product/productSlice";
 
 import loading from "../utils/loading.json";
 import notFound from "../utils/notfound.json";
-import cartEmpty from "../utils/cartEmpty.json"
-import { useParams } from "react-router-dom";
+import cartEmpty from "../utils/cartEmpty.json";
+import { useNavigate, useParams } from "react-router-dom";
 
-const ProductsByCategory = () => {
+const ProductsBy = ({getThunk}) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [data, setData] = useState([]);
-  const [checkEmpty,setCheckEmpty]=useState(false);
+  const [checkEmpty, setCheckEmpty] = useState(false);
+
+
 
   const { isLoading } = useSelector((state) => state.productSlice);
 
   useEffect(() => {
     const fn = async () => {
-      const result = await dispatch(getProductsByCategory(id));
-      if (getProductsByCategory.fulfilled.match(result)) {
+      const result = await dispatch(getThunk(id));
+      if (getThunk.fulfilled.match(result)) {
         setData(result.payload.data);
-        if(result.payload.data.length === 0){
-            setCheckEmpty(true);
+        if (result.payload.data.length === 0) {
+          setCheckEmpty(true);
         }
       }
     };
@@ -64,11 +66,11 @@ const ProductsByCategory = () => {
               <div className="mx-auto mt-40 w-70">
                 <Lottie animationData={notFound} />
               </div>
-            ) : checkEmpty ?(
+            ) : checkEmpty ? (
               <div className="flex justify-center items-center mt-24">
                 <Lottie animationData={cartEmpty} />
               </div>
-            ):null}
+            ) : null}
           </div>
         )}
 
@@ -78,4 +80,4 @@ const ProductsByCategory = () => {
   );
 };
 
-export default ProductsByCategory;
+export default ProductsBy;

@@ -18,13 +18,11 @@ const SectionCards = ({ title, getThunk, to ,slice}) => {
 
   useEffect(() => {
     const fn = async () => {
+      setIsLoading("Pending")
       const result = await dispatch(getThunk());
-
       if (getThunk.fulfilled.match(result)) {
         setRecords(result.payload.data);
-      }
-      else if(getThunk.pending.match(result)){
-        setIsLoading("Pending")
+        setIsLoading("")
       }
       else if(getThunk.rejected.match(result)){
         setIsLoading("Fail")
@@ -61,12 +59,13 @@ const SectionCards = ({ title, getThunk, to ,slice}) => {
                   id={ele._id}
                 />
               );
-            } else if (index < 4 && to == "categories") {
+            } else if (index < 4 && (to == "categories" || to=="brands")) {
               return (
                 <CategoryCard
                 name={ele.name}
                 id={ele._id}
                 image={ele?.image.url}
+                to={to}
                 />
               );
             }

@@ -5,6 +5,7 @@ import productSlice from "./slice/product/productSlice"
 import categorySlice from "./slice/category/categorySlice"
 import cartSlice from "./slice/cart/cartSlice"
 import wishlistSlice from "./slice/wishlist/wishlistSlice"
+import brandSlice from "./slice/brand/brandSlice"
 
 
 export const store=configureStore({
@@ -13,6 +14,7 @@ export const store=configureStore({
         productSlice,
         categorySlice,
         cartSlice,
-        wishlistSlice
+        wishlistSlice,
+        brandSlice
     }
 })

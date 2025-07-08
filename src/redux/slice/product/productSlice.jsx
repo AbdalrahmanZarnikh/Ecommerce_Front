@@ -6,6 +6,7 @@ import getProducts from "./act/actgetProducts";
 import getOneProduct from "./act/actgetOneProduct";
 import getProductsByCategory from "./act/actgetProductsByCategory";
 import getProductsBySearch from "./act/actgetProductsBySearch";
+import getProductsByBrand from "./act/actgetProductsByBrand";
 
 import toast from "react-hot-toast";
 
@@ -65,6 +66,20 @@ const productSlice = createSlice({
       state.error = action.payload;
       toast.error(state.error || "Network Error");
     });
+    builder.addCase(getProductsByBrand.pending, (state) => {
+      state.isLoading = "Pending";
+      state.error = null;
+    });
+    builder.addCase(getProductsByBrand.fulfilled, (state, action) => {
+      state.isLoading = "Success";
+      state.error = null;
+      state.data = action.payload.data;
+    });
+    builder.addCase(getProductsByBrand.rejected, (state, action) => {
+      state.isLoading = "Fail";
+      state.error = action.payload;
+      toast.error(state.error || "Network Error");
+    });
     builder.addCase(getProductsBySearch.pending, (state) => {
       state.isLoading = "Pending";
       state.error = null;
@@ -84,4 +99,10 @@ const productSlice = createSlice({
 
 export default productSlice.reducer;
 
-export { getOneProduct, getProducts, getProductsByCategory ,getProductsBySearch};
+export {
+  getOneProduct,
+  getProducts,
+  getProductsByCategory,
+  getProductsBySearch,
+  getProductsByBrand
+};
