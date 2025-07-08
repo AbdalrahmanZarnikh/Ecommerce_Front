@@ -29,6 +29,7 @@ const Show = ({ title, getThunk }) => {
   }, [dispatch]);
 
 
+  const to=title=="تسوق حسب القسم"?"categories":"brands"
   return (
     <Container>
       <h1 className="text-4xl font-bold"> {title} </h1>
@@ -41,6 +42,7 @@ const Show = ({ title, getThunk }) => {
                 name={ele.name}
                 image={ele.image?.url}
                 id={ele._id}
+                to={to}
               />
             );
           })}
