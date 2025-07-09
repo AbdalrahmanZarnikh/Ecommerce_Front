@@ -5,6 +5,7 @@ import { getLoggedUserWishlist } from "../redux/slice/wishlist/wishlistSlice";
 import ProductCard from "../components/ProductCard/ProductCard";
 import Lottie from "lottie-react";
 import cartEmpty from "../utils/cartEmpty.json"
+import { Toaster } from "react-hot-toast";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Wishlist = () => {
 
   return (
     <Container>
+      <Toaster/>
       <h1 className="text-4xl font-bold">المفضلة</h1>
       {/* Products */}
 

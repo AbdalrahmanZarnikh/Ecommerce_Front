@@ -91,7 +91,7 @@ const cartSlice = createSlice({
     builder.addCase(applyCoupon.rejected, (state, action) => {
       state.isLoading = "Fail";
       state.error = action.payload;
-      toast.error(state.error || "Network Error");
+      // toast.error(state.error || "Network Error");
     });
     builder.addCase(clearCart.pending, (state) => {
       state.isLoading = "Pending";

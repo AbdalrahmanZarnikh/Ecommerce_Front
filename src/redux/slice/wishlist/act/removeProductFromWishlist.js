@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const removeProductFromWishlist = createAsyncThunk(
     "cart/removeProductFromWishlist",
@@ -16,8 +17,11 @@ const removeProductFromWishlist = createAsyncThunk(
         );
 
 
+        toast.success("تمت ازالة المنتح من المفضلة")
+
         return res.data;
       } catch (error) {
+        toast.error(error.response.data.message);
         if (axios.isAxiosError(error)) {
           return rejectWithValue(error.response?.data.message);
         }

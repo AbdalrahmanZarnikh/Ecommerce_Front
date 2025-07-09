@@ -9,6 +9,7 @@ import clearCart from "../redux/slice/cart/act/clearCart";
 import Lottie from "lottie-react";
 import cartEmpty from "../utils/cartEmpty.json";
 import applyCoupon from "../redux/slice/cart/act/applyCoupon";
+import { Toaster } from "react-hot-toast";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const Cart = () => {
 
   return (
     <Container>
+      <Toaster/>
       <h1 className="text-4xl font-bold">سلة التسوق</h1>
 
       <div className="flex flex-col md:flex-row  justify-center gap-10 ">

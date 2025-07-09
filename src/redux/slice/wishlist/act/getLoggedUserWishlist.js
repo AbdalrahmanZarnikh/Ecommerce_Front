@@ -19,6 +19,7 @@ const getLoggedUserWishlist = createAsyncThunk(
 
         return res.data;
       } catch (error) {
+        toast.error(error.response.data.message);
         if (axios.isAxiosError(error)) {
           return rejectWithValue(error.response?.data.message);
         }
