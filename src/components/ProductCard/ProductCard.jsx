@@ -13,10 +13,10 @@ const ProductCard = ({ name, category, price, image, id ,flag=false}) => {
 
   return (
     <div
-      className="max-w-80 flex flex-col items-start gap-4 shadow-xl rounded-xl p-5  cursor-pointer hover:scale-105 transition-all duration-300"
+      className="w-96 flex flex-col items-start gap-4 shadow-xl rounded-xl p-5  cursor-pointer hover:scale-105 transition-all duration-300"
 
     >
-      <img src={image} alt="ProductImage" className="w-full "       onClick={() => {
+      <img src={image} alt="ProductImage" className="w-full h-60"       onClick={() => {
         navigate(`/product/${id}`);
         console.log(id);
       }} />
@@ -31,10 +31,11 @@ const ProductCard = ({ name, category, price, image, id ,flag=false}) => {
         {/* Info Product */}
 
         {/*Buttons  */}
-        <div className="flex gap-5 items-center">
+        <div className="flex   gap-3 items-center">
+          <AddToCart id={id}/>
+
           <AddToWishlist id={id}  flag={flag}/>
 
-          <AddToCart id={id}/>
         </div>
         {/*Buttons  */}
       </div>

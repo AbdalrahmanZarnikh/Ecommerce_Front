@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 const AddToCart = ({id}) => {
     const dispatch=useDispatch();
     const handleAddProductToCart=()=>{
+      console.log("clicked")
       if(!localStorage.getItem("token")){
         toast.error("قم بتسجيل الدخول اولا")
         return ;
@@ -13,11 +14,11 @@ const AddToCart = ({id}) => {
          dispatch(addProductToCart({productId:id}));
     }
   return (
-    <button onClick={handleAddProductToCart}>
+    <button onClick={handleAddProductToCart} className="flex items-center justify-between gap-2 cursor-pointer text-white px-[16px] py-[8px] bg-blue-600 rounded-lg ml-4 hover:bg-blue-800">
       <FiShoppingCart
         size={25}
-        className="hover:text-blue-400 cursor-pointer"
       />
+      اضافة للسلة
     </button>
   );
 };

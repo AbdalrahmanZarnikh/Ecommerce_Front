@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiLogOut, BiLogOutCircle, BiSearch } from "react-icons/bi";
 import { CgLogOut } from "react-icons/cg";
 import { FaRegHeart } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ShowNumberOfItems from "../ShowNumberOfItems/ShowNumberOfItems";
 import { useDispatch, useSelector } from "react-redux";
 import { BsFillBagHeartFill, BsHeart, BsHeartFill } from "react-icons/bs";
@@ -19,16 +19,20 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const [token, setToken] = useState(false);
 
-  const [searchTerm, setSearchTerm] = useState("");
+  const location=useLocation();
 
+
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
-      if (searchTerm.trim() !== "") {
+      const trimmed = searchTerm.trim();
+      if (trimmed !== "") {
         dispatch(getProductsBySearch(searchTerm));
         navigate("/products");
       }
-      else{
+      else if(trimmed==="" && location.pathname==="/products") {
         dispatch(getProducts());
       }
     }, 500); 
@@ -41,6 +45,9 @@ const NavBar = () => {
   };
 
   useEffect(() => {
+    if(!localStorage.getItem("token")){
+      return ;
+    }
     dispatch(getLoggedUserCart());
     dispatch(getLoggedUserWishlist());
   }, [dispatch]);
@@ -57,13 +64,13 @@ const NavBar = () => {
           <h1 className="text-blue-700 font-bold text-3xl">متجري</h1>
 
           <div className="hidden md:flex justify-center items-center gap-4">
-            <Link className="hover:text-blue-400" to="/">
+            <Link className={`hover:scale-105 rounded-lg ${location.pathname==="/"?"t bg-blue-500 text-white p-2 ":""} transition-all duration-200`} to="/">
               الرئيسية
             </Link>
-            <Link className="hover:text-blue-400" to="/products">
+            <Link className={`hover:scale-105 rounded-lg ${location.pathname==="/products"?"bg-blue-500 text-white p-2 ":""}transition-all duration-200`}to="/products">
               المنتجات
             </Link>
-            <Link className="hover:text-blue-400" to="/categories">
+            <Link className={`hover:scale-105 rounded-lg  ${location.pathname==="/categories"?"bg-blue-500 text-white p-2 ":""}transition-all duration-200`}to="/categories">
               الأقسام
             </Link>
           </div>
