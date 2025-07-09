@@ -18,7 +18,7 @@ const addProductToCart = createAsyncThunk(
         }
       );
 
-      toast.success(" تمت اضافة المنتج بنجاح")
+      toast.success(" تمت اضافة المنتج الى السلة بنجاح");
 
       return res.data;
     } catch (error) {
