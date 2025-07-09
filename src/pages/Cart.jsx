@@ -8,10 +8,12 @@ import { MdDelete } from "react-icons/md";
 import clearCart from "../redux/slice/cart/act/clearCart";
 import Lottie from "lottie-react";
 import cartEmpty from "../utils/cartEmpty.json";
+import applyCoupon from "../redux/slice/cart/act/applyCoupon";
 
 const Cart = () => {
   const dispatch = useDispatch();
 
+  const [couponName,setCouponName]=useState("");
   const { dataCart } = useSelector((state) => state.cartSlice);
 
   useEffect(() => {
@@ -25,6 +27,11 @@ const Cart = () => {
     fn();
   }, [dispatch]);
   const cartItemsLength = dataCart.cartItems?.length || 0;
+  const [openCoupon, setOpenCoupon] = useState(false);
+
+  const handleClickCoupon = () => {
+    setOpenCoupon(!openCoupon);
+  };
 
   return (
     <Container>
@@ -69,8 +76,55 @@ const Cart = () => {
               <div className=" pt-4 mt-4">
                 <div className="flex justify-between  font-bold text-lg">
                   <span>الاجمالي :</span>
-                  <span>{dataCart.totalCartPrice}</span>
+                  <span
+                    className={`${
+                      dataCart.totalPriceAfterDiscount
+                        ? "line-through font-semibold"
+                        : ""
+                    }`}
+                  >
+                    {dataCart.totalCartPrice}
+                  </span>
                 </div>
+                {dataCart.totalPriceAfterDiscount && (
+                  <div className="flex justify-between  font-bold text-lg">
+                    <span>الاجمالي بعد الخصم :</span>
+                    <span>{dataCart.totalPriceAfterDiscount || 0}</span>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex flex-col items-start">
+                <button
+                  className={`text-blue-600 text-sm cursor-pointer hover:text-blue-300 transition-all duration-200 ${
+                    openCoupon && "hidden"
+                  }`}
+                  onClick={handleClickCoupon}
+                >
+                  اضافة كود خصم
+                </button>
+
+                {openCoupon && (
+                  <div className="flex flex-col gap-2 w-full">
+                    <input
+                      type="text"
+                      placeholder="ادخل كود الخصم"
+                      className="p-4 rounded-lg border"
+                      onChange={(e)=>{
+                        setCouponName(e.target.value)
+                      }}
+                    />
+                    <button
+                      className="bg-blue-700 p-4 text-white hover:bg-blue-300  cursor-pointer rounded-lg"
+                      onClick={() => {
+                        setOpenCoupon(false);
+                        dispatch(applyCoupon({coupon:couponName}))
+                      }}
+                    >
+                      ارسال
+                    </button>
+                  </div>
+                )}
               </div>
               <button className="w-full mt-6 bg-blue-600 text-white p-4 rounded-lg cursor-pointer hover:bg-blue-400">
                 المتابعة للدفع
