@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { updateCartItemQuantity } from "../../redux/slice/cart/cartSlice";
-import removeSpecificCartItem from "../../redux/slice/cart/act/removeSpecificCartItem";
+import { updateCartItemQuantity,removeSpecificCartItem } from "../../redux/slice/cart/cartSlice";
+
 
 const ItemCart = ({ id, title, category, image, quantity, price }) => {
   const [selectedQuantity, setSelectedQuantity] = useState(quantity);

@@ -11,7 +11,7 @@ function App() {
  
   return (
     <>
-      <Toaster />
+    
       <Hero />
       <Container>
         <SectionCards title={ "تسوق حسب القسم"} to={"categories"} getThunk={getCategories}/>

@@ -14,6 +14,7 @@ import {
 import loading from "../utils/loading.json";
 import notFound from "../utils/notfound.json";
 import cartEmpty from "../utils/cartEmpty.json";
+import { Toaster } from "react-hot-toast";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -64,43 +65,6 @@ const Products = () => {
     <Container>
       <h1 className="text-4xl font-bold">المنتجات</h1>
 
-      {/* Filter New */}
-      {/* <div>
-          <button
-            className=" bg-blue-700 text-white px-4 py-2 rounded-lg flex justify-center items-center gap-2 cursor-pointer mb-2 hover:bg-blue-400"
-            onClick={() => {
-              setIsChooseCategory(!isChooseCategory);
-            }}
-          >
-            <span>{chooseCategory}</span>
-
-            {isChooseCategory ? <BiUpArrowAlt /> : <BiDownArrowAlt />}
-          </button>
-          {isChooseCategory && (
-            <div className="fixed flex flex-col items-center bg-gray-50 rounded-lg p-4">
-              {categories.map((ele) => {
-                return (
-                  <h1
-                    className="hover:bg-blue-700 cursor-pointer hover:text-white px-4 py-2 rounded-lg "
-                    onClick={() => {
-                      setChooseCategory(ele.name);
-                      setIsChooseCategory(false);
-                      if (ele.name !== "الكل") {
-                        dispatch(getProductsByCategory(ele._id));
-                      }
-                      else{
-                        dispatch(getProducts());
-                      }
-                    }}
-                  >
-                    {ele.name}
-                  </h1>
-                );
-              })}
-            </div>
-          )}
-        </div> */}
-      {/* Filter New */}
 
       <div className="flex flex-row-reverse justify-end items-center gap-5 flex-wrap ">
         {loadingCategory ? (

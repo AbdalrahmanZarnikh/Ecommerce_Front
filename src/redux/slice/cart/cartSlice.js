@@ -112,4 +112,4 @@ const cartSlice = createSlice({
 
 export default cartSlice.reducer;
 
-export { addProductToCart, getLoggedUserCart, updateCartItemQuantity };
+export { addProductToCart, getLoggedUserCart, updateCartItemQuantity ,clearCart,removeSpecificCartItem,applyCoupon};

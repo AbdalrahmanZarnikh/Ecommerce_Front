@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BiLogOut, BiLogOutCircle, BiSearch } from "react-icons/bi";
 import { CgLogOut } from "react-icons/cg";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaUserCircle } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -10,7 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { BsFillBagHeartFill, BsHeart, BsHeartFill } from "react-icons/bs";
 import { getLoggedUserCart } from "../../redux/slice/cart/cartSlice";
 import { getLoggedUserWishlist } from "../../redux/slice/wishlist/wishlistSlice";
-import { getProducts, getProductsBySearch } from "../../redux/slice/product/productSlice";
+import {
+  getProducts,
+  getProductsBySearch,
+} from "../../redux/slice/product/productSlice";
 import toast from "react-hot-toast";
 
 const NavBar = () => {
@@ -19,9 +22,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const [token, setToken] = useState(false);
 
-  const location=useLocation();
-
-
+  const location = useLocation();
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -31,13 +32,12 @@ const NavBar = () => {
       if (trimmed !== "") {
         dispatch(getProductsBySearch(searchTerm));
         navigate("/products");
-      }
-      else if(trimmed==="" && location.pathname==="/products") {
+      } else if (trimmed === "" && location.pathname === "/products") {
         dispatch(getProducts());
       }
-    }, 500); 
+    }, 500);
 
-    return () => clearTimeout(delayDebounce);  
+    return () => clearTimeout(delayDebounce);
   }, [searchTerm, dispatch, navigate]);
 
   const handleSearch = (e) => {
@@ -45,8 +45,8 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    if(!localStorage.getItem("token")){
-      return ;
+    if (!localStorage.getItem("token")) {
+      return;
     }
     dispatch(getLoggedUserCart());
     dispatch(getLoggedUserWishlist());
@@ -55,8 +55,6 @@ const NavBar = () => {
   const { dataCart } = useSelector((state) => state.cartSlice);
   const { dataWishlist } = useSelector((state) => state.wishlistSlice);
 
-
-
   return (
     <>
       <div className="fixed top-0 left-0 w-full z-50 bg-white shadow-md py-4 px-6">
@@ -64,13 +62,32 @@ const NavBar = () => {
           <h1 className="text-blue-700 font-bold text-3xl">متجري</h1>
 
           <div className="hidden md:flex justify-center items-center gap-4">
-            <Link className={`hover:scale-105 rounded-lg ${location.pathname==="/"?"t bg-blue-500 text-white p-2 ":""} transition-all duration-200`} to="/">
+            <Link
+              className={`hover:scale-105 rounded-lg ${
+                location.pathname === "/" ? "t bg-blue-500 text-white p-2 " : ""
+              } transition-all duration-200`}
+              to="/"
+            >
               الرئيسية
             </Link>
-            <Link className={`hover:scale-105 rounded-lg ${location.pathname==="/products"?"bg-blue-500 text-white p-2 ":""}transition-all duration-200`}to="/products">
+            <Link
+              className={`hover:scale-105 rounded-lg ${
+                location.pathname === "/products"
+                  ? "bg-blue-500 text-white p-2 "
+                  : ""
+              }transition-all duration-200`}
+              to="/products"
+            >
               المنتجات
             </Link>
-            <Link className={`hover:scale-105 rounded-lg  ${location.pathname==="/categories"?"bg-blue-500 text-white p-2 ":""}transition-all duration-200`}to="/categories">
+            <Link
+              className={`hover:scale-105 rounded-lg  ${
+                location.pathname === "/categories"
+                  ? "bg-blue-500 text-white p-2 "
+                  : ""
+              }transition-all duration-200`}
+              to="/categories"
+            >
               الأقسام
             </Link>
           </div>
@@ -117,11 +134,19 @@ const NavBar = () => {
                 }}
               />
             </ShowNumberOfItems>
+
+            {localStorage.getItem("role") === "user" ? (
+              <button className="hidden md:block hover:text-blue-400 cursor-pointer" onClick={()=>{navigate("/dashboard")}}>
+                <FaUserCircle size={25} />
+              </button>
+            ) : null}
+
             {localStorage.getItem("token") && !token ? (
               <button
                 className="hidden md:block text-white bg-red-600 rounded-lg p-4 cursor-pointer hover:bg-red-400"
                 onClick={() => {
                   localStorage.removeItem("token");
+                  localStorage.removeItem("role")
                   setToken(true);
                 }}
               >
@@ -150,7 +175,7 @@ const NavBar = () => {
       <div className="h-[90px]" />
 
       {menuBar && (
-        <div className="fixed top-[90px] left-0 w-full flex flex-col items-center justify-center p-5 gap-4 bg-gray-100 md:hidden shadow-lg z-40">
+        <div className="fixed top-[90px] left-0 w-full flex flex-col items-center justify-center p-5 gap-4 bg-gray-100 md:hidden shadow-lg z-40 ">
           <Link
             to="/"
             className="bg-gray-200 w-full text-center py-3 rounded-lg hover:bg-gray-300"
@@ -178,6 +203,11 @@ const NavBar = () => {
           >
             الأقسام
           </Link>
+          {localStorage.getItem("role") === "user" ? (
+            <button className="hover:text-blue-400 cursor-pointer" onClick={()=>{navigate("/dashboard")}}>
+              <FaUserCircle size={25} />
+            </button>
+          ) : null}
           <button
             className="text-white bg-blue-600 rounded-lg px-5 py-3 hover:bg-blue-400 cursor-pointer"
             onClick={() => {

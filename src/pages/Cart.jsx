@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Container from "../components/Container/Container";
-import ProductCart from "../components/ItemCart/ItemCart";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoggedUserCart } from "../redux/slice/cart/cartSlice";
 import ItemCart from "../components/ItemCart/ItemCart";
 import { MdDelete } from "react-icons/md";
-import clearCart from "../redux/slice/cart/act/clearCart";
+import {clearCart,applyCoupon} from "../redux/slice/cart/cartSlice";
 import Lottie from "lottie-react";
 import cartEmpty from "../utils/cartEmpty.json";
-import applyCoupon from "../redux/slice/cart/act/applyCoupon";
 import { Toaster } from "react-hot-toast";
 
 const Cart = () => {

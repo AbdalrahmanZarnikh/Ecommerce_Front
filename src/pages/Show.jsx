@@ -8,6 +8,7 @@ import loading from "../utils/loading.json";
 import notFound from "../utils/notfound.json";
 import Lottie from "lottie-react";
 import { useNavigate } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 const Show = ({ title, getThunk }) => {
   const dispatch = useDispatch();

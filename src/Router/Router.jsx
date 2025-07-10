@@ -20,6 +20,10 @@ import {
   getProductsByBrand,
 } from "../redux/slice/product/productSlice";
 import ProductsBy from "../pages/ProductsBy";
+import Dashboard from "../pages/DashboardUser/Dashboard";
+import Addresses from "../pages/DashboardUser/Addresses";
+import Info from "../pages/DashboardUser/Info";
+import OrdersUser from "../pages/DashboardUser/OrdersUser";
 
 const Router = () => {
   return (
@@ -27,6 +31,11 @@ const Router = () => {
       <NavBar />
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/dashboard" element={<Dashboard/>}>
+            <Route path="addresses" element={<Addresses/>}/>
+            <Route path="info" element={<Info/>}/>
+            <Route path="orders" element={<OrdersUser/>}/>
+        </Route>
         <Route
           path="/categories"
           element={<Show title={"تسوق حسب القسم"} getThunk={getCategories} />}
