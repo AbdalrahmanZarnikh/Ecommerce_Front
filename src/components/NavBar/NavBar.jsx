@@ -146,7 +146,9 @@ const NavBar = () => {
                 className="hidden md:block text-white bg-red-600 rounded-lg p-4 cursor-pointer hover:bg-red-400"
                 onClick={() => {
                   localStorage.removeItem("token");
-                  localStorage.removeItem("role")
+                  localStorage.removeItem("role");
+                  localStorage.removeItem("cart");
+                  localStorage.removeItem("wishlist");
                   setToken(true);
                 }}
               >

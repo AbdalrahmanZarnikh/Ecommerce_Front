@@ -50,8 +50,8 @@ const SideBarDashboard = () => {
         })}
       </div>
       <div className="hidden md:block w-full h-[100%] flex-1/12 border-l-3 border-gray-600">
-        <h1 className="text-center m-10 font-bold text-3xl">لوحة التحكم </h1>
-        <div className="hidden md:flex flex-col justify-start items-start p-4 gap-10">
+        <h1 className="text-center  font-bold text-3xl bg-blue-700 text-white p-5 ">لوحة التحكم </h1>
+        <div className="hidden md:flex flex-col justify-start items-start p-4 gap-10 mt-10">
           {links.map((ele) => {
             return (
               <Link
