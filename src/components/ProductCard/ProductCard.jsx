@@ -14,7 +14,7 @@ const ProductCard = ({ name, category, price, image, id ,flag=false}) => {
 
   return (
     <div
-      className="w-full max-w-sm flex flex-col items-start gap-4 shadow-xl rounded-xl p-5  cursor-pointer hover:scale-105 transition-all duration-300 "
+      className="w-96  flex flex-col items-start gap-4 shadow-xl rounded-xl p-5  cursor-pointer hover:scale-105 transition-all duration-300 "
 
     >
       <img src={image} alt="ProductImage" className="w-full h-60  rounded-lg "       onClick={() => {
