@@ -27,7 +27,7 @@ const Addresses = () => {
     dispatch(getLoggedUserAddress());
   }, [dispatch]);
 
-  const { data, isLoadingAdd } = useSelector(
+  const { data, isLoadingAdd,isLoading } = useSelector(
     (state) => state.addressSlice
   );
 
@@ -44,7 +44,9 @@ const Addresses = () => {
 
 
   return (
-    <div>
+  <div >
+    {isLoading=="Pending" ? 
+    <div className="w-10 flex justify-center items-center h-screen mx-auto"> <Lottie animationData={loading}/></div>:    <div>
       <button
         className={` bg-orange-700 p-4 text-white cursor-pointer hover:bg-blue-300 rounded-lg mb-2 `}
         onClick={() => {
@@ -133,7 +135,8 @@ const Addresses = () => {
         })}
       </div>
       {/* show addresses */}
-    </div>
+    </div>}
+  </div>
   );
 };
 

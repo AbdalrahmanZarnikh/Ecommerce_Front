@@ -49,7 +49,7 @@ const OrderCard = memo( ({
           {totalOrderPrice} ل.س
         </p>
         <p>
-          <span className="font-bold text-black">الضريبة:</span> {taxPrice} ل.س
+          <span className="font-bold text-black">اجور اضافية:</span> {taxPrice} ل.س
         </p>
 
         {shippingAddress && (
