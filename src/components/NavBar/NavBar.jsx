@@ -226,7 +226,8 @@ const NavBar = () => {
             <button
               className="hover:text-blue-400 cursor-pointer"
               onClick={() => {
-                navigate("/dashboard");
+                navigate("/dashboard/info");
+                setMenuBar(false);
               }}
             >
               <FaUserCircle size={25} />

@@ -73,7 +73,7 @@ const Info = () => {
 
   return (
     <>
-      <div className="flex justify-around items-center ">
+      <div className="flex justify-around items-center mb-10 ">
         <button
           onClick={() => {
             setPasswordEdit(!passwordEdit);
@@ -114,7 +114,7 @@ const Info = () => {
           <input
             id="Name"
             type="text"
-            placeholder="ادخل اسم ..."
+            placeholder={`${email ? "ادخل الاسم":"الرجاء الانتظار ...."}`}
             {...register("name")}
             className={`${passwordEdit && !infoEdit && "hidden"}`}
           />
@@ -130,7 +130,7 @@ const Info = () => {
           <input
             id="Email"
             type="text"
-            placeholder="ادخل بريد الكتروني ..."
+            placeholder={`${email ? "ادخل بريد الكتروني":"الرجاء الانتظار ...."}`}
             {...register("email")}
             className={`${passwordEdit && !infoEdit && "hidden"}`}
           />
@@ -161,7 +161,7 @@ const Info = () => {
         <button
           className={`${
             !passwordEdit && !infoEdit && "hidden"
-          } bg-blue-700 p-4 text-white cursor-pointer hover:bg-blue-300 rounded-lg  `}
+          } bg-orange-700 p-4 text-white cursor-pointer hover:bg-orange-300 rounded-lg  `}
           type="submit"
         >
           {isLoading==="Pending" ? <div className="w-10 mx-auto"><Lottie animationData={loading} /></div>:"تعديل"}
