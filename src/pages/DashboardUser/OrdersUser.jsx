@@ -10,7 +10,6 @@ const OrdersUser = () => {
 
   
   const {orders} =useSelector((state)=>state.orderSlice) 
-  console.log(orders);
   return (
      <div>
 
