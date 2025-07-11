@@ -7,6 +7,7 @@ import cartSlice from "./slice/cart/cartSlice"
 import wishlistSlice from "./slice/wishlist/wishlistSlice"
 import brandSlice from "./slice/brand/brandSlice"
 import userSlice from "./slice/user/userSlice"
+import orderSlice from "./slice/orders/orderSlice"
 
 
 export const store=configureStore({
@@ -17,7 +18,8 @@ export const store=configureStore({
         cartSlice,
         wishlistSlice,
         brandSlice,
-        userSlice
+        userSlice,
+        orderSlice
 
     }
 })

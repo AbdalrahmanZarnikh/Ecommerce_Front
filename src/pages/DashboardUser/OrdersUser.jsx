@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {getAllOrders} from "../../redux/slice/orders/orderSlice"
 
 const OrdersUser = () => {
+  const dispatch=useDispatch();
+  useEffect(()=>{
+     dispatch(getAllOrders());
+  },[dispatch])
+
+  
+  const {orders} =useSelector((state)=>state.orderSlice) 
+  console.log(orders);
   return (
-    <div>OrdersUser</div>
+     <div>
+
+      {orders?.map((ele)=>{
+        return (
+          ele.isPaid
+        )
+      })}
+     </div>
   )
 }
 
