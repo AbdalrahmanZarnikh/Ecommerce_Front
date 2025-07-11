@@ -73,14 +73,14 @@ const Info = () => {
 
   return (
     <>
-      <div className="flex justify-around items-center">
+      <div className="flex justify-around items-center ">
         <button
           onClick={() => {
             setPasswordEdit(!passwordEdit);
           }}
           className={` rounded-lg p-2 text-white transition-all duration-300 cursor-pointer ${
             !passwordEdit
-              ? "bg-blue-600 hover:bg-blue-300"
+              ? "bg-orange-600 hover:bg-blue-300"
               : "bg-red-600 hover:bg-red-300"
           } ${infoEdit && "bg-gray-500"}`}
           disabled={infoEdit}
@@ -93,7 +93,7 @@ const Info = () => {
           }}
           className={` rounded-lg p-2 text-white transition-all duration-300 cursor-pointer ${
             !infoEdit
-              ? "bg-blue-600 hover:bg-blue-300"
+              ? "bg-orange-600 hover:bg-blue-300"
               : "bg-red-600 hover:bg-red-300"
           } ${passwordEdit && "bg-gray-500"}`}
           disabled={passwordEdit}
