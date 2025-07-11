@@ -43,12 +43,12 @@ const SideBarDashboard = () => {
   console.log(location.pathname)
   return (
     <>
-      <div className="md:hidden space-y-7 py-4 px-2">
+      <div className="md:hidden space-y-7 py-4 px-2 ">
         {links.map((ele) => {
           return <div onClick={()=>{navigate(`/dashboard/${ele.path}`)}}>{ele.icon}</div>;
         })}
       </div>
-      <div className="hidden md:block w-full h-[100%] flex-1/12 border-l-3 border-gray-600">
+      <div className="hidden md:block w-full h-[100%] flex-1/12 border-l-3 border-gray-600 bg-orange-300">
         <h1 className="text-center  font-bold text-3xl bg-orange-700 text-white p-5 ">لوحة التحكم </h1>
         <div className="hidden md:flex flex-col justify-start items-start p-4 gap-10 mt-10">
           {links.map((ele) => {
