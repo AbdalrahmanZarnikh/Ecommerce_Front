@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
-import {addAddress,removeAddress,getLoggedUserAddress} from "../../redux/slice/address/addressSlice"
+import {
+  addAddress,
+  getLoggedUserAddress,
+} from "../../redux/slice/address/addressSlice";
 
-import loading from "../../utils/loading.json"
+import loading from "../../utils/loading.json";
 import Lottie from "lottie-react";
+import AddressCard from "../../components/AddressCard/AddressCard";
 
 const Addresses = () => {
   const dispatch = useDispatch();
@@ -19,24 +23,25 @@ const Addresses = () => {
     formState: { errors },
   } = useForm();
 
-  useEffect(()=>{
-       dispatch(getLoggedUserAddress());
-  },[dispatch])
+  useEffect(() => {
+    dispatch(getLoggedUserAddress());
+  }, [dispatch]);
 
-  const {data,isLoading} =useSelector((state)=>state.addressSlice)
+  const { data, isLoadingAdd } = useSelector(
+    (state) => state.addressSlice
+  );
 
   // Function To Handle Submit
   const onSubmit = (data) => {
-    console.log(data);
-
-    dispatch(addAddress(data));
+    const fn = async () => {
+      const result = await dispatch(addAddress(data));
+      if (addAddress.fulfilled.match(result)) {
+        setIsAdd(false);
+      }
+    };
+    fn();
   };
 
-
-  const handleDelete=(id)=>{
-    console.log(id);
-    dispatch(removeAddress(id));
-  }
 
   return (
     <div>
@@ -107,37 +112,27 @@ const Addresses = () => {
             !isAdd && "hidden"
           }`}
           type="submit"
-          onClick={()=>
-            {
-              if(isLoading==="Success"){
-                setIsAdd(false);
-              }
-            }
-          }
         >
-          اضافة {isLoading =="Pending" ? <div className="w-10"><Lottie animationData={loading}/></div>:""}
+          اضافة{" "}
+          {isLoadingAdd == "Pending" ? (
+            <div className="w-10">
+              <Lottie animationData={loading} />
+            </div>
+          ) : (
+            ""
+          )}
         </button>
       </form>
 
-       {/* show addresses */}
+      {/* show addresses */}
       <div className="flex justify-center items-center gap-5">
-          {data?.map((ele,index)=>{
-            return (
-              <div className="w-full bg-orange-300 rounded-lg p-4">
-                <div className="flex justify-between items-center ">
-                    <h1 className="text-center mb-6 font-bold">العنوان {index +1 }</h1>
-                    <button className="font-bold mb-6 text-center text-red-500 text-xl hover:text-red-200 cursor-pointer" onClick={()=>{
-                      handleDelete(ele._id)
-                    }}>x</button>
-                </div>
-              <h1 className="text-gray-600"><span className="text-xl text-black font-bold ">المدينة</span> : {ele.city}</h1>
-              <h1 className="text-gray-600"><span className="text-xl text-black font-bold ">رقم الموبايل</span> : {ele.phone}</h1>
-              <h1 className="text-gray-600"><span className="text-xl text-black font-bold ">التفاصيل</span> : {ele.details}</h1>
-              </div>
-            )
-          })}
+        {data?.map((ele, index) => {
+          return (
+            <AddressCard id={ele._id} index={index} city={ele.city} phone={ele.phone} details={ele.details}/>
+          );
+        })}
       </div>
-       {/* show addresses */}
+      {/* show addresses */}
     </div>
   );
 };

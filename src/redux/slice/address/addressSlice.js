@@ -8,7 +8,9 @@ import removeAddress from "./act/removeAddress";
 // State
 const initialState = {
   data: [],
-  isLoading: "Idle",
+  isLoading:"Idle",
+  isLoadingAdd: "Idle",
+  isLoadingRemove: "Idle",
   error: null,
 };
 
@@ -32,29 +34,29 @@ const addressSlice = createSlice({
       state.error = action.payload;
     });
     builder.addCase(addAddress.pending, (state) => {
-      state.isLoading = "Pending";
+      state.isLoadingAdd = "Pending";
       state.error = null;
     });
     builder.addCase(addAddress.fulfilled, (state, action) => {
-      state.isLoading = "Success";
+      state.isLoadingAdd = "Success";
       state.error = null;
       state.data = action.payload.data;
     });
     builder.addCase(addAddress.rejected, (state, action) => {
-      state.isLoading = "Fail";
+      state.isLoadingAdd = "Fail";
       state.error = action.payload;
     });
     builder.addCase(removeAddress.pending, (state) => {
-      state.isLoading = "Pending";
+      state.isLoadingRemove = "Pending";
       state.error = null;
     });
     builder.addCase(removeAddress.fulfilled, (state, action) => {
-      state.isLoading = "Success";
+      state.isLoadingRemove = "Success";
       state.error = null;
       state.data = action.payload.data;
     });
     builder.addCase(removeAddress.rejected, (state, action) => {
-      state.isLoading = "Fail";
+      state.isLoadingRemove = "Fail";
       state.error = action.payload;
     });
   },
