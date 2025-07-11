@@ -9,7 +9,7 @@ const login = createAsyncThunk("auth/login", async (data, thunkAPI) => {
       "https://ecommerce-back-4.onrender.com/api/auth/login",
       data
     );
-    toast.success("تمت العملية بنجاح");
+    toast.success("تمت عملية تسجيل الدخول بنجاح");
     return res.data;
   } catch (error) {
     toast.error(error.response.data.message);

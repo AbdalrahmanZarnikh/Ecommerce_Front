@@ -14,7 +14,7 @@ const signup = createAsyncThunk("auth/signup", async (data, thunkAPI) => {
         },
       }
     );
-    toast.success("تمت العملية بنجاح");
+    toast.success("تمت عملية انشاء حساب بنجاح");
     return res.data;
   } catch (error) {
     toast.error(error.response.data.message);
