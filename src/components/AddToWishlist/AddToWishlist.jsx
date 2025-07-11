@@ -5,10 +5,10 @@ import {
   removeProductFromWishlist,
 } from "../../redux/slice/wishlist/wishlistSlice";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const AddToWishlist = ({ id, flag }) => {
+const AddToWishlist = memo( ({ id, flag }) => {
   const dispatch = useDispatch();
   const [clicked, setClicked] = useState(false);
 
@@ -34,6 +34,6 @@ const AddToWishlist = ({ id, flag }) => {
       )}
     </button>
   );
-};
+})
 
 export default AddToWishlist;

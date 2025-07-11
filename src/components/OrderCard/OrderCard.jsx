@@ -1,6 +1,7 @@
+import { memo } from "react";
 
 
-const OrderCard = ({
+const OrderCard = memo( ({
   id,
   cartItems,
   shippingAddress,
@@ -87,6 +88,6 @@ const OrderCard = ({
       </div>
     </div>
   );
-};
+})
 
 export default OrderCard;

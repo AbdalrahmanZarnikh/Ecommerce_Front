@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { useSelector } from "react-redux";
 
-const ShowNumberOfItems = ({ children, numberOfItems }) => {
+const ShowNumberOfItems = memo(({ children, numberOfItems }) => {
   return (
     <div className="relative">
       {numberOfItems > 0 ? (
@@ -12,6 +12,6 @@ const ShowNumberOfItems = ({ children, numberOfItems }) => {
       {children}
     </div>
   );
-};
+})
 
 export default ShowNumberOfItems;

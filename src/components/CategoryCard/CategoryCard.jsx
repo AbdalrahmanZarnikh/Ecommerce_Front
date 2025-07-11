@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 
-const CategoryCard = ({image,name,id,to}) => {
+const CategoryCard =memo( ({image,name,id,to}) => {
   const navigate=useNavigate()
   return (
     <div
@@ -13,6 +14,6 @@ const CategoryCard = ({image,name,id,to}) => {
       <span className="m-4"> {name}</span>
     </div>
   );
-};
+})
 
 export default CategoryCard;

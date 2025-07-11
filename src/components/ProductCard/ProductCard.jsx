@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import AddToCart from "../AddToCart/AddToCart";
 import AddToWishlist from "../AddToWishlist/AddToWishlist";
 
-const ProductCard = ({ name, category, price, image, id ,flag=false}) => {
+const ProductCard =  memo(({ name, category, price, image, id ,flag=false}) => {
   const navigate = useNavigate();
 
  
@@ -42,6 +42,7 @@ const ProductCard = ({ name, category, price, image, id ,flag=false}) => {
       </div>
     </div>
   );
-};
+})
+
 
 export default ProductCard;

@@ -4,9 +4,9 @@ import { FiShoppingCart } from "react-icons/fi";
 import toast from "react-hot-toast";
 import Lottie from "lottie-react";
 import loading from "../../utils/loading.json"
-import { useState } from "react";
+import { memo, useState } from "react";
 
-const AddToCart = ({id}) => {
+const AddToCart = memo(({id}) => {
     const dispatch=useDispatch();
 
     const [loadingAdd,setLaodingAdd]=useState(false);
@@ -30,6 +30,6 @@ const AddToCart = ({id}) => {
       اضافة للسلة</>}
     </button>
   );
-};
+})
 
 export default AddToCart;

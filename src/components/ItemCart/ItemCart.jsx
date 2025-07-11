@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { updateCartItemQuantity,removeSpecificCartItem } from "../../redux/slice/cart/cartSlice";
 
 
-const ItemCart = ({ id, title, category, image, quantity, price }) => {
+const ItemCart = memo(({ id, title, category, image, quantity, price }) => {
   const [selectedQuantity, setSelectedQuantity] = useState(quantity);
   const dispatch = useDispatch();
   const handleIncreaseQuantity = () => {
@@ -71,6 +71,6 @@ const ItemCart = ({ id, title, category, image, quantity, price }) => {
       {/* left */}
     </div>
   );
-};
+})
 
 export default ItemCart;

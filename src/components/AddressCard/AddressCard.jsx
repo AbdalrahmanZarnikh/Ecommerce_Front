@@ -2,9 +2,9 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { removeAddress } from "../../redux/slice/address/addressSlice";
 import Lottie from "lottie-react";
 import loading from "../../utils/loading.json";
-import { useState } from "react";
+import { memo, useState } from "react";
 
-const AddressCard = ({ id, city, phone, details, index }) => {
+const AddressCard = memo( ({ id, city, phone, details, index }) => {
   const dispatch = useDispatch();
   const [loadingRemove,setLoadingRemove]=useState(false)
 
@@ -48,6 +48,6 @@ const AddressCard = ({ id, city, phone, details, index }) => {
       </h1>
     </div>
   );
-};
+})
 
 export default AddressCard;

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { getProducts } from "../../redux/slice/product/productSlice";
 import Lottie from "lottie-react";
 
@@ -10,7 +10,7 @@ import loading from "../../utils/loading.json";
 import notFound from "../../utils/notfound.json";
 import CategoryCard from "../CategoryCard/CategoryCard";
 
-const SectionCards = ({ title, getThunk, to ,slice}) => {
+const SectionCards = memo(({ title, getThunk, to ,slice}) => {
   const dispatch = useDispatch();
 
   const [records, setRecords] = useState([]);
@@ -88,6 +88,6 @@ const SectionCards = ({ title, getThunk, to ,slice}) => {
       )}
     </div>
   );
-};
+})
 
 export default SectionCards;
