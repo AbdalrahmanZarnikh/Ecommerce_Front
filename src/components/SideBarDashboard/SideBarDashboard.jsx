@@ -7,22 +7,22 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 const SideBarDashboard = () => {
   const links = [
     {
-      path: "addresses",
-      label: "العناوين",
-      icon: (
-        <FaAddressBook
-          size={25}
-          className="hover:text-blue-400 md:hover:text-white cursor-pointer"
-        />
-      ),
-    },
-    {
       path: "info",
       label: "المعلومات الشخصية",
       icon: (
         <BsFillInfoSquareFill
           size={25}
           className="hover:text-blue-400 md:hover:text-white cursor-pointer "
+        />
+      ),
+    },
+        {
+      path: "addresses",
+      label: "العناوين",
+      icon: (
+        <FaAddressBook
+          size={25}
+          className="hover:text-blue-400 md:hover:text-white cursor-pointer"
         />
       ),
     },

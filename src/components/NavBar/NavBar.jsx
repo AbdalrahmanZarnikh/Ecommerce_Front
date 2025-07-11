@@ -8,7 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import ShowNumberOfItems from "../ShowNumberOfItems/ShowNumberOfItems";
 import { useDispatch, useSelector } from "react-redux";
 import { BsFillBagHeartFill, BsHeart, BsHeartFill } from "react-icons/bs";
-import { getLoggedUserCart } from "../../redux/slice/cart/cartSlice";
+import { getLoggedUserCart, resetCart } from "../../redux/slice/cart/cartSlice";
 import { getLoggedUserWishlist } from "../../redux/slice/wishlist/wishlistSlice";
 import {
   getProducts,
@@ -108,7 +108,7 @@ const NavBar = () => {
           </div>
 
           <div className="flex justify-center items-center gap-4">
-            <ShowNumberOfItems numberOfItems={dataWishlist.length}>
+            <ShowNumberOfItems numberOfItems={localStorage.getItem("token")&&dataWishlist.length}>
               <BsHeart
                 size={25}
                 className="hover:text-blue-400 cursor-pointer"
@@ -121,7 +121,7 @@ const NavBar = () => {
                 }}
               />
             </ShowNumberOfItems>
-            <ShowNumberOfItems numberOfItems={dataCart?.cartItems?.length}>
+            <ShowNumberOfItems numberOfItems={localStorage.getItem("token") && dataCart?.cartItems?.length}>
               <FiShoppingCart
                 size={25}
                 className="hover:text-blue-400 cursor-pointer"
@@ -136,7 +136,7 @@ const NavBar = () => {
             </ShowNumberOfItems>
 
             {localStorage.getItem("role") === "user" ? (
-              <button className="hidden md:block hover:text-blue-400 cursor-pointer" onClick={()=>{navigate("/dashboard")}}>
+              <button className="hidden md:block hover:text-blue-400 cursor-pointer" onClick={()=>{navigate("/dashboard/info")}}>
                 <FaUserCircle size={25} />
               </button>
             ) : null}
@@ -149,6 +149,9 @@ const NavBar = () => {
                   localStorage.removeItem("role");
                   localStorage.removeItem("cart");
                   localStorage.removeItem("wishlist");
+                  dispatch(resetCart())
+                  navigate("/")
+
                   setToken(true);
                 }}
               >

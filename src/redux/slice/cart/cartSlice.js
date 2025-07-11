@@ -22,6 +22,13 @@ const initialState = {
 const cartSlice = createSlice({
   name: "cart",
   initialState,
+  reducers:{
+      resetCart:(state)=>{
+        state.dataCart=[];
+        state.isLoading="Idle",
+        state.error=null
+      }
+  },
   extraReducers: (builder) => {
     builder.addCase(addProductToCart.pending, (state) => {
       state.isLoading = "Pending";
@@ -111,5 +118,7 @@ const cartSlice = createSlice({
 });
 
 export default cartSlice.reducer;
+
+export const {resetCart}= cartSlice.actions;
 
 export { addProductToCart, getLoggedUserCart, updateCartItemQuantity ,clearCart,removeSpecificCartItem,applyCoupon};
