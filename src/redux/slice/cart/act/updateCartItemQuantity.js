@@ -21,7 +21,7 @@ const updateCartItemQuantity = createAsyncThunk(
       );
 
 
-      toast.success("تمت تغيير الكمية بنجاح ")
+      toast.success("تم تغيير الكمية بنجاح ")
 
       return res.data;
     } catch (error) {
