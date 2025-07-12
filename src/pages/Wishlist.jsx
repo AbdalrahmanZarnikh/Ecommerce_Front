@@ -43,6 +43,7 @@ const Wishlist = () => {
                 image={ele.image?.url}
                 id={ele._id}
                 flag={true}
+                quantity={ele.quantity}
               />
             );
           })}
