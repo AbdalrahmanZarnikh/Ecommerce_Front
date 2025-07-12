@@ -58,13 +58,13 @@ const Product = () => {
           />
           {data.priceAfterDiscount ? (
             <div>
-              <span className="text-2xl font-bold text-gray-900">
+              <span className="text-2xl font-bold text-green-500">
                 {data.priceAfterDiscount} $
               </span>{" "}
               <span className="line-through text-gray-500">{data.price} $</span>
             </div>
           ) : (
-            <h1 className="text-2xl font-bold text-gray-900">{data.price} $</h1>
+            <h1 className="text-2xl font-bold text-green-500">{data.price} $</h1>
           )}
           <p className="mb-6">{data.description}</p>
           <div className="flex items-center text-green-600 mb-6">

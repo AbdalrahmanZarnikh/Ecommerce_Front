@@ -27,7 +27,7 @@ const ProductCard =  memo(({ name, category, price, image, id ,flag=false}) => {
         <div>
           <h1 className="text-gray-500 text-lg mb-4">{category}</h1>
           <h2 className="text-xl  mb-2"> {name}</h2>
-          <p className="font-bold ">{price} $ </p>
+          <p className="font-bold text-green-500">{price} $ </p>
         </div>
         {/* Info Product */}
 

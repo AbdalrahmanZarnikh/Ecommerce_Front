@@ -79,7 +79,7 @@ const Cart = () => {
                   <span
                     className={`text-green-500 ${
                       dataCart.totalPriceAfterDiscount
-                        ? "line-through font-semibold"
+                        ? "line-through"
                         : ""
                     }`}
                   >
