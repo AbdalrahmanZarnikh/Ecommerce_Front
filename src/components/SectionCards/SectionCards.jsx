@@ -48,7 +48,7 @@ const SectionCards = memo(({ title, getThunk, to ,slice}) => {
       {records?.length > 0 ? (
         <div className="grid gird-cols-1 md:grid-cols-3 justify-items-center gap-2">
           {records?.map((ele, index) => {
-            if (index < 4 && to == "products") {
+            if (index < 3 && to == "products") {
               return (
                 <ProductCard
                   key={ele._id}
@@ -59,7 +59,7 @@ const SectionCards = memo(({ title, getThunk, to ,slice}) => {
                   id={ele._id}
                 />
               );
-            } else if (index < 4 && (to == "categories" || to=="brands")) {
+            } else if (index < 3 && (to == "categories" || to=="brands")) {
               return (
                 <CategoryCard
                 name={ele.name}
