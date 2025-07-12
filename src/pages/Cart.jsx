@@ -77,7 +77,7 @@ const Cart = () => {
                 <div className="flex justify-between  font-bold text-lg">
                   <span>الاجمالي :</span>
                   <span
-                    className={`${
+                    className={`text-green-500 ${
                       dataCart.totalPriceAfterDiscount
                         ? "line-through font-semibold"
                         : ""
@@ -87,14 +87,14 @@ const Cart = () => {
                   </span>
                 </div>
                 {dataCart.totalPriceAfterDiscount && (
-                  <div className="flex justify-between  font-bold text-lg">
-                    <span>الاجمالي بعد الخصم :</span>
-                    <span>{dataCart.totalPriceAfterDiscount || 0}</span>
+                  <div className="flex justify-between   text-lg">
+                    <span className="font-bold">الاجمالي بعد الخصم :</span>
+                    <span className="text-green-500">{dataCart.totalPriceAfterDiscount || 0}</span>
                   </div>
                 )}
               </div>
 
-              <div className="flex flex-col items-start">
+              <div className={`flex flex-col items-start ${dataCart.totalPriceAfterDiscount && "hidden"}`}>
                 <button
                   className={`text-blue-600 text-sm cursor-pointer hover:text-blue-300 transition-all duration-200 ${
                     openCoupon && "hidden"
