@@ -9,11 +9,13 @@ import Lottie from "lottie-react";
 import cartEmpty from "../utils/cartEmpty.json";
 import { Toaster } from "react-hot-toast";
 
+import loading from "../utils/loading.json"
+
 const Cart = () => {
   const dispatch = useDispatch();
 
   const [couponName,setCouponName]=useState("");
-  const { dataCart } = useSelector((state) => state.cartSlice);
+  const { dataCart,isLoading } = useSelector((state) => state.cartSlice);
 
   useEffect(() => {
     const fn = async () => {
@@ -117,11 +119,10 @@ const Cart = () => {
                     <button
                       className="bg-blue-700 p-4 text-white hover:bg-blue-300  cursor-pointer rounded-lg"
                       onClick={() => {
-                        setOpenCoupon(false);
                         dispatch(applyCoupon({coupon:couponName}))
                       }}
                     >
-                      ارسال
+                      {isLoading=="Pending" ? <div className="w-10 mx-auto"><Lottie animationData={loading}/></div>: "ارسال"}
                     </button>
                   </div>
                 )}
