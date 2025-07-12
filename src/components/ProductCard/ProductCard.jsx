@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import AddToCart from "../AddToCart/AddToCart";
 import AddToWishlist from "../AddToWishlist/AddToWishlist";
 
-const ProductCard =  memo(({ name, category, price, image, id ,flag=false}) => {
+const ProductCard =  memo(({ name, category, price, image, id ,quantity,flag=false}) => {
   const navigate = useNavigate();
 
  
@@ -33,7 +33,7 @@ const ProductCard =  memo(({ name, category, price, image, id ,flag=false}) => {
 
         {/*Buttons  */}
         <div className="flex   gap-3 items-center">
-          <AddToCart id={id}/>
+          {quantity<0 ?<h1 className="text-gray-400">انتهت الكمية</h1> : <AddToCart id={id}/>}
 
           <AddToWishlist id={id}  flag={flag}/>
 

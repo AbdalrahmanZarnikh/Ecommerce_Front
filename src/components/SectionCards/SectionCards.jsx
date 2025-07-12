@@ -10,29 +10,26 @@ import loading from "../../utils/loading.json";
 import notFound from "../../utils/notfound.json";
 import CategoryCard from "../CategoryCard/CategoryCard";
 
-const SectionCards = memo(({ title, getThunk, to ,slice}) => {
+const SectionCards = memo(({ title, getThunk, to, slice }) => {
   const dispatch = useDispatch();
 
   const [records, setRecords] = useState([]);
-  const [isLoading,setIsLoading]=useState("");
+  const [isLoading, setIsLoading] = useState("");
 
   useEffect(() => {
     const fn = async () => {
-      setIsLoading("Pending")
+      setIsLoading("Pending");
       const result = await dispatch(getThunk());
       if (getThunk.fulfilled.match(result)) {
         setRecords(result.payload.data);
-        setIsLoading("")
-      }
-      else if(getThunk.rejected.match(result)){
-        setIsLoading("Fail")
+        setIsLoading("");
+      } else if (getThunk.rejected.match(result)) {
+        setIsLoading("Fail");
       }
     };
 
     fn();
   }, []);
-
-
 
   return (
     <div>
@@ -57,15 +54,16 @@ const SectionCards = memo(({ title, getThunk, to ,slice}) => {
                   category={ele.category.name}
                   image={ele.image?.url}
                   id={ele._id}
+                  quantity={ele.quantity}
                 />
               );
-            } else if (index < 3 && (to == "categories" || to=="brands")) {
+            } else if (index < 3 && (to == "categories" || to == "brands")) {
               return (
                 <CategoryCard
-                name={ele.name}
-                id={ele._id}
-                image={ele?.image.url}
-                to={to}
+                  name={ele.name}
+                  id={ele._id}
+                  image={ele?.image.url}
+                  to={to}
                 />
               );
             }
@@ -88,6 +86,6 @@ const SectionCards = memo(({ title, getThunk, to ,slice}) => {
       )}
     </div>
   );
-})
+});
 
 export default SectionCards;

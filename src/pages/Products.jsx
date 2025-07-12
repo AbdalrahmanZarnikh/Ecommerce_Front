@@ -91,7 +91,7 @@ const Products = () => {
         {/* Products */}
 
         {data?.length > 0 ? (
-          <div className="grid gird-cols-1 md:grid-cols-4 justify-items-center gap-2">
+          <div className="grid gird-cols-1 md:grid-cols-3 justify-items-center gap-2">
             {data?.map((ele, index) => {
               console.log(ele._id);
               return (
@@ -102,6 +102,7 @@ const Products = () => {
                   category={ele.category.name}
                   image={ele.image?.url}
                   id={ele._id}
+                  quantity={ele.quantity}
                 />
               );
             })}

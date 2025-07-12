@@ -64,7 +64,9 @@ const Product = () => {
               <span className="line-through text-gray-500">{data.price} $</span>
             </div>
           ) : (
-            <h1 className="text-2xl font-bold text-green-500">{data.price} $</h1>
+            <h1 className="text-2xl font-bold text-green-500">
+              {data.price} $
+            </h1>
           )}
           <p className="mb-6">{data.description}</p>
           <div className="flex items-center text-green-600 mb-6">
@@ -93,7 +95,7 @@ const Product = () => {
                 +
               </button>
               <span className="w-10 h-10 flex justify-center items-center border-x border-gray-300">
-                {data.quantity}
+                {data.quantity >0 ? data.quantity: 0}
               </span>
               <button
                 className="flex justify-center items-center w-10 h-10 text-gray-600 hover:bg-gray-100"
@@ -104,7 +106,11 @@ const Product = () => {
                 -
               </button>
             </div>
-            <AddToCart id={params.id} />
+            {data.quantity < 0 ? (
+              <h1 className="text-gray-400">انتهت الكمية</h1>
+            ) : (
+              <AddToCart id={params.id} />
+            )}
 
             <AddToWishlist id={params.id} />
           </div>
