@@ -37,7 +37,6 @@ const NavBar = () => {
       }
     }, 500);
 
-    
     if (!localStorage.getItem("token")) {
       return;
     }
@@ -50,7 +49,6 @@ const NavBar = () => {
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
-
 
   const { dataCart } = useSelector((state) => state.cartSlice);
   const { dataWishlist } = useSelector((state) => state.wishlistSlice);
