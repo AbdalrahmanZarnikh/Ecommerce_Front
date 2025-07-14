@@ -9,6 +9,7 @@ import Lottie from "lottie-react";
 import loading from "../../utils/loading.json";
 import notFound from "../../utils/notfound.json";
 import CategoryCard from "../CategoryCard/CategoryCard";
+import Heading from "../Heading/Heading";
 
 const SectionCards = memo(({ title, getThunk, to, slice }) => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const SectionCards = memo(({ title, getThunk, to, slice }) => {
     <div>
       {/* Content Info */}
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold"> {title}</h1>
+        <Heading> {title}</Heading>
         <Link className="text-blue-700 hover:text-blue-400" to={`/${to}`}>
           عرض الكل
         </Link>

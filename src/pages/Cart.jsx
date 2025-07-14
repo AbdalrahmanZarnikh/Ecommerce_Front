@@ -16,6 +16,7 @@ import { AiFillFastBackward } from "react-icons/ai";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import ButtonReverse from "../components/ButtonReverse/ButtonReverse";
+import Heading from "../components/Heading/Heading";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const Cart = () => {
     <Container>
       <ButtonReverse/>
       <Toaster/>
-      <h1 className="text-4xl font-bold">سلة التسوق</h1>
+      <Heading >سلة التسوق</Heading>
 
       <div className="flex flex-col md:flex-row  justify-center gap-10 ">
         <div className={`${cartItemsLength == 0 ? "hidden" : "flex-2/3"}`}>

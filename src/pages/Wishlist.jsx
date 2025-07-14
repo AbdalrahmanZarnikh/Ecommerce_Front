@@ -7,6 +7,7 @@ import Lottie from "lottie-react";
 import cartEmpty from "../utils/cartEmpty.json"
 import { Toaster } from "react-hot-toast";
 import ButtonReverse from "../components/ButtonReverse/ButtonReverse";
+import Heading from "../components/Heading/Heading";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const Wishlist = () => {
     <Container>
       <Toaster/>
       <ButtonReverse/>
-      <h1 className="text-4xl font-bold">المفضلة</h1>
+      <Heading>المفضلة</Heading>
       {/* Products */}
 
       {dataWishlist?.length > 0 ? (

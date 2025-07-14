@@ -16,6 +16,7 @@ import notFound from "../utils/notfound.json";
 import cartEmpty from "../utils/cartEmpty.json";
 import { Toaster } from "react-hot-toast";
 import ButtonReverse from "../components/ButtonReverse/ButtonReverse";
+import Heading from "../components/Heading/Heading";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ const Products = () => {
   return (
     <Container>
       <ButtonReverse/>
-      <h1 className="text-4xl font-bold">المنتجات</h1>
+      <Heading>المنتجات</Heading>
 
 
       <div className="flex flex-row-reverse justify-end items-center gap-5 flex-wrap ">

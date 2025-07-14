@@ -12,6 +12,7 @@ import notFound from "../utils/notfound.json";
 import cartEmpty from "../utils/cartEmpty.json";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ButtonReverse from "../components/ButtonReverse/ButtonReverse";
+import Heading from "../components/Heading/Heading";
 
 const   ProductsBy = ({getThunk}) => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const   ProductsBy = ({getThunk}) => {
   return (
     <Container>
       <ButtonReverse to={`/${to}`}/>
-      <h1 className="text-4xl font-bold">المنتجات</h1>
+      <Heading>المنتجات</Heading>
 
       <div className=" flex justify-center items-start gap-4">
         {/* Products */}
