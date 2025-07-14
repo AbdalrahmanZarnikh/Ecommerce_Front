@@ -48,11 +48,11 @@ const Router = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route
-          path="/productsby/categories/:id"
+          path="/categories/:id"
           element={<ProductsBy getThunk={getProductsByCategory} />}
         />
         <Route
-          path="/productsby/brands/:id"
+          path="/brands/:id"
           element={<ProductsBy getThunk={getProductsByBrand} />}
         />
         <Route path="/products" element={<Products />} />

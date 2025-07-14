@@ -10,10 +10,10 @@ import { getProductsByCategory } from "../redux/slice/product/productSlice";
 import loading from "../utils/loading.json";
 import notFound from "../utils/notfound.json";
 import cartEmpty from "../utils/cartEmpty.json";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ButtonReverse from "../components/ButtonReverse/ButtonReverse";
 
-const ProductsBy = ({getThunk}) => {
+const   ProductsBy = ({getThunk}) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [data, setData] = useState([]);
@@ -35,9 +35,14 @@ const ProductsBy = ({getThunk}) => {
     };
     fn();
   }, [id]);
+
+  const location=useLocation();
+
+  const to=location.pathname.split("/")[1];
+  console.log(to)
   return (
     <Container>
-      <ButtonReverse/>
+      <ButtonReverse to={`/${to}`}/>
       <h1 className="text-4xl font-bold">المنتجات</h1>
 
       <div className=" flex justify-center items-start gap-4">

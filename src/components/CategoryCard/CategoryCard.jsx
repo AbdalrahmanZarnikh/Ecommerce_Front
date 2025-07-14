@@ -4,13 +4,12 @@ import { useNavigate } from "react-router-dom";
 const CategoryCard = memo(({ image, name, id, to }) => {
   const navigate = useNavigate();
 
-  console.log(name,image,id)
 
   return (
     <div
       className="cursor-pointer w-64 h-64 relative rounded-2xl overflow-hidden hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out mt-6"
       onClick={() => {
-        navigate(`/productsby/${to}/${id}`);
+        navigate(`/${to}/${id}`);
       }}
     >
       <img
