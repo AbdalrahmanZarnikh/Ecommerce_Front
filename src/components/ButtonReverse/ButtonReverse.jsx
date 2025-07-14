@@ -6,8 +6,8 @@ const ButtonReverse = () => {
     const navigate=useNavigate()
   return (
     <IoMdArrowRoundForward
-      className="hover:text-blue-500 cursor-pointer"
-      size={25}
+      className="text-white rounded-md cursor-pointer hover:bg-blue-400 bg-blue-600 w-10 h-10  p-2"
+      size={20}
       onClick={() => {
         navigate("..");
       }}
