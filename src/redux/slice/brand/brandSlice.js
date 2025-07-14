@@ -3,7 +3,7 @@ import {  createSlice } from "@reduxjs/toolkit";
 
 // Thunks 
 
-import getBrands from "./act/actgetbrands";
+import getBrands from "./act/actgetBrands"
 import toast from "react-hot-toast";
 
 
