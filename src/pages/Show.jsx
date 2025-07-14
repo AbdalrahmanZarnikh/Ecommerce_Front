@@ -30,6 +30,7 @@ const Show = ({ title, getThunk }) => {
 
 
   const to=title=="تسوق حسب القسم"?"categories":"brands"
+  
   return (
     <Container>
       <h1 className="text-4xl font-bold"> {title} </h1>
