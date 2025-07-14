@@ -7,6 +7,7 @@ import CategoryCard from "../components/CategoryCard/CategoryCard";
 import loading from "../utils/loading.json";
 import notFound from "../utils/notfound.json";
 import Lottie from "lottie-react";
+import ButtonReverse from "../components/ButtonReverse/ButtonReverse";
 
 
 const Show = ({ title, getThunk }) => {
@@ -33,6 +34,7 @@ const Show = ({ title, getThunk }) => {
   
   return (
     <Container>
+      <ButtonReverse/>
       <h1 className="text-4xl font-bold"> {title} </h1>
       {data?.length > 0 ? (
         <div className="grid gird-cols-1 md:grid-cols-4 justify-items-center gap-2">

@@ -10,6 +10,12 @@ import cartEmpty from "../utils/cartEmpty.json";
 import { Toaster } from "react-hot-toast";
 
 import loading from "../utils/loading.json"
+import { FaBackspace, FaBackward } from "react-icons/fa";
+import { FaBackwardFast, FaBackwardStep, FaBraveReverse } from "react-icons/fa6";
+import { AiFillFastBackward } from "react-icons/ai";
+import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import ButtonReverse from "../components/ButtonReverse/ButtonReverse";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -33,9 +39,9 @@ const Cart = () => {
   const handleClickCoupon = () => {
     setOpenCoupon(!openCoupon);
   };
-
   return (
     <Container>
+      <ButtonReverse/>
       <Toaster/>
       <h1 className="text-4xl font-bold">سلة التسوق</h1>
 

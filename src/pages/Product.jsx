@@ -15,6 +15,7 @@ import { AiFillSafetyCertificate } from "react-icons/ai";
 import AddToCart from "../components/AddToCart/AddToCart";
 import AddToWishlist from "../components/AddToWishlist/AddToWishlist";
 import { Toaster } from "react-hot-toast";
+import ButtonReverse from "../components/ButtonReverse/ButtonReverse";
 const Product = () => {
   const params = useParams();
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Product = () => {
   return isLoading == "Success" ? (
     <Container>
       <Toaster />
+      <ButtonReverse/>
       {/* links */}
       <div className="flex items-center text-sm text-gray-500 mb-6">
         <Link className=" hover:text-blue-600" to="/">

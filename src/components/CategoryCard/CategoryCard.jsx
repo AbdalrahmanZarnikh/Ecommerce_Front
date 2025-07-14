@@ -11,7 +11,7 @@ const CategoryCard = memo(({ image, name, id, to }) => {
         navigate(`/productsby/${to}/${id}`);
       }}
     >
-      <img
+      <img1
         src={image}
         className="absolute inset-0 w-full h-full object-cover brightness-50 transition-all duration-300"
         alt={name}

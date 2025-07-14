@@ -15,6 +15,7 @@ import loading from "../utils/loading.json";
 import notFound from "../utils/notfound.json";
 import cartEmpty from "../utils/cartEmpty.json";
 import { Toaster } from "react-hot-toast";
+import ButtonReverse from "../components/ButtonReverse/ButtonReverse";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ const Products = () => {
 
   return (
     <Container>
+      <ButtonReverse/>
       <h1 className="text-4xl font-bold">المنتجات</h1>
 
 
