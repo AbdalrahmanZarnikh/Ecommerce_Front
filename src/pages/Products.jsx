@@ -130,7 +130,7 @@ const Products = () => {
         {/* Products */}
       </div>
       {/* Pagination */}
-      {paginationProducts?.limit!==50 && (
+      {paginationProducts?.limit!==50  && (
         <Pagination
         getThunk={getProducts}
         currentPage={paginationProducts?.currentPage}
