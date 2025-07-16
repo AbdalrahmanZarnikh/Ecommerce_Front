@@ -57,9 +57,14 @@ const NavBar = () => {
     <>
       <div className="fixed top-0 left-0 w-full z-50 bg-white shadow-md py-4 px-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-blue-700 font-bold text-3xl cursor-pointer" onClick={()=>{
-            navigate("/")
-          }}>متجري</h1>
+          <h1
+            className="text-blue-700 font-bold text-3xl cursor-pointer"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            متجري
+          </h1>
 
           <div className="hidden md:flex justify-center items-center gap-4">
             <Link
@@ -89,6 +94,16 @@ const NavBar = () => {
               to="/categories"
             >
               الأقسام
+            </Link>
+            <Link
+              className={`hover:scale-105 rounded-lg  ${
+                location.pathname === "/contact"
+                  ? "bg-blue-500 text-white p-2 "
+                  : ""
+              }transition-all duration-200`}
+              to="/contact"
+            >
+              اتصل بنا
             </Link>
           </div>
 
@@ -220,6 +235,15 @@ const NavBar = () => {
             }}
           >
             الأقسام
+          </Link>
+          <Link
+            className="bg-gray-200 w-full text-center py-3 rounded-lg hover:bg-gray-300"
+            onClick={() => {
+              setMenuBar(false);
+            }}
+            to="/contact"
+          >
+            اتصل بنا
           </Link>
           {localStorage.getItem("role") === "user" ? (
             <button

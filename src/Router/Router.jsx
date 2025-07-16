@@ -24,47 +24,57 @@ import Dashboard from "../pages/DashboardUser/Dashboard";
 import Addresses from "../pages/DashboardUser/Addresses";
 import Info from "../pages/DashboardUser/Info";
 import OrdersUser from "../pages/DashboardUser/OrdersUser";
+import Footer from "../components/Footer/Footer";
+import Contact from "../pages/Contact";
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/dashboard" element={<Dashboard/>}>
-            <Route path="addresses" element={<Addresses/>}/>
-            <Route path="info" element={<Info/>}/>
-            <Route path="orders" element={<OrdersUser/>}/>
-        </Route>
-        <Route
-          path="/categories"
-          element={<Show title={"تسوق حسب القسم"} getThunk={getCategories} />}
-        />
-        <Route
-          path="/brands"
-          element={<Show title={"تسوق حسب الماركة"} getThunk={getBrands} />}
-        />
+      <div className="flex flex-col min-h-screen">
+        <NavBar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="addresses" element={<Addresses />} />
+              <Route path="info" element={<Info />} />
+              <Route path="orders" element={<OrdersUser />} />
+            </Route>
+            <Route
+              path="/categories"
+              element={
+                <Show title={"تسوق حسب القسم"} getThunk={getCategories} />
+              }
+            />
+            <Route
+              path="/brands"
+              element={<Show title={"تسوق حسب الماركة"} getThunk={getBrands} />}
+            />
 
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route
-          path="/categories/:id"
-          element={<ProductsBy getThunk={getProductsByCategory} />}
-        />
-        <Route
-          path="/brands/:id"
-          element={<ProductsBy getThunk={getProductsByBrand} />}
-        />
-        <Route path="/products" element={<Products />} />
-        <Route path="/product/:id" element={<Product />} />
-        <Route path="/auth">
-          <Route path="signup" element={<SignUp />} />
-          <Route path="login" element={<Login />} />
-          <Route path="forgotPassword" element={<ForgotPassword />} />
-          <Route path="resetCode" element={<ResetCode />} />
-          <Route path="resetPassword" element={<ResetPassword />} />
-        </Route>
-      </Routes>
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route
+              path="/categories/:id"
+              element={<ProductsBy getThunk={getProductsByCategory} />}
+            />
+            <Route
+              path="/brands/:id"
+              element={<ProductsBy getThunk={getProductsByBrand} />}
+            />
+            <Route path="/products" element={<Products />} />
+            <Route path="/product/:id" element={<Product />} />
+            <Route path="/auth">
+              <Route path="signup" element={<SignUp />} />
+              <Route path="login" element={<Login />} />
+              <Route path="forgotPassword" element={<ForgotPassword />} />
+              <Route path="resetCode" element={<ResetCode />} />
+              <Route path="resetPassword" element={<ResetPassword />} />
+            </Route>
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 };
