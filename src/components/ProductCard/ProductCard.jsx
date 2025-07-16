@@ -17,7 +17,7 @@ const ProductCard =  memo(({ name, category, price, image, id ,quantity,flag=fal
       className="  flex flex-col items-start gap-4 shadow-xl rounded-xl p-5  cursor-pointer hover:scale-105 transition-all duration-300 "
 
     >
-      <img src={image} alt="ProductImage" className="w-60 h-60 mx-auto  rounded-lg "       onClick={() => {
+      <img src={image} alt="ProductImage" className=" w-32 h-32 md:w-60 md:h-60 mx-auto  rounded-lg "       onClick={() => {
         navigate(`/product/${id}`);
         console.log(id);
       }} />
