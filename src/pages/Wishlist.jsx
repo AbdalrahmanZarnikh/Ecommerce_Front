@@ -15,7 +15,7 @@ const Wishlist = () => {
     const fn=async ()=>{
       const result=await dispatch(getLoggedUserWishlist());
       if(getLoggedUserWishlist.fulfilled.match(result)){
-        console.log(result.payload.result)
+        console.log("done")
       }
     }
     fn()

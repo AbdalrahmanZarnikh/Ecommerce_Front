@@ -40,7 +40,6 @@ const   ProductsBy = ({getThunk}) => {
   const location=useLocation();
 
   const to=location.pathname.split("/")[1];
-  console.log(to)
   return (
     <Container>
       <ButtonReverse to={`/${to}`}/>

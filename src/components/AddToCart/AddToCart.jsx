@@ -12,7 +12,6 @@ const AddToCart = memo(({id}) => {
     const [loadingAdd,setLaodingAdd]=useState(false);
 
     const handleAddProductToCart=async ()=>{
-      console.log("clicked")
       if(!localStorage.getItem("token")){
         toast.error("قم بتسجيل الدخول اولا")
         return ;

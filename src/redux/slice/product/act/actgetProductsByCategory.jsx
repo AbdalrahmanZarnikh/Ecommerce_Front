@@ -10,7 +10,6 @@ const getProductsByCategory = createAsyncThunk(
           `https://ecommerce-back-4.onrender.com/api/products?category=${category}`
         );
 
-        console.log(category)
 
         return res.data;
       } catch (error) {

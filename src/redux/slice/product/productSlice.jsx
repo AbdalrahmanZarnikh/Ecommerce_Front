@@ -14,6 +14,7 @@ import toast from "react-hot-toast";
 const initialState = {
   data: [],
   isLoading: "Idle",
+  paginationProducts:null,
   error: null,
 };
 
@@ -45,6 +46,7 @@ const productSlice = createSlice({
       state.isLoading = "Success";
       state.error = null;
       state.data = action.payload.data;
+      state.paginationProducts = action.payload.pagination;
     });
 
     builder.addCase(getProducts.rejected, (state, action) => {
@@ -60,6 +62,7 @@ const productSlice = createSlice({
       state.isLoading = "Success";
       state.error = null;
       state.data = action.payload.data;
+      state.paginationProducts = action.payload.pagination;
     });
     builder.addCase(getProductsByCategory.rejected, (state, action) => {
       state.isLoading = "Fail";
@@ -74,6 +77,7 @@ const productSlice = createSlice({
       state.isLoading = "Success";
       state.error = null;
       state.data = action.payload.data;
+      state.paginationProducts = action.payload.pagination;
     });
     builder.addCase(getProductsByBrand.rejected, (state, action) => {
       state.isLoading = "Fail";

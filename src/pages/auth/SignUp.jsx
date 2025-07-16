@@ -23,7 +23,6 @@ const SignUp = () => {
     const result = await dispatch(signup(data));
 
     if (signup.fulfilled.match(result)) {
-      console.log("البيانات الجديدة:", result.payload);
       naviagte("/");
     }
   };

@@ -3,12 +3,14 @@ import axios from "axios";
 
 const getProducts = createAsyncThunk(
     "products/getAll",
-    async (_, thunkAPI) => {
+    async (page, thunkAPI) => {
       const { rejectWithValue } = thunkAPI;
       try {
         const res = await axios.get(
-          "https://ecommerce-back-4.onrender.com/api/products"
+          `https://ecommerce-back-4.onrender.com/api/products?page=${page}&limit=4 `
         );
+
+
 
         return res.data;
       } catch (error) {

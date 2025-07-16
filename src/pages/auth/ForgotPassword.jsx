@@ -23,7 +23,6 @@ const ForgotPassword = () => {
     const result = await dispatch(forgotPassword(data));
 
     if (forgotPassword.fulfilled.match(result)) {
-      console.log("البيانات الجديدة:", result.payload);
       navigate("/auth/resetCode");
     }
   };

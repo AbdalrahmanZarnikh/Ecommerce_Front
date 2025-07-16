@@ -19,7 +19,6 @@ const ProductCard =  memo(({ name, category, price, image,brand, id ,quantity,fl
     >
       <img src={image} alt="ProductImage" className=" w-32 h-32 md:w-60 md:h-60 mx-auto  rounded-lg "       onClick={() => {
         navigate(`/product/${id}`);
-        console.log(id);
       }} />
 
       <div className="flex justify-between items-end w-full">

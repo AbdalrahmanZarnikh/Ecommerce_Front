@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 const initialState = {
   brands:[],
   isLoading: "Idle",
+  paginationBrand:null,
   error: null,
   
 };
@@ -33,6 +34,7 @@ const brandSlice = createSlice({
       state.isLoading = "Success";
       state.error = null;
       state.brands=action.payload.data;
+      state.paginationBrand=action.payload.pagination;
     });
     builder.addCase(getBrands.rejected, (state,action) => {
       state.isLoading = "Fail";

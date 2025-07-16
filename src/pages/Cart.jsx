@@ -28,7 +28,6 @@ const Cart = () => {
     const fn = async () => {
       const result = await dispatch(getLoggedUserCart());
       if (getLoggedUserCart.fulfilled.match(result)) {
-        console.log(result.payload.numberOfCartItems);
         localStorage.setItem("cart", result.payload.numberOfCartItems);
       }
     };

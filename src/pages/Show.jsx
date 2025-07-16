@@ -1,6 +1,6 @@
 import  { useEffect, useState } from "react";
 import Container from "../components/Container/Container";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import CategoryCard from "../components/CategoryCard/CategoryCard";
 
@@ -30,8 +30,12 @@ const Show = ({ title, getThunk }) => {
     fn();
   }, [dispatch]);
 
+  
+  
 
   const to=title=="تسوق حسب القسم"?"categories":"brands"
+
+
   
   return (
     <Container>

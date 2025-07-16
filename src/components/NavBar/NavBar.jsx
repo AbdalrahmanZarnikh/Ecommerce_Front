@@ -53,7 +53,6 @@ const NavBar = () => {
   const { dataCart } = useSelector((state) => state.cartSlice);
   const { dataWishlist } = useSelector((state) => state.wishlistSlice);
 
-  console.log(dataCart);
   return (
     <>
       <div className="fixed top-0 left-0 w-full z-50 bg-white shadow-md py-4 px-6">

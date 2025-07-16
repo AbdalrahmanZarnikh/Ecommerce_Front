@@ -17,6 +17,7 @@ import cartEmpty from "../utils/cartEmpty.json";
 import { Toaster } from "react-hot-toast";
 import ButtonReverse from "../components/ButtonReverse/ButtonReverse";
 import Heading from "../components/Heading/Heading";
+import Pagination from "../components/Pagination/Pagination";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -25,10 +26,9 @@ const Products = () => {
 
   const [checkEmpty, setCheckEmpty] = useState(false);
 
-  const [isChooseCategory, setIsChooseCategory] = useState(false);
-  const [chooseCategory, setChooseCategory] = useState("الكل");
-
-  const { isLoading, data } = useSelector((state) => state.productSlice);
+  const { isLoading, data, paginationProducts } = useSelector(
+    (state) => state.productSlice
+  );
 
   useEffect(() => {
     const fn = async () => {
@@ -65,9 +65,8 @@ const Products = () => {
 
   return (
     <Container>
-      <ButtonReverse/>
+      <ButtonReverse />
       <Heading>المنتجات</Heading>
-
 
       <div className="flex flex-row-reverse justify-end items-center gap-5 flex-wrap ">
         {loadingCategory ? (
@@ -96,7 +95,6 @@ const Products = () => {
         {data?.length > 0 ? (
           <div className="grid gird-cols-1 md:grid-cols-3 justify-items-center gap-2">
             {data?.map((ele, index) => {
-              console.log(ele._id);
               return (
                 <ProductCard
                   key={ele._id}
@@ -112,7 +110,7 @@ const Products = () => {
             })}
           </div>
         ) : (
-              <div>
+          <div>
             {isLoading == "Pending" ? (
               <div className="mx-auto mt-40 w-10">
                 <Lottie animationData={loading} />
@@ -131,6 +129,16 @@ const Products = () => {
 
         {/* Products */}
       </div>
+      {/* Pagination */}
+      {paginationProducts?.limit!==50 && (
+        <Pagination
+        getThunk={getProducts}
+        currentPage={paginationProducts?.currentPage}
+        next={paginationProducts?.next}
+        prev={paginationProducts?.prev}
+        />
+      )}
+      {/* Pagination */}
     </Container>
   );
 };

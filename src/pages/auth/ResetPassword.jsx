@@ -22,7 +22,6 @@ const ResetPassword = () => {
     const result = await dispatch(resetPassword(data));
 
     if (resetPassword.fulfilled.match(result)) {
-      console.log("البيانات الجديدة:", result.payload);
       navigate("/");
     }
   };

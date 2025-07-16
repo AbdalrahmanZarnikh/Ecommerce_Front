@@ -23,7 +23,6 @@ const Login = () => {
     const result = await dispatch(login(data));
 
     if (login.fulfilled.match(result)) {
-      console.log("البيانات الجديدة:", result.payload);
       naviagte("/");
     }
   };

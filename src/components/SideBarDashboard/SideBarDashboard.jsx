@@ -40,7 +40,6 @@ const SideBarDashboard = () => {
   const location=useLocation()
   const navigate=useNavigate()
 
-  console.log(location.pathname)
   return (
     <>
       <div className="md:hidden space-y-7 py-4 px-2 ">

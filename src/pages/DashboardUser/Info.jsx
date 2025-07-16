@@ -58,7 +58,6 @@ const Info = () => {
 
   // Function To Handle Submit
   const onSubmit = (data) => {
-    console.log(data);
 
     if(passwordEdit){
       dispatch(updatePassword(data));

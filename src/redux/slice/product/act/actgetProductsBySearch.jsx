@@ -10,7 +10,6 @@ const getProductsBySearch = createAsyncThunk(
           `https://ecommerce-back-4.onrender.com/api/products?keyword=${search}`
         );
 
-        console.log(search)
 
         return res.data;
       } catch (error) {
