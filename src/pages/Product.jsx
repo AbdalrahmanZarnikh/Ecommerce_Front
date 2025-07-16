@@ -29,7 +29,7 @@ const Product = () => {
       <Toaster />
       <ButtonReverse/>
       {/* links */}
-      <div className="flex items-center text-sm text-gray-500 mb-6">
+      <div className="flex items-center justify-center text-sm text-gray-500 mb-6">
         <Link className=" hover:text-blue-600" to="/">
           {" "}
           الرئيسية
