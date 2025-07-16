@@ -88,23 +88,9 @@ const Product = () => {
           </div>
           <div className="flex-col  sm:flex-row sm:gap-0 gap-[20px] flex items-center mb-6">
             <div className="flex items-center ml-4 border border-gray-300 rounded-md overflow-hidden">
-              <button
-                className="flex justify-center items-center w-10 h-10 text-gray-600 hover:bg-gray-100"
-                onClick={() => setquantity(quantity + 1)}
-              >
-                +
-              </button>
               <span className="w-10 h-10 flex justify-center items-center border-x border-gray-300">
                 {data.quantity >0 ? data.quantity: 0}
               </span>
-              <button
-                className="flex justify-center items-center w-10 h-10 text-gray-600 hover:bg-gray-100"
-                onClick={() => {
-                  if (quantity > 1) setquantity(quantity - 1);
-                }}
-              >
-                -
-              </button>
             </div>
             {data.quantity < 0 ? (
               <h1 className="text-gray-400">انتهت الكمية</h1>
