@@ -28,18 +28,6 @@ const Product = () => {
     <Container>
       <Toaster />
       <ButtonReverse/>
-      {/* links */}
-      <div className="flex items-center justify-center text-sm text-gray-500 mb-6">
-        <Link className=" hover:text-blue-600" to="/">
-          {" "}
-          الرئيسية
-        </Link>{" "}
-        /
-        <Link className=" hover:text-blue-600" to="/products">
-          المنتجات
-        </Link>{" "}
-        /<span className="text-gray-900">{data.title}</span>
-      </div>
       <div className="flex flex-col md:flex-row gap-[30px]">
         {/* image */}
         {data.images?.length > 0 ? (
