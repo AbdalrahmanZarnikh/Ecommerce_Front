@@ -47,6 +47,7 @@ const Wishlist = () => {
                 id={ele._id}
                 flag={true}
                 quantity={ele.quantity}
+                brand={ele.brand?.name}
               />
             );
           })}

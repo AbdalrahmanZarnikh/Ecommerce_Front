@@ -56,6 +56,7 @@ const SectionCards = memo(({ title, getThunk, to, slice }) => {
                   image={ele.image?.url}
                   id={ele._id}
                   quantity={ele.quantity}
+                  brand={ele.brand?.name}
                 />
               );
             } else if (index < 3 && (to == "categories" || to == "brands")) {

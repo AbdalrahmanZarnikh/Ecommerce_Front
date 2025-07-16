@@ -106,6 +106,7 @@ const Products = () => {
                   image={ele.image?.url}
                   id={ele._id}
                   quantity={ele.quantity}
+                  brand={ele.brand?.name}
                 />
               );
             })}

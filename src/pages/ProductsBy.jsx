@@ -60,6 +60,7 @@ const   ProductsBy = ({getThunk}) => {
                   category={ele.category.name}
                   image={ele.image?.url}
                   id={ele._id}
+                  brand={ele.brand?.name}
                 />
               );
             })}

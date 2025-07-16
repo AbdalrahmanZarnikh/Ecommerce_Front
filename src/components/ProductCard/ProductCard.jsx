@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import AddToCart from "../AddToCart/AddToCart";
 import AddToWishlist from "../AddToWishlist/AddToWishlist";
 
-const ProductCard =  memo(({ name, category, price, image, id ,quantity,flag=false}) => {
+const ProductCard =  memo(({ name, category, price, image,brand, id ,quantity,flag=false}) => {
   const navigate = useNavigate();
 
  
@@ -26,6 +26,8 @@ const ProductCard =  memo(({ name, category, price, image, id ,quantity,flag=fal
         {/* Info Product */}
         <div>
           <h1 className="text-gray-500 text-lg mb-4 ">{category}</h1>
+           {brand && 
+          <h1 className="text-gray-500 text-lg mb-4 ">{brand}</h1>}
           <h2 className="text-xl  mb-5 w-40 "> {name}</h2>
           <p className="font-bold text-green-500">{price} $ </p>
         </div>

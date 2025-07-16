@@ -127,7 +127,7 @@ const Addresses = () => {
       </form>
 
       {/* show addresses */}
-      <div className="flex justify-center items-center gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center  gap-5 ">
         {data?.map((ele, index) => {
           return (
             <AddressCard id={ele._id} index={index} city={ele.city} phone={ele.phone} details={ele.details}/>

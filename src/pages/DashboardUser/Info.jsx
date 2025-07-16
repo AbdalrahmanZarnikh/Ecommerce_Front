@@ -73,7 +73,7 @@ const Info = () => {
 
   return (
     <>
-      <div className="flex justify-around items-center mb-10 ">
+      <div className="flex justify-around items-center mb-10 gap-2 ">
         <button
           onClick={() => {
             setPasswordEdit(!passwordEdit);
@@ -82,7 +82,7 @@ const Info = () => {
             !passwordEdit
               ? "bg-orange-600 hover:bg-blue-300"
               : "bg-red-600 hover:bg-red-300"
-          } ${infoEdit && "bg-gray-500"}`}
+          } ${infoEdit && "bg-gray-500"}  text-sm`}
           disabled={infoEdit}
         >
           {!passwordEdit ? "تعديل كلمة المرور" : "الغاء"}
@@ -95,7 +95,7 @@ const Info = () => {
             !infoEdit
               ? "bg-orange-600 hover:bg-blue-300"
               : "bg-red-600 hover:bg-red-300"
-          } ${passwordEdit && "bg-gray-500"}`}
+          } ${passwordEdit && "bg-gray-500"} text-sm`}
           disabled={passwordEdit}
         >
           {!infoEdit ? "تعديل الاسم و البريد الاكتروني" : "الغاء"}
