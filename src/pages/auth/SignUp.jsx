@@ -43,7 +43,7 @@ const SignUp = () => {
           {...register("name", { required: "the name is required" })}
         />
         {errors && <p className="text-red-500">{errors?.name?.message}</p>}
-        <label htmlFor="email">الريد الاكتروني</label>
+        <label htmlFor="email">البريد الاكتروني</label>
         <input
           type="email"
           id="email"

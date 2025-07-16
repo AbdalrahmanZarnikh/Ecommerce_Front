@@ -34,7 +34,7 @@ const Login = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <h1 className="mx-auto my-10 text-4xl font-bold"> تسجيل الدخول</h1>
-        <label htmlFor="email">الريد الاكتروني</label>
+        <label htmlFor="email">البريد الاكتروني</label>
         <input
           type="email"
           id="email"
