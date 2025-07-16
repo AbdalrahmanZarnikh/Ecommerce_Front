@@ -58,7 +58,9 @@ const NavBar = () => {
     <>
       <div className="fixed top-0 left-0 w-full z-50 bg-white shadow-md py-4 px-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-blue-700 font-bold text-3xl">متجري</h1>
+          <h1 className="text-blue-700 font-bold text-3xl cursor-pointer" onClick={()=>{
+            navigate("/")
+          }}>متجري</h1>
 
           <div className="hidden md:flex justify-center items-center gap-4">
             <Link
