@@ -38,7 +38,7 @@ const ItemCart = memo(({ id, title, category, image, quantity, price }) => {
         <div className="flex flex-col gap-2">
           <h1 className="text-lg"> {title} </h1>
           <h1 className="text-gray-400">{category}</h1>
-          <div className="flex flex-row-reverse justify-center gap-4 text-lg font-bold bg-white border rounded-lg   ">
+          <div className="flex flex-row-reverse justify-center gap-4 text-lg font-bold bg-white border rounded-lg   w-30">
             <span
               className=" border-r-2  border-gray-300  text-gray-400 cursor-pointer text-center pr-2"
               onClick={handleIncreaseQuantity}
