@@ -11,7 +11,6 @@ import Container from "../components/Container/Container";
 import Product from "../pages/Product";
 import Cart from "../pages/Cart";
 import Wishlist from "../pages/Wishlist";
-import ProductsByCategory from "../pages/ProductsBy";
 import Show from "../pages/Show";
 import { getCategories } from "../redux/slice/category/categorySlice";
 import { getBrands } from "../redux/slice/brand/brandSlice";

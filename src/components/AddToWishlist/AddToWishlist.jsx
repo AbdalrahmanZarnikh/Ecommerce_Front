@@ -8,15 +8,19 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { memo, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const AddToWishlist = memo( ({ id, flag }) => {
+const AddToWishlist = memo(({ id, flag }) => {
   const dispatch = useDispatch();
   const [clicked, setClicked] = useState(false);
+  const [rotate, setRotate] = useState(false);
 
   const handleAddProductToWishlist = () => {
     if (!localStorage.getItem("token")) {
       toast.error("قم بتسجيل الدخول اولا");
       return;
     }
+
+    setRotate(!rotate);
+
     setClicked(!clicked);
     if (!clicked && !flag) {
       dispatch(addProductToWishlist({ productId: id }));
@@ -26,7 +30,10 @@ const AddToWishlist = memo( ({ id, flag }) => {
   };
 
   return (
-    <button onClick={handleAddProductToWishlist}>
+    <button
+      onClick={handleAddProductToWishlist}
+      className={`${rotate && "rotate-360"} transition-all duration-300`}
+    >
       {clicked || flag ? (
         <BsHeartFill size={25} className="hover:text-blue-400 cursor-pointer" />
       ) : (
@@ -34,6 +41,6 @@ const AddToWishlist = memo( ({ id, flag }) => {
       )}
     </button>
   );
-})
+});
 
 export default AddToWishlist;
