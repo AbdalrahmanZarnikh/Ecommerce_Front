@@ -11,7 +11,6 @@ import toast from "react-hot-toast";
 const AddToWishlist = memo(({ id, flag }) => {
   const dispatch = useDispatch();
   const [clicked, setClicked] = useState(false);
-  const [rotate, setRotate] = useState(false);
 
   const handleAddProductToWishlist = () => {
     if (!localStorage.getItem("token")) {
@@ -19,7 +18,6 @@ const AddToWishlist = memo(({ id, flag }) => {
       return;
     }
 
-    setRotate(!rotate);
 
     setClicked(!clicked);
     if (!clicked && !flag) {
@@ -32,7 +30,7 @@ const AddToWishlist = memo(({ id, flag }) => {
   return (
     <button
       onClick={handleAddProductToWishlist}
-      className={`${rotate && "rotate-360"} transition-all duration-300`}
+      className={`${clicked && "rotate-360"} transition-all duration-400`}
     >
       {clicked || flag ? (
         <BsHeartFill size={25} className="hover:text-blue-400 cursor-pointer" />
