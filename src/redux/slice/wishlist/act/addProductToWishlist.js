@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const addProductToWishlist = createAsyncThunk(
@@ -9,7 +9,7 @@ const addProductToWishlist = createAsyncThunk(
       try {
         const token=localStorage.getItem("token")
         const res = await axios.post(
-          "https://ecommerce-back-4.onrender.com/api/wishlists",data,{
+          "/api/wishlists",data,{
             headers:{
                 Authorization:`Bearer ${token}`
             }

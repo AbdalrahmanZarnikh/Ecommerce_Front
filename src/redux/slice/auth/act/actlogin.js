@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const login = createAsyncThunk("auth/login", async (data, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
   try {
     const res = await axios.post(
-      "https://ecommerce-back-4.onrender.com/api/auth/login",
+      "/api/auth/login",
       data
     );
     toast.success("تمت عملية تسجيل الدخول بنجاح");

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const addAddress = createAsyncThunk(
@@ -9,7 +9,7 @@ const addAddress = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
 
-        const res = await axios.post(`https://ecommerce-back-4.onrender.com/api/addresses`,data, {
+        const res = await axios.post(`/api/addresses`,data, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

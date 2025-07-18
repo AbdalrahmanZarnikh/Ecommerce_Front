@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const removeAddress = createAsyncThunk(
@@ -9,7 +9,7 @@ const removeAddress = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
 
-        const res = await axios.delete(`https://ecommerce-back-4.onrender.com/api/addresses/${id}`, {
+        const res = await axios.delete(`/api/addresses/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

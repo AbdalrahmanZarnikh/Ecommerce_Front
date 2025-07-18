@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const getLoggedUserData = createAsyncThunk(
@@ -9,7 +9,7 @@ const getLoggedUserData = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        "https://ecommerce-back-4.onrender.com/api/users/get-me",
+        "/api/users/get-me",
         {
           headers: {
             Authorization: `Bearer ${token}`,

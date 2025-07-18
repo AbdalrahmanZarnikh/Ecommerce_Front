@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const resetCode = createAsyncThunk(
@@ -8,7 +8,7 @@ const resetCode = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
     try {
       const res = await axios.post(
-        "https://ecommerce-back-4.onrender.com/api/auth/verifyResetCode",
+        "/api/auth/verifyResetCode",
         data
       );
       toast.success("تمت العملية بنجاح");

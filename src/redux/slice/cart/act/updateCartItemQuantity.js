@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const updateCartItemQuantity = createAsyncThunk(
@@ -9,7 +9,7 @@ const updateCartItemQuantity = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
       const res = await axios.put(
-        `https://ecommerce-back-4.onrender.com/api/cart/${info.id}`,
+        `/api/cart/${info.id}`,
         {
           quantity: info.quantity,
         },

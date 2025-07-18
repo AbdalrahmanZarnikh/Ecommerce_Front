@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const clearCart = createAsyncThunk("cart/clearCart", async (_, thunkAPI) => {
@@ -7,7 +7,7 @@ const clearCart = createAsyncThunk("cart/clearCart", async (_, thunkAPI) => {
   try {
     const token = localStorage.getItem("token");
     const res = await axios.delete(
-      `https://ecommerce-back-4.onrender.com/api/cart`,
+      `/api/cart`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

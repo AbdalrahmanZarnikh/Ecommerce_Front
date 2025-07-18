@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 
 const getOneCategory = createAsyncThunk(
     "products/getOne",
@@ -7,7 +7,7 @@ const getOneCategory = createAsyncThunk(
       const { rejectWithValue } = thunkAPI;
       try {
         const res = await axios.get(
-          `https://ecommerce-back-4.onrender.com/api/categories/${data.id}`
+          `/api/categories/${data.id}`
         );
         return res.data;
       } catch (error) {

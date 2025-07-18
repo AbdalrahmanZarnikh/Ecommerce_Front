@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const removeProductFromWishlist = createAsyncThunk(
@@ -9,7 +9,7 @@ const removeProductFromWishlist = createAsyncThunk(
       try {
         const token=localStorage.getItem("token")
         const res = await axios.delete(
-          `https://ecommerce-back-4.onrender.com/api/wishlists/${id}`,{
+          `/api/wishlists/${id}`,{
             headers:{
                 Authorization:`Bearer ${token}`
             }

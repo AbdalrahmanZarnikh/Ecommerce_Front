@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const addProductToCart = createAsyncThunk(
@@ -9,7 +9,7 @@ const addProductToCart = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "https://ecommerce-back-4.onrender.com/api/cart",
+        "/api/cart",
         data,
         {
           headers: {

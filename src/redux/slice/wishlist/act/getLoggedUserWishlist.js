@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 
 const getLoggedUserWishlist = createAsyncThunk(
     "cart/getLoggedUserWishlist",
@@ -8,7 +8,7 @@ const getLoggedUserWishlist = createAsyncThunk(
       try {
         const token=localStorage.getItem("token")
         const res = await axios.get(
-          "https://ecommerce-back-4.onrender.com/api/wishlists",{
+          "/api/wishlists",{
             headers:{
                 Authorization:`Bearer ${token}`
             }
