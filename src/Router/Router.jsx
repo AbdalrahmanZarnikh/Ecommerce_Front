@@ -30,7 +30,7 @@ import Contact from "../pages/Contact";
 const Router = () => {
   return (
     <BrowserRouter>
-      <div className="flex flex-col min-h-screen gap-10">
+      <div className="flex flex-col min-h-screen ">
         <NavBar />
         <main className="flex-grow">
           <Routes>
