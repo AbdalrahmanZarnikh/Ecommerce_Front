@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {addMessage} from "../redux/slice/message/messageSlice"
 import loading from "../utils/loading.json"
@@ -6,13 +6,15 @@ import Lottie from 'lottie-react';
 
 const Contact = () => {
 
+  const textArea =useRef();
   const [message,setMessage]=useState("");
   const dispatch=useDispatch();
 
   const {isLoading} =useSelector((state)=>state.messageSlice)
 
-  const handleClick=()=>{
-   dispatch(addMessage({message:message}))
+  const handleClick=async ()=>{
+  await  dispatch(addMessage({message:message}))
+  textArea.current.value="";
   }
   return (
     <div className="bg-white py-12 px-6 max-w-3xl mx-auto text-right">
@@ -25,6 +27,7 @@ const Contact = () => {
           onChange={(e)=>{
             setMessage(e.target.value)
           }}
+          ref={textArea}
         />
         <button
           className="bg-blue-700 w-1/2 text-white p-4 rounded-lg cursor-pointer mx-auto mt-2 hover:bg-blue-400"
