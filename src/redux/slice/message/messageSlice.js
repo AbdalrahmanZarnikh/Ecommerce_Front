@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Thunks
 
-import addMessage from "./act/addmessage";
+import addMessage from "./act/addMessage";
 
 import toast from "react-hot-toast";
 
