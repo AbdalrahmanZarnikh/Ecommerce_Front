@@ -7,7 +7,7 @@ import Lottie from "lottie-react";
 
 import loading from "../../utils/loading.json";
 import HeadingAuth from "../../components/HeadingAuth/HeadingAuth";
-
+import ButtonAuth from "../../components/ButtonAuth/ButtonAuth";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -77,21 +77,7 @@ const SignUp = () => {
         {errors && (
           <p className="text-red-500">{errors?.confirmPassword?.message}</p>
         )}
-        <button
-          className="bg-blue-700 w-1/2 text-white p-4 rounded-lg cursor-pointer mx-auto mt-2 hover:bg-blue-400 text-sm md:text-lg"
-          type="submit"
-        >
-          {isLoading == "Pending" ? (
-            <p className="text-gray-200 flex justify-center items-center gap-2">
-              <p>انشاء حساب </p>
-              <div className="w-10">
-                <Lottie animationData={loading} />
-              </div>
-            </p>
-          ) : (
-            <p>انشاء حساب</p>
-          )}
-        </button>
+        <ButtonAuth isLoading={isLoading}>انشاء حساب </ButtonAuth>
         <div className="mx-auto">
           لديك حساب بالفعل ؟{" "}
           <Link to={"/auth/login"} className="text-blue-600">

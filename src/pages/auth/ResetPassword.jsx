@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import loading from "../../utils/loading.json";
 import HeadingAuth from "../../components/HeadingAuth/HeadingAuth";
+import ButtonAuth from "../../components/ButtonAuth/ButtonAuth";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
@@ -55,21 +56,7 @@ const ResetPassword = () => {
         />
         {errors && <p className="text-red-500">{errors?.password?.message}</p>}
 
-        <button
-          className="bg-blue-700 w-1/2 text-white p-4 rounded-lg cursor-pointer mx-auto mt-2 hover:bg-blue-400"
-          type="submit"
-        >
-          {isLoading == "Pending" ? (
-            <p className="text-gray-200 flex justify-center items-center gap-2">
-              <p>تسجيل دخول </p>
-              <div className="w-10">
-                <Lottie animationData={loading} />
-              </div>
-            </p>
-          ) : (
-            <p> تسجيل دخول</p>
-          )}
-        </button>
+        <ButtonAuth isLoading={isLoading}>تسجيل الدخول</ButtonAuth>
       </form>
     </div>
   );

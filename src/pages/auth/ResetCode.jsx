@@ -5,6 +5,7 @@ import { resetCode } from "../../redux/slice/auth/authSlice";
 import loading from "../../utils/loading.json";
 import Lottie from "lottie-react";
 import HeadingAuth from "../../components/HeadingAuth/HeadingAuth";
+import ButtonAuth from "../../components/ButtonAuth/ButtonAuth";
 
 const ResetCode = () => {
   const dispatch = useDispatch();
@@ -87,23 +88,7 @@ const ResetCode = () => {
           ))}
         </div>
 
-        <button
-          type="submit"
-          disabled={isLoading === "Pending"}
-          className="bg-blue-700 text-white py-3 rounded-lg hover:bg-blue-400 transition "
-          dir="rtl"
-        >
-          {isLoading === "Pending" ? (
-            <p className="text-gray-200 flex justify-center items-center gap-2">
-              <p>  جاري الارسال </p>
-              <div className="w-10">
-                <Lottie animationData={loading} />
-              </div>
-            </p>
-          ) : (
-             <p>ارسال</p>
-          )}
-        </button>
+          <ButtonAuth isLoading={isLoading}>ارسال</ButtonAuth>
 
         <Link to={"/auth/login"} className="text-blue-600">
           {" "}
