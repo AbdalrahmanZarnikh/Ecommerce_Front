@@ -58,7 +58,7 @@ const NavBar = () => {
       <div className="fixed top-0 left-0 w-full z-50 bg-white shadow-md py-4 px-6">
         <div className="flex justify-between items-center">
           <h1
-            className="text-blue-700 font-bold text-3xl cursor-pointer"
+            className="text-blue-700 font-bold ml-2 text-2xl  md:text-3xl cursor-pointer"
             onClick={() => {
               navigate("/");
             }}
@@ -107,7 +107,7 @@ const NavBar = () => {
             </Link>
           </div>
 
-          <div className="relative w-1/2">
+          <div className="relative w-1/2 ">
             <input
               type="text"
               placeholder="البحث عن المنتجات"
@@ -130,7 +130,7 @@ const NavBar = () => {
             >
               <BsHeart
                 size={25}
-                className="hover:text-blue-400 cursor-pointer"
+                className="hover:text-blue-400 cursor-pointer mr-2"
                 onClick={() => {
                   if (!localStorage.getItem("token")) {
                     toast.error("قم بتسجيل الدخول اولا");
