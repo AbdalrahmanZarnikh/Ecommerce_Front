@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Lottie from "lottie-react";
 
 import loading from "../../utils/loading.json";
+import HeadingAuth from "../../components/HeadingAuth/HeadingAuth";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const Login = () => {
         className="bg-white shadow-2xl h-fit flex justify-center items-start flex-col w-full md:w-1/3 gap-4 rounded-lg p-10"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="mx-auto my-10 text-4xl font-bold"> تسجيل الدخول</h1>
+        <HeadingAuth>تسجيل الدخول</HeadingAuth>
         <label htmlFor="email">البريد الاكتروني</label>
         <input
           type="email"
@@ -60,7 +61,7 @@ const Login = () => {
         {errors && <p className="text-red-500">{errors?.password?.message}</p>}
 
         <button
-          className="bg-blue-700 w-1/2 text-white p-4 rounded-lg cursor-pointer mx-auto mt-2 hover:bg-blue-400"
+          className="bg-blue-700 w-1/2 text-white p-4 rounded-lg cursor-pointer mx-auto mt-2 hover:bg-blue-400 text-sm md:text-lg"
           type="submit"
         >
           {isLoading == "Pending" ? (

@@ -5,6 +5,7 @@ import { resetPassword } from "../../redux/slice/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import loading from "../../utils/loading.json";
+import HeadingAuth from "../../components/HeadingAuth/HeadingAuth";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const ResetPassword = () => {
         className="bg-white shadow-2xl h-fit flex justify-center items-start flex-col w-full md:w-1/3 gap-4 rounded-lg p-10"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="mx-auto my-10 text-4xl font-bold"> تسجيل دخول جديد</h1>
+         <HeadingAuth>تسجيل دخول جديد</HeadingAuth>
         <label htmlFor="email">الريد الاكتروني</label>
         <input
           type="email"

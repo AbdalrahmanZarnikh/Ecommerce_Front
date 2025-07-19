@@ -111,13 +111,13 @@ const NavBar = () => {
             <input
               type="text"
               placeholder="البحث عن المنتجات"
-              className="p-4 w-full rounded-lg border"
+              className="p-4 w-full rounded-lg border text-[11px] md:text-lg"
               onChange={(e) => {
                 handleSearch(e);
               }}
             />
             <BiSearch
-              className="absolute left-2 top-5 text-gray-500"
+              className="absolute left-2 top-4 md:top-5  text-gray-500 "
               size={21}
             />
           </div>
@@ -256,15 +256,34 @@ const NavBar = () => {
               <FaUserCircle size={25} />
             </button>
           ) : null}
-          <button
-            className="text-white bg-blue-600 rounded-lg px-5 py-3 hover:bg-blue-400 cursor-pointer"
-            onClick={() => {
-              navigate("/auth/login");
-              setMenuBar(false);
-            }}
-          >
-            تسجيل الدخول
-          </button>
+          {localStorage.getItem("token") && !token ? (
+            <button
+              className=" text-white bg-red-600 rounded-lg p-4 cursor-pointer hover:bg-red-400"
+              onClick={() => {
+                localStorage.removeItem("token");
+                localStorage.removeItem("role");
+                localStorage.removeItem("cart");
+                localStorage.removeItem("wishlist");
+                dispatch(resetCart());
+                navigate("/");
+
+                setToken(true);
+              }}
+            >
+              <CgLogOut size={25} />
+            </button>
+          ) : (
+            <button
+              className=" text-white bg-blue-600 rounded-lg p-4 cursor-pointer hover:bg-blue-400"
+              onClick={() => {
+                setToken(false);
+                setMenuBar(false)
+                navigate("/auth/login");
+              }}
+            >
+              تسجيل الدخول
+            </button>
+          )}
         </div>
       )}
     </>

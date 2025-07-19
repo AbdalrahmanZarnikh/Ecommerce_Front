@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { resetCode } from "../../redux/slice/auth/authSlice";
 import loading from "../../utils/loading.json";
 import Lottie from "lottie-react";
+import HeadingAuth from "../../components/HeadingAuth/HeadingAuth";
 
 const ResetCode = () => {
   const dispatch = useDispatch();
@@ -68,8 +69,8 @@ const ResetCode = () => {
         className="bg-white rounded-lg shadow-2xl p-10 w-full max-w-md flex flex-col gap-6"
         dir="ltr"
       >
-        <h2 className="text-3xl font-bold text-center">أدخل رمز التحقق</h2>
-
+         
+        <HeadingAuth>أدخل رمز التحقق</HeadingAuth>
         <div className="flex justify-center gap-3 ">
           {digits.map((digit, idx) => (
             <input
