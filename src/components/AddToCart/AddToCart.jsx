@@ -24,7 +24,7 @@ const AddToCart = memo(({ id }) => {
   return (
     <button
       onClick={handleAddProductToCart}
-      className="flex items-center  justify-between gap-2 cursor-pointer text-white px-[16px] py-[8px]  bg-blue-600 rounded-lg ml-4 hover:bg-blue-800 w-30 text-sm md:text-lg md:w-40 "
+      className="flex items-center  justify-between gap-2 cursor-pointer text-white px-[16px] py-[8px]  bg-blue-600 rounded-lg ml-4 hover:bg-blue-800 w-32 text-[12px] md:text-lg md:w-40 "
     >
       {loadingAdd === true ? (
         <div className="w-10 mx-auto ">
