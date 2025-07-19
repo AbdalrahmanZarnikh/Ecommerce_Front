@@ -49,7 +49,7 @@ const   ProductsBy = ({getThunk}) => {
         {/* Products */}
 
         {data?.length > 0 ? (
-          <div className="grid gird-cols-1 md:grid-cols-3 justify-items-center gap-2">
+          <div className="grid gird-cols-1 md:grid-cols-2 xl:grid-cols-3 justify-items-center gap-2">
             {data?.map((ele, index) => {
               return (
                 <ProductCard
