@@ -5,3 +5,7 @@ const axiosInstance = axios.create({
 });
 
 export default axiosInstance;
+
+
+// baseURL: "http://localhost:7000",
+// baseURL: "https://ecommerce-back-4.onrender.com",
