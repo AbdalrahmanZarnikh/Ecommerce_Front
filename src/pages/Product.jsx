@@ -18,22 +18,28 @@ import AddToWishlist from "../components/AddToWishlist/AddToWishlist";
 import { Toaster } from "react-hot-toast";
 import ReviewForm from "../components/ReviewForm/ReviewForm";
 import ReviewUpdateForm from "../components/ReviewForm/ReviewUpdateForm";
-import  deleteReview  from "../redux/slice/review/act/deleteReview";
+import deleteReview from "../redux/slice/review/act/deleteReview";
+import { getLoggedUserData } from "../redux/slice/user/userSlice";
 const Product = () => {
   const params = useParams();
   const dispatch = useDispatch();
-const [openUpdateReviewId, setOpenUpdateReviewId] = useState(null);
+  const [openUpdateReviewId, setOpenUpdateReviewId] = useState(null);
   const [quantity, setquantity] = useState(1);
   const [reGetProduct, setreGetProduct] = useState(false);
-  const handleDeleteReview = async(id) => {
+
+  const handleDeleteReview = async (id) => {
     await dispatch(deleteReview(id));
     setreGetProduct(!reGetProduct);
-  }
+  };
   useEffect(() => {
+    dispatch(getLoggedUserData());
     dispatch(getOneProduct({ id: params.id }));
-  }, [dispatch, params.id , reGetProduct]);
+  }, [dispatch, params.id, reGetProduct]);
+
+  const { dataUser } = useSelector((state) => state.userSlice);
+
+  console.log("data user =>>>", dataUser);
   const { data, isLoading } = useSelector((state) => state.productSlice);
-  console.log(data);
   return isLoading == "Success" ? (
     <Container>
       <Toaster />
@@ -132,30 +138,53 @@ const [openUpdateReviewId, setOpenUpdateReviewId] = useState(null);
           التقييمات ({data.reviews?.length})
         </h1>
         {data.reviews?.map((review, index) => (
-          <div key={index} className="border-b border-gray-200 pb-6 flex flex-col">
+          <div
+            key={index}
+            className="border-b border-gray-200 pb-6 flex flex-col"
+          >
             <h1>{review.user?.name}</h1>
             <StarRating rating={review?.ratings} />
             <p>{review?.title}</p>
             {/* <p>{timeAgo(review?.createdAt)}</p> */}
-            <div className="flex gap-5 self-end">
-                <button className="hover:text-blue-400 cursor-pointer self-end"
-            onClick={() =>setOpenUpdateReviewId(
-      openUpdateReviewId === review._id ? null : review._id
-    )}
-            >تعديل</button>
-  <button className="hover:text-blue-400 cursor-pointer self-end"
-            onClick={() => handleDeleteReview(review._id)}
-            >حذف</button>
+            {(review.user._id == dataUser._id ||
+              localStorage.getItem("role") === "admin") && (
+              <div className="flex gap-5 self-end">
+                <button
+                  className="hover:text-blue-400 cursor-pointer self-end"
+                  onClick={() =>
+                    setOpenUpdateReviewId(
+                      openUpdateReviewId === review._id ? null : review._id
+                    )
+                  }
+                >
+                  تعديل
+                </button>
+                <button
+                  className="hover:text-blue-400 cursor-pointer self-end"
+                  onClick={() => handleDeleteReview(review._id)}
+                >
+                  حذف
+                </button>
+              </div>
+            )}
 
-            </div>
-
-{openUpdateReviewId === review._id && <ReviewUpdateForm id={review._id} ratings={review.ratings} title={review.title} reGetProduct={reGetProduct} setreGetProduct={setreGetProduct} setOpenUpdateReviewId={setOpenUpdateReviewId}/>}
+            {openUpdateReviewId === review._id && (
+              <ReviewUpdateForm
+                id={review._id}
+                ratings={review.ratings}
+                title={review.title}
+                reGetProduct={reGetProduct}
+                setreGetProduct={setreGetProduct}
+                setOpenUpdateReviewId={setOpenUpdateReviewId}
+              />
+            )}
           </div>
         ))}
-       <ReviewForm reGetProduct={reGetProduct} setreGetProduct={setreGetProduct}/>
-
+        <ReviewForm
+          reGetProduct={reGetProduct}
+          setreGetProduct={setreGetProduct}
+        />
       </div>
-
     </Container>
   ) : (
     <div>
