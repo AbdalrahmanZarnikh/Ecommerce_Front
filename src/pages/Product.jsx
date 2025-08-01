@@ -9,25 +9,46 @@ import notFound from "../utils/notfound.json";
 import StarRating from "../components/StarRating/StarRating";
 import Container from "../components/Container/Container";
 import ProductImageSlider from "../components/ProductImageSlider/ProductImageSlider";
+import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart, FaTruck } from "react-icons/fa";
-import Feature from "../components/feature/Feature";
+import Feature from "../components/feature/feature";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import AddToCart from "../components/AddToCart/AddToCart";
 import AddToWishlist from "../components/AddToWishlist/AddToWishlist";
 import { Toaster } from "react-hot-toast";
-import ButtonReverse from "../components/ButtonReverse/ButtonReverse";
+import ReviewForm from "../components/ReviewForm/ReviewForm";
+import ReviewUpdateForm from "../components/ReviewForm/ReviewUpdateForm";
+import  deleteReview  from "../redux/slice/review/act/deleteReview";
 const Product = () => {
   const params = useParams();
   const dispatch = useDispatch();
+const [openUpdateReviewId, setOpenUpdateReviewId] = useState(null);
   const [quantity, setquantity] = useState(1);
+  const [reGetProduct, setreGetProduct] = useState(false);
+  const handleDeleteReview = async(id) => {
+    await dispatch(deleteReview(id));
+    setreGetProduct(!reGetProduct);
+  }
   useEffect(() => {
     dispatch(getOneProduct({ id: params.id }));
-  }, [dispatch, params.id]);
+  }, [dispatch, params.id , reGetProduct]);
   const { data, isLoading } = useSelector((state) => state.productSlice);
+  console.log(data);
   return isLoading == "Success" ? (
     <Container>
       <Toaster />
-      <ButtonReverse/>
+      {/* links */}
+      <div className="flex items-center text-sm text-gray-500 mb-6">
+        <Link className=" hover:text-blue-600" to="/">
+          {" "}
+          الرئيسية
+        </Link>{" "}
+        /
+        <Link className=" hover:text-blue-600" to="/products">
+          المنتجات
+        </Link>{" "}
+        /<span className="text-gray-900 ">{data.title}</span>
+      </div>
       <div className="flex flex-col md:flex-row gap-[30px]">
         {/* image */}
         {data.images?.length > 0 ? (
@@ -46,15 +67,13 @@ const Product = () => {
           />
           {data.priceAfterDiscount ? (
             <div>
-              <span className="text-2xl font-bold text-green-500">
+              <span className="text-2xl font-bold text-gray-900">
                 {data.priceAfterDiscount} $
               </span>{" "}
               <span className="line-through text-gray-500">{data.price} $</span>
             </div>
           ) : (
-            <h1 className="text-2xl font-bold text-green-500">
-              {data.price} $
-            </h1>
+            <h1 className="text-2xl font-bold text-gray-900">{data.price} $</h1>
           )}
           <p className="mb-6">{data.description}</p>
           <div className="flex items-center text-green-600 mb-6">
@@ -76,15 +95,25 @@ const Product = () => {
           </div>
           <div className="flex-col  sm:flex-row sm:gap-0 gap-[20px] flex items-center mb-6">
             <div className="flex items-center ml-4 border border-gray-300 rounded-md overflow-hidden">
+              <button
+                className="flex justify-center items-center w-10 h-10 text-gray-600 hover:bg-gray-100"
+                onClick={() => setquantity(quantity + 1)}
+              >
+                +
+              </button>
               <span className="w-10 h-10 flex justify-center items-center border-x border-gray-300">
-                {data.quantity >0 ? data.quantity: 0}
+                {data.quantity}
               </span>
+              <button
+                className="flex justify-center items-center w-10 h-10 text-gray-600 hover:bg-gray-100"
+                onClick={() => {
+                  if (quantity > 1) setquantity(quantity - 1);
+                }}
+              >
+                -
+              </button>
             </div>
-            {data.quantity < 0 ? (
-              <h1 className="text-gray-400">انتهت الكمية</h1>
-            ) : (
-              <AddToCart id={params.id} />
-            )}
+            <AddToCart id={params.id} />
 
             <AddToWishlist id={params.id} />
           </div>
@@ -103,14 +132,30 @@ const Product = () => {
           التقييمات ({data.reviews?.length})
         </h1>
         {data.reviews?.map((review, index) => (
-          <div key={index} className="border-b border-gray-200 pb-6">
+          <div key={index} className="border-b border-gray-200 pb-6 flex flex-col">
             <h1>{review.user?.name}</h1>
             <StarRating rating={review?.ratings} />
             <p>{review?.title}</p>
             {/* <p>{timeAgo(review?.createdAt)}</p> */}
+            <div className="flex gap-5 self-end">
+                <button className="hover:text-blue-400 cursor-pointer self-end"
+            onClick={() =>setOpenUpdateReviewId(
+      openUpdateReviewId === review._id ? null : review._id
+    )}
+            >تعديل</button>
+  <button className="hover:text-blue-400 cursor-pointer self-end"
+            onClick={() => handleDeleteReview(review._id)}
+            >حذف</button>
+
+            </div>
+
+{openUpdateReviewId === review._id && <ReviewUpdateForm id={review._id} ratings={review.ratings} title={review.title} reGetProduct={reGetProduct} setreGetProduct={setreGetProduct} setOpenUpdateReviewId={setOpenUpdateReviewId}/>}
           </div>
         ))}
+       <ReviewForm reGetProduct={reGetProduct} setreGetProduct={setreGetProduct}/>
+
       </div>
+
     </Container>
   ) : (
     <div>

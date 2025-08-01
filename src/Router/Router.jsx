@@ -25,6 +25,8 @@ import Info from "../pages/DashboardUser/Info";
 import OrdersUser from "../pages/DashboardUser/OrdersUser";
 import Footer from "../components/Footer/Footer";
 import Contact from "../pages/Contact";
+import CashOrder from "../pages/order/CashOrder";
+import HawalaOrder from "../pages/order/HawalaOrder";
 
 const Router = () => {
   return (
@@ -63,6 +65,11 @@ const Router = () => {
             />
             <Route path="/products" element={<Products />} />
             <Route path="/product/:id" element={<Product />} />
+          <Route path="/order">
+          <Route path="cash/:cartId" element={<CashOrder/>} />
+          <Route path="hawala/:cartId" element={<HawalaOrder/>} />
+        </Route>
+
             <Route path="/auth">
               <Route path="signup" element={<SignUp />} />
               <Route path="login" element={<Login />} />

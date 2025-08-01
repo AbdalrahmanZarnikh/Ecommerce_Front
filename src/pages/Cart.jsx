@@ -20,7 +20,7 @@ import Heading from "../components/Heading/Heading";
 
 const Cart = () => {
   const dispatch = useDispatch();
-
+const navigate = useNavigate();
   const [couponName,setCouponName]=useState("");
   const { dataCart,isLoading } = useSelector((state) => state.cartSlice);
 
@@ -133,7 +133,13 @@ const Cart = () => {
                   </div>
                 )}
               </div>
-              <button className="w-full mt-6 bg-blue-600 text-white p-4 rounded-lg cursor-pointer hover:bg-blue-400">
+              <button className="w-full mt-6 bg-blue-600 text-white p-4 rounded-lg cursor-pointer hover:bg-blue-400"
+                            onClick={()=> {
+                console.log("datacart" ,dataCart)
+                navigate(`/order/cash/${dataCart._id}`)
+              }
+            }
+              >
                 المتابعة للدفع
               </button>
             </div>
