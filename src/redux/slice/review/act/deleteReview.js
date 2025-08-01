@@ -18,6 +18,8 @@ const deleteReview = createAsyncThunk("review/delete", async (id, thunkAPI) => {
     toast.success("تم حذف المراجعة بنجاح");
     return res.data;
   } catch (error) {
+    console.log(error.response.data.errors[0].msg);
+    toast.error(error.response.data.errors[0].msg);
     if (axios.isAxiosError(error)) {
       return rejectWithValue(error.response?.data.message);
     }
