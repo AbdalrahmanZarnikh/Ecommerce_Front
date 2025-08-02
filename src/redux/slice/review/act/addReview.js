@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const addReview = createAsyncThunk(
@@ -7,7 +7,7 @@ const addReview = createAsyncThunk(
         const { rejectWithValue } = thunkAPI;
         const token  = localStorage.getItem("token");
         try{
-            const res = await axios.post(`https://ecommerce-back-4.onrender.com/api/reviews`, data ,
+            const res = await axios.post(`/api/reviews`, data ,
                 {
                     headers: {
                         "Content-Type": "application/json",

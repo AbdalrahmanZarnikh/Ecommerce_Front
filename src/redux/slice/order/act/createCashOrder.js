@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const createCashOrder = createAsyncThunk(
@@ -9,7 +9,7 @@ const createCashOrder = createAsyncThunk(
     const token = localStorage.getItem("token");
     try {
       const res = await axios.post(
-        `https://ecommerce-back-4.onrender.com/api/orders/cash/${data.id}`,
+        `/api/orders/cash/${data.id}`,
         data.body,
         {
           headers: {

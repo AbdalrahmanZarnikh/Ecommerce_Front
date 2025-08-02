@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const deleteReview = createAsyncThunk("review/delete", async (id, thunkAPI) => {
@@ -7,7 +7,7 @@ const deleteReview = createAsyncThunk("review/delete", async (id, thunkAPI) => {
   const token = localStorage.getItem("token");
   try {
     const res = await axios.delete(
-      `https://ecommerce-back-4.onrender.com/api/reviews/${id}`,
+      `/api/reviews/${id}`,
       {
         headers: {
           "Content-Type": "application/json",

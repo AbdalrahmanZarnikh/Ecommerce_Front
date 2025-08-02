@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../../api/configAxios";
 import toast from "react-hot-toast";
 
 const updateReview = createAsyncThunk(
@@ -9,7 +9,7 @@ const updateReview = createAsyncThunk(
     const token = localStorage.getItem("token");
     try {
       const res = await axios.put(
-        `https://ecommerce-back-4.onrender.com/api/reviews/${data.id}`,
+        `/api/reviews/${data.id}`,
         { ratings: data.ratings, title: data.title },
         {
           headers: {

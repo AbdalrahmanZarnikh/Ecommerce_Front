@@ -8,16 +8,12 @@ const getLoggedUserData = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(
-        "/api/users/get-me",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await axios.get("/api/users/get-me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    
       return res.data;
     } catch (error) {
       toast.error(error.response.data.message);
