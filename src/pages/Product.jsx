@@ -145,8 +145,7 @@ const Product = () => {
             <StarRating rating={review?.ratings} />
             <p>{review?.title}</p>
             {/* <p>{timeAgo(review?.createdAt)}</p> */}
-            {(review.user._id == dataUser._id ||
-              localStorage.getItem("role") === "admin") && (
+            {review.user._id == dataUser._id ? (
               <div className="flex gap-5 self-end">
                 <button
                   className="hover:text-blue-400 cursor-pointer self-end"
@@ -165,6 +164,17 @@ const Product = () => {
                   حذف
                 </button>
               </div>
+            ) : localStorage.getItem("role") === "admin" ? (
+              <div className="flex gap-5 self-end">
+                <button
+                  className="hover:text-blue-400 cursor-pointer self-end"
+                  onClick={() => handleDeleteReview(review._id)}
+                >
+                  حذف
+                </button>
+              </div>
+            ) : (
+              ""
             )}
 
             {openUpdateReviewId === review._id && (

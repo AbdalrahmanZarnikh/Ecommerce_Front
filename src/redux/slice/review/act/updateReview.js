@@ -22,7 +22,7 @@ const updateReview = createAsyncThunk(
 
       return res.data;
     } catch (error) {
-      toast.error(error.response.data.errors[0].msg);
+    toast.error("حدث خطأ في عملية التعديل");
       if (axios.isAxiosError(error)) {
         return rejectWithValue(error.response?.data.message);
       }
