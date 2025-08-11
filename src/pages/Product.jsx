@@ -148,17 +148,17 @@ const Product = () => {
             {review.user._id == dataUser._id ? (
               <div className="flex gap-5 self-end">
                 <button
-                  className="hover:text-blue-400 cursor-pointer self-end"
+                  className="hover:text-blue-400 text-blue-500 cursor-pointer self-end"
                   onClick={() =>
                     setOpenUpdateReviewId(
                       openUpdateReviewId === review._id ? null : review._id
                     )
                   }
                 >
-                  تعديل
+                  تعديل 
                 </button>
                 <button
-                  className="hover:text-blue-400 cursor-pointer self-end"
+                  className="hover:text-red-400 text-red-500 cursor-pointer self-end"
                   onClick={() => handleDeleteReview(review._id)}
                 >
                   حذف
@@ -167,7 +167,7 @@ const Product = () => {
             ) : localStorage.getItem("role") === "admin" ? (
               <div className="flex gap-5 self-end">
                 <button
-                  className="hover:text-blue-400 cursor-pointer self-end"
+                  className="hover:text-red-400  text-red-500 cursor-pointer self-end"
                   onClick={() => handleDeleteReview(review._id)}
                 >
                   حذف
