@@ -37,8 +37,10 @@ const Product = () => {
 
   const { dataUser } = useSelector((state) => state.userSlice);
 
-  console.log("data user =>>>", dataUser);
+
   const { data, isLoading } = useSelector((state) => state.productSlice);
+
+  console.log(data.reviews)
   return isLoading == "Success" ? (
     <Container>
       <Toaster />
@@ -139,12 +141,12 @@ const Product = () => {
         {data.reviews?.map((review, index) => (
           <div
             key={index}
-            className="border-b border-gray-200 pb-6 flex flex-col"
+            className="border-b border-gray-200 pb-6 flex flex-col pt-6"
           >
-            <h1>{review.user?.name}</h1>
+            <h1 className="text-xl font-bold">{review.user?.name}</h1>
             <StarRating rating={review?.ratings} />
             <p>{review?.title}</p>
-            {/* <p>{timeAgo(review?.createdAt)}</p> */}
+            {/* <p>{review?.createdAt}</p> */}
             {review.user._id == dataUser._id ? (
               <div className="flex gap-5 self-end">
                 <button

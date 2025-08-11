@@ -18,6 +18,7 @@ const addReview = createAsyncThunk(
             toast.success("تمت اضافة المراجعة بنجاح");
             return res.data;
         } catch (error) {
+            toast.error(error.response.data.errors[0].msg)
             if (axios.isAxiosError(error)) {
                 return rejectWithValue(error.response?.data.message);
             }
