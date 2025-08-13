@@ -111,7 +111,7 @@ const NavBar = () => {
             <input
               type="text"
               placeholder="البحث عن المنتجات"
-              className="p-4 w-full rounded-lg border text-[11px] md:text-lg"
+              className="p-4 w-full rounded-lg border border-gray-300 text-[11px] md:text-lg"
               onChange={(e) => {
                 handleSearch(e);
               }}
