@@ -147,7 +147,7 @@ const Product = () => {
           {data.reviews?.map((review, index) => (
             <div
               key={index}
-              className="border-b border-gray-200 pb-6 flex flex-col pt-6"
+              className="border-b border-gray-200 bg-yellow-100 w-full md:w-2xl px-4 rounded-xl shadow-xl pb-6 flex flex-col pt-6"
             >
               <h1 className="text-xl font-bold">{review.user?.name}</h1>
               <StarRating rating={review?.ratings} />
@@ -183,7 +183,10 @@ const Product = () => {
                 </div>
               ) : (
                 ""
-              )}
+              )
+              
+              
+              }
 
               {openUpdateReviewId === review._id && (
                 <ReviewUpdateForm
