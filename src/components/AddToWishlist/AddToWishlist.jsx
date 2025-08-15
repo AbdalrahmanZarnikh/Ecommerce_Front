@@ -1,12 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
-import { FaRegHeart } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import {
   addProductToWishlist,
   removeProductFromWishlist,
 } from "../../redux/slice/wishlist/wishlistSlice";
-import { BsHeart, BsHeartFill } from "react-icons/bs";
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 import toast from "react-hot-toast";
+
+import { Heart } from "lucide-react";
 
 const AddToWishlist = memo(({ id, flag }) => {
   const dispatch = useDispatch();
@@ -17,7 +17,6 @@ const AddToWishlist = memo(({ id, flag }) => {
       toast.error("قم بتسجيل الدخول اولا");
       return;
     }
-
 
     setClicked(!clicked);
     if (!clicked && !flag) {
@@ -33,9 +32,18 @@ const AddToWishlist = memo(({ id, flag }) => {
       className={`${clicked && "rotate-360"} transition-all duration-400`}
     >
       {clicked || flag ? (
-        <BsHeartFill size={25} className="hover:text-blue-400 cursor-pointer" />
+        <Heart
+          size={30}
+          color="red"
+          fill="red"
+          className=" cursor-pointer"
+        />
       ) : (
-        <BsHeart size={25} className="hover:text-blue-400 cursor-pointer" />
+        <Heart
+          size={30}
+          color="red"
+          className=" cursor-pointer"
+        />
       )}
     </button>
   );

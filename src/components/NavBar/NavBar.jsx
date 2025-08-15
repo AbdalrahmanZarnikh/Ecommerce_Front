@@ -15,6 +15,7 @@ import {
   getProductsBySearch,
 } from "../../redux/slice/product/productSlice";
 import toast from "react-hot-toast";
+import { Heart } from "lucide-react";
 
 const NavBar = () => {
   const [menuBar, setMenuBar] = useState(false);
@@ -128,8 +129,8 @@ const NavBar = () => {
                 localStorage.getItem("token") && dataWishlist.length
               }
             >
-              <BsHeart
-                size={25}
+              <Heart
+                size={30}
                 className="hover:text-blue-400 cursor-pointer mr-2"
                 onClick={() => {
                   if (!localStorage.getItem("token")) {
@@ -146,7 +147,7 @@ const NavBar = () => {
               }
             >
               <FiShoppingCart
-                size={25}
+                size={30}
                 className="hover:text-blue-400 cursor-pointer"
                 onClick={() => {
                   if (!localStorage.getItem("token")) {
