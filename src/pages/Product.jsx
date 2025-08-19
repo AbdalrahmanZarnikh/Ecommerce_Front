@@ -9,7 +9,7 @@ import notFound from "../utils/notfound.json";
 import StarRating from "../components/StarRating/StarRating";
 import Container from "../components/Container/Container";
 import ProductImageSlider from "../components/ProductImageSlider/ProductImageSlider";
-import {  FaTruck } from "react-icons/fa";
+import { FaTruck } from "react-icons/fa";
 import Feature from "../components/feature/Feature";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import AddToCart from "../components/AddToCart/AddToCart";
@@ -19,6 +19,8 @@ import ReviewForm from "../components/ReviewForm/ReviewForm";
 import ReviewUpdateForm from "../components/ReviewForm/ReviewUpdateForm";
 import { deleteReview } from "../redux/slice/review/reviewSlice";
 import { getLoggedUserData } from "../redux/slice/user/userSlice";
+import timeAgo from "../utils/TimeAgo";
+
 const Product = () => {
   const params = useParams();
   const dispatch = useDispatch();
@@ -38,14 +40,14 @@ const Product = () => {
 
   const { data, isLoading } = useSelector((state) => state.productSlice);
 
+  console.log(data);
+
   return isLoading == "Success" ? (
     <>
       <Container>
         <Toaster />
         {/* links */}
-        <div
-          className={`flex items-center text-sm text-gray-500 mb-6`}
-        >
+        <div className={`flex items-center text-sm text-gray-500 mb-6`}>
           <Link className=" hover:text-blue-600" to="/">
             {" "}
             الرئيسية
@@ -56,9 +58,7 @@ const Product = () => {
           </Link>{" "}
           /<span className="text-gray-900 ">{data.title}</span>
         </div>
-        <div
-          className={`flex flex-col md:flex-row gap-[30px] `}
-        >
+        <div className={`flex flex-col md:flex-row gap-[30px] `}>
           {/* image */}
           {data.images?.length > 0 ? (
             <ProductImageSlider images={data.images} />
@@ -151,42 +151,43 @@ const Product = () => {
             >
               <h1 className="text-xl font-bold">{review.user?.name}</h1>
               <StarRating rating={review?.ratings} />
-              <p className="text-gray-600">{review?.title}</p>
-              {/* <p>{review?.createdAt}</p> */}
+              <p className="text-gray-900 mb-5">{review?.title}</p>
               {review.user._id == dataUser._id ? (
-                <div className="flex gap-5 self-end">
-                  <button
-                    className="hover:text-blue-400 text-blue-500 cursor-pointer self-end"
-                    onClick={() =>
-                      setOpenUpdateReviewId(
-                        openUpdateReviewId === review._id ? null : review._id
-                      )
-                    }
-                  >
-                    تعديل
-                  </button>
-                  <button
-                    className="hover:text-red-400 text-red-500 cursor-pointer self-end"
-                    onClick={() => handleDeleteReview(review._id)}
-                  >
-                    حذف
-                  </button>
+                <div className="flex  flex-row-reverse justify-between">
+                  <div className="flex gap-5">
+                    <button
+                      className="hover:text-blue-400 text-blue-500 cursor-pointer self-end"
+                      onClick={() =>
+                        setOpenUpdateReviewId(
+                          openUpdateReviewId === review._id ? null : review._id
+                        )
+                      }
+                    >
+                      تعديل
+                    </button>
+                    <button
+                      className="hover:text-red-400 text-red-500 cursor-pointer self-end"
+                      onClick={() => handleDeleteReview(review._id)}
+                    >
+                      حذف
+                    </button>
+                  </div>
+                  <p className="text-gray-600">{timeAgo(review?.createdAt)}</p>
                 </div>
               ) : localStorage.getItem("role") === "admin" ? (
-                <div className="flex gap-5 self-end">
+                <div className="flex gap-5  justify-between flex-row-reverse">
                   <button
                     className="hover:text-red-400  text-red-500 cursor-pointer self-end"
                     onClick={() => handleDeleteReview(review._id)}
                   >
                     حذف
                   </button>
+                  <p className="text-gray-600">{timeAgo(review?.createdAt)}</p>
+                  
                 </div>
               ) : (
                 ""
-              )
-              
-              
-              }
+              )}
 
               {openUpdateReviewId === review._id && (
                 <ReviewUpdateForm
