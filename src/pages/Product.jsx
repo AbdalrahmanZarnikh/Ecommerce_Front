@@ -9,7 +9,7 @@ import notFound from "../utils/notfound.json";
 import StarRating from "../components/StarRating/StarRating";
 import Container from "../components/Container/Container";
 import ProductImageSlider from "../components/ProductImageSlider/ProductImageSlider";
-import { FaRegHeart, FaTruck } from "react-icons/fa";
+import {  FaTruck } from "react-icons/fa";
 import Feature from "../components/feature/Feature";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import AddToCart from "../components/AddToCart/AddToCart";
@@ -147,7 +147,7 @@ const Product = () => {
           {data.reviews?.map((review, index) => (
             <div
               key={index}
-              className="border-b border-gray-200 bg-yellow-100 w-full md:w-2xl px-4 rounded-xl shadow-xl pb-6 flex flex-col pt-6 mb-4 "
+              className="border-b border-gray-200 bg-black/10 w-full md:w-xl px-4 rounded-xl shadow-xl pb-6 flex flex-col pt-6 mb-4 "
             >
               <h1 className="text-xl font-bold">{review.user?.name}</h1>
               <StarRating rating={review?.ratings} />
