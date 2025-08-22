@@ -27,11 +27,16 @@ import Footer from "../components/Footer/Footer";
 import Contact from "../pages/Contact";
 import CashOrder from "../pages/order/CashOrder";
 import HawalaOrder from "../pages/order/HawalaOrder";
+import { useSelector } from "react-redux";
 
 const Router = () => {
+
+const {darkMode}=useSelector((state)=>state.userSlice)
+
+
   return (
     <BrowserRouter>
-      <div className="flex flex-col min-h-screen ">
+      <div className={`flex flex-col min-h-screen ${darkMode && "dark"} dark:bg-zinc-800`}>
         <NavBar />
         <main className="flex-grow">
           <Routes>

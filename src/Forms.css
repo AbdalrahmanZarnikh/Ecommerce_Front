@@ -1,3 +1,4 @@
+
 .student-form-wrapper {
   padding: 4rem 1rem;
   display: flex;
@@ -9,6 +10,8 @@
 * {
   font-family: "Marhey", sans-serif;
 }
+
+
 
 .student-form-container {
   display: flex;

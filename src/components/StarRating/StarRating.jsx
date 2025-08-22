@@ -13,7 +13,7 @@ const StarRating = ({ rating ,quantity }) => {
     }
   }
 
-  return <div className='flex gap-[4px] items-center mb-4'>{stars} {rating} 
+  return <div className='flex gap-[4px] items-center mb-4 dark:text-white'>{stars} {rating} 
     {quantity? <span className="text-gray-500">({quantity} تقييم)</span> : ""}
    
 </div>;

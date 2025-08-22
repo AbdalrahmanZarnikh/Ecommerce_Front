@@ -30,9 +30,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center p-10 h-screen  bg-blue-400">
+    <div className="flex justify-center items-center p-10 h-screen dark:bg-zinc-800  bg-blue-400">
       <form
-        className="bg-white shadow-2xl h-fit flex justify-center items-start flex-col w-full md:w-1/3 gap-4 rounded-lg p-10"
+        className="bg-white shadow-2xl h-fit flex justify-center items-start flex-col w-full md:w-1/3 gap-4 rounded-lg p-10 dark:bg-zinc-700 dark:text-white  "
         onSubmit={handleSubmit(onSubmit)}
       >
         <HeadingAuth>تسجيل الدخول</HeadingAuth>
@@ -64,7 +64,7 @@ const Login = () => {
         <ButtonAuth isLoading={isLoading}>تسجيل دخول </ButtonAuth>
         <div className="mx-auto">
           ليس لديك حساب ؟{" "}
-          <Link to={"/auth/signup"} className="text-blue-600">
+          <Link to={"/auth/signup"} className="text-blue-600 ">
             {" "}
             انشاء حساب
           </Link>

@@ -13,11 +13,17 @@ const initialState = {
   dataUser: {},
   isLoading: "Idle",
   error: null,
+  darkMode:false
 };
 
 // Slice
 const userSlice = createSlice({
   name: "user",
+  reducers:{
+     toggleMode:(state,action)=>{
+       state.darkMode=action.payload;
+     }
+  },
   initialState,
   extraReducers: (builder) => {
     builder.addCase(getLoggedUserData.pending, (state) => {
@@ -68,5 +74,6 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
+export const {toggleMode}= userSlice.actions;
 
-export { getLoggedUserData,updateLoggedUserData,updatePassword };
+export { getLoggedUserData,updateLoggedUserData,updatePassword};

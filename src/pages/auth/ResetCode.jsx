@@ -64,10 +64,10 @@ const ResetCode = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-blue-400 p-6">
+    <div className="flex justify-center items-center h-screen bg-blue-400 dark:bg-zinc-800  p-6">
       <form
         onSubmit={handleSubmit}
-        className="bg-white rounded-lg shadow-2xl p-10 w-full max-w-md flex flex-col gap-6"
+        className="bg-white rounded-lg shadow-2xl p-10 w-full max-w-md flex flex-col gap-6 dark:bg-zinc-700 dark:text-white "
         dir="ltr"
       >
          

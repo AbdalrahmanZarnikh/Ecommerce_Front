@@ -9,7 +9,7 @@ import Hero2 from "./components/Hero2/Hero2";
 function App() {
  
   return (
-    <>
+    <div >
       {/* <Hero /> */}
       <Hero2/>
       <Container>
@@ -17,7 +17,7 @@ function App() {
         <SectionCards title={" تسوق حسب الماركة"}  to={"brands"} getThunk={getBrands} />
         <SectionCards title={"أحدث المنتجات "}  to={"products"} getThunk={getProducts} />
       </Container>
-    </>
+    </div>
   );
 }
 

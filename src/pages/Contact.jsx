@@ -17,13 +17,13 @@ const Contact = () => {
   textArea.current.value="";
   }
   return (
-    <div className="bg-white py-12 px-6 max-w-3xl mx-auto text-right">
-      <h2 className="text-2xl font-bold mb-6">اتصل بنا</h2>
+    <div className="bg-white py-12 px-6 max-w-3xl mx-auto text-right mt-10 dark:bg-zinc-700">
+      <h2 className="text-2xl font-bold mb-6 dark:text-white">اتصل بنا</h2>
         <textarea
           name="message"
           placeholder="اكتب رسالتك هنا..."
           required
-          className="w-full border border-gray-300 rounded px-4 py-2 h-32 "
+          className="w-full border border-gray-300 rounded px-4 py-2 h-32 dark:text-white"
           onChange={(e)=>{
             setMessage(e.target.value)
           }}

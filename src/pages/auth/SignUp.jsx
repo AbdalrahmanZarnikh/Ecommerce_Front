@@ -29,9 +29,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex justify-center items-center p-10   bg-blue-400">
+    <div className="flex justify-center items-center p-10 dark:bg-zinc-800   bg-blue-400">
       <form
-        className="bg-white shadow-2xl h-fit flex justify-center items-start flex-col w-full md:w-1/3 gap-4 rounded-lg p-10"
+        className="bg-white shadow-2xl h-fit flex justify-center items-start flex-col w-full md:w-1/3 gap-4 rounded-lg p-10 dark:bg-zinc-700 dark:text-white"
         onSubmit={handleSubmit(onSubmit)}
       >
         <HeadingAuth>انشاء حساب جديد</HeadingAuth>

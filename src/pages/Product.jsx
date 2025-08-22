@@ -20,6 +20,7 @@ import ReviewUpdateForm from "../components/ReviewForm/ReviewUpdateForm";
 import { deleteReview } from "../redux/slice/review/reviewSlice";
 import { getLoggedUserData } from "../redux/slice/user/userSlice";
 import timeAgo from "../utils/TimeAgo";
+import ButtonReverse from "../components/ButtonReverse/ButtonReverse";
 
 const Product = () => {
   const params = useParams();
@@ -46,8 +47,9 @@ const Product = () => {
     <>
       <Container>
         <Toaster />
+          <ButtonReverse />
         {/* links */}
-        <div className={`flex items-center text-sm text-gray-500 mb-6`}>
+        <div className={`flex items-center text-sm text-gray-500 mb-6 dark:text-white`}>
           <Link className=" hover:text-blue-600" to="/">
             {" "}
             الرئيسية
@@ -56,7 +58,7 @@ const Product = () => {
           <Link className=" hover:text-blue-600" to="/products">
             المنتجات
           </Link>{" "}
-          /<span className="text-gray-900 ">{data.title}</span>
+          /<span className="text-gray-900 dark:text-white/50 ">{data.title}</span>
         </div>
         <div className={`flex flex-col md:flex-row gap-[30px] `}>
           {/* image */}
@@ -69,26 +71,26 @@ const Product = () => {
           )}
           {/* descreptions */}
           <div>
-            <h1 className="text-3xl font-bold mb-2">{data.title}</h1>
+            <h1 className="text-3xl font-bold mb-2 dark:text-white">{data.title}</h1>
             <StarRating
               rating={data.ratingsAverage?.toFixed(1)}
               quantity={data.ratingsQuantity}
             />
             {data.priceAfterDiscount ? (
               <div>
-                <span className="text-2xl font-bold text-gray-900">
+                <span className="text-2xl font-bold text-gray-900 dark:text-white">
                   {data.priceAfterDiscount} $
                 </span>{" "}
-                <span className="line-through text-gray-500">
+                <span className="line-through text-gray-500 dark:text-white">
                   {data.price} $
                 </span>
               </div>
             ) : (
-              <h1 className="text-2xl font-bold text-gray-900">
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
                 {data.price} $
               </h1>
             )}
-            <p className="mb-6">{data.description}</p>
+            <p className="mb-6 dark:text-white">{data.description}</p>
             <div className="flex items-center text-green-600 mb-6">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +106,7 @@ const Product = () => {
               >
                 <path d="M20 6 9 17l-5-5"></path>
               </svg>
-              <span>متوفر في المخزون</span>
+              <span className="dark:text-white">متوفر في المخزون</span>
             </div>
             <div className="flex-col  sm:flex-row sm:gap-0 gap-[20px] flex items-center mb-6">
               <div className="flex items-center ml-4 border border-gray-300 rounded-md overflow-hidden">
@@ -114,7 +116,7 @@ const Product = () => {
                 >
                   +
                 </button>
-                <span className="w-10 h-10 flex justify-center items-center border-x border-gray-300">
+                <span className="w-10 h-10 flex justify-center items-center border-x border-gray-300 dark:text-white">
                   {data.quantity}
                 </span>
                 <button
@@ -132,31 +134,31 @@ const Product = () => {
             </div>
             {/* features */}
             <Feature title="شحن سريع" desc="توصيل خلال 2-5 ايام">
-              <FaTruck className="text-blue-600" />
+              <FaTruck className="text-blue-600 dark:text-white" />
             </Feature>
             <Feature title="ضمان جودة" desc="منتج أصلي 100% مع ضمان لمدة سنة">
-              <AiFillSafetyCertificate className="text-blue-600" />
+              <AiFillSafetyCertificate className="text-blue-600 dark:text-white" />
             </Feature>
           </div>
         </div>
         {/* reviews */}
         <div className={``}>
-          <h1 className="text-gray-500 mb-6">
+          <h1 className="text-gray-500 mb-6 dark:text-white">
             التقييمات ({data.reviews?.length})
           </h1>
           {data.reviews?.map((review, index) => (
             <div
               key={index}
-              className="border-b border-gray-200 bg-yellow-300/40 w-full md:w-xl px-4 rounded-3xl shadow-xl pb-6 flex flex-col pt-6 mb-4 "
+              className="border-b border-gray-200 bg-yellow-300/40 w-full md:w-xl px-4 rounded-3xl shadow-xl pb-6 flex flex-col pt-6 mb-4 dark:text-white dark:bg-zinc-700"
             >
               <h1 className="text-xl font-bold">{review.user?.name}</h1>
               <StarRating rating={review?.ratings} />
-              <p className="text-gray-900 mb-5">{review?.title}</p>
+              <p className="text-gray-900 mb-5 dark:text-white">{review?.title}</p>
               {review.user._id == dataUser._id ? (
                 <div className="flex  flex-row-reverse justify-between">
                   <div className="flex gap-5">
                     <button
-                      className="hover:text-blue-400 text-blue-500 cursor-pointer self-end"
+                      className="hover:text-blue-400 text-blue-500 cursor-pointer self-end dark:text-white"
                       onClick={() =>
                         setOpenUpdateReviewId(
                           openUpdateReviewId === review._id ? null : review._id
@@ -166,13 +168,13 @@ const Product = () => {
                       تعديل
                     </button>
                     <button
-                      className="hover:text-red-400 text-red-500 cursor-pointer self-end"
+                      className="hover:text-red-400 text-red-500 cursor-pointer self-end dark:text-red-500"
                       onClick={() => handleDeleteReview(review._id)}
                     >
                       حذف
                     </button>
                   </div>
-                  <p className="text-gray-600">{timeAgo(review?.createdAt)}</p>
+                  <p className="text-gray-600 dark:text-white">{timeAgo(review?.createdAt)}</p>
                 </div>
               ) : localStorage.getItem("role") === "admin" ? (
                 <div className="flex gap-5  justify-between flex-row-reverse">
@@ -182,7 +184,7 @@ const Product = () => {
                   >
                     حذف
                   </button>
-                  <p className="text-gray-600">{timeAgo(review?.createdAt)}</p>
+                  <p className="text-gray-600 dark:text-white">{timeAgo(review?.createdAt)}</p>
                   
                 </div>
               ) : (
@@ -212,7 +214,7 @@ const Product = () => {
     <div>
       {isLoading == "Pending" ? (
         <div className="mx-auto mt-40 w-10">
-          <Lottie animationData={loading} />
+          <Lottie animationData={loading}  />
         </div>
       ) : isLoading == "Fail" ? (
         <div className="mx-auto mt-40 w-20">

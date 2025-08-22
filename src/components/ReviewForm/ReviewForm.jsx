@@ -46,8 +46,8 @@ const ReviewForm = ({ reGetProduct, setreGetProduct }) => {
   };
 
   return (
-    <div className="w-full md:w-2/3 mx-auto mt-10 bg-white border border-gray-200 rounded-xl shadow-lg p-6">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">
+    <div className="w-full md:w-2/3 mx-auto mt-10 bg-white border border-gray-200 rounded-xl shadow-lg p-6 dark:bg-zinc-700">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
         💬 أضف تقييمك وتعليقك
       </h2>
 
@@ -72,7 +72,7 @@ const ReviewForm = ({ reGetProduct, setreGetProduct }) => {
               </span>
             ))}
           </div>
-          <p className="text-sm text-gray-500 mt-1 h-5 transition-all duration-200">
+          <p className="text-sm text-gray-500 mt-1 h-5 transition-all duration-200 dark:text-white">
             {ratingLabels[hover || rating] || ""}
           </p>
         </div>
@@ -82,7 +82,7 @@ const ReviewForm = ({ reGetProduct, setreGetProduct }) => {
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder="اكتب رأيك بكل صراحة..."
-          className="w-full h-32 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none resize-none text-gray-700"
+          className="w-full h-32 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none resize-none text-gray-700 dark:text-white"
         />
 
         {/* زر الإرسال */}

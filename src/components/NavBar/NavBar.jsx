@@ -16,12 +16,15 @@ import {
 } from "../../redux/slice/product/productSlice";
 import toast from "react-hot-toast";
 import { Heart } from "lucide-react";
+import ToggleMode from "../ToggleMode/ToggleMode";
 
 const NavBar = () => {
   const [menuBar, setMenuBar] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [token, setToken] = useState(false);
+
+  const [ans,setAns]=useState(false);
 
   const location = useLocation();
 
@@ -54,12 +57,16 @@ const NavBar = () => {
   const { dataCart } = useSelector((state) => state.cartSlice);
   const { dataWishlist } = useSelector((state) => state.wishlistSlice);
 
+  const handleDarkMode=()=>{
+   
+  }
+
   return (
     <>
-      <div className="fixed top-0 left-0 w-full z-50 bg-white shadow-md py-4 px-6">
+      <div className="fixed top-0 left-0 w-full z-50 bg-white shadow-md py-4 px-6 dark:bg-zinc-800 dark:text-white">
         <div className="flex justify-between items-center">
           <h1
-            className="text-blue-700 font-bold ml-2 text-2xl  md:text-3xl cursor-pointer"
+            className="text-blue-700 font-bold ml-2 text-2xl  md:text-3xl cursor-pointer dark:text-white"
             onClick={() => {
               navigate("/");
             }}
@@ -159,6 +166,8 @@ const NavBar = () => {
               />
             </ShowNumberOfItems>
 
+
+            <ToggleMode/>
             {localStorage.getItem("role") === "user" ? (
               <button
                 className="hidden md:block hover:text-blue-400 cursor-pointer"
