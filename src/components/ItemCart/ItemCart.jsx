@@ -36,7 +36,7 @@ const ItemCart = memo(({ id, title, category, image, quantity, price }) => {
           />
         </div>
         <div className="flex flex-col gap-2">
-          <h1 className="text-lg"> {title} </h1>
+          <h1 className="text-lg dark:text-white"> {title} </h1>
           <h1 className="text-gray-400">{category}</h1>
           <div className="flex flex-row-reverse justify-center gap-4 text-lg font-bold bg-white border rounded-lg   w-30">
             <span
@@ -58,7 +58,7 @@ const ItemCart = memo(({ id, title, category, image, quantity, price }) => {
       {/* right */}
       {/* left */}
       <div className="flex flex-col items-center gap-10 ">
-        <h1 className="text-lg text-gray-600 ">{price} $</h1>
+        <h1 className="text-lg text-gray-600 dark:text-white">{price} $</h1>
         <button
           className="cursor-pointer"
           onClick={() => {

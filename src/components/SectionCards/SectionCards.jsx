@@ -35,7 +35,7 @@ const SectionCards = memo(({ title, getThunk, to, slice }) => {
   return (
     <div >
       {/* Content Info */}
-      <div className="flex justify-between items-center ">
+      <div className="flex justify-between items-center mb-10">
         <Heading> {title}</Heading>
         <Link className="text-blue-700 hover:text-blue-400 dark:text-white" to={`/${to}`}>
           عرض الكل

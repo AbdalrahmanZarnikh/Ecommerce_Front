@@ -48,7 +48,7 @@ const navigate = useNavigate();
       <div className="flex flex-col md:flex-row  justify-center gap-10 ">
         <div className={`${cartItemsLength == 0 ? "hidden" : "flex-2/3"}`}>
           <div className="flex justify-between items-center gap-20">
-            <h1 className="mb-4 font-bold text-xl">
+            <h1 className="mb-4 font-bold text-xl dark:text-white">
               المنتجات ({cartItemsLength})
             </h1>
 
@@ -76,14 +76,14 @@ const navigate = useNavigate();
         </div>
 
         {cartItemsLength > 0 ? (
-          <div className="bg-white rounded-lg shadow-sm overflow-hidden sticky top-20 flex-1/3 h-fit">
+          <div className="bg-white rounded-lg shadow-sm overflow-hidden sticky top-20 flex-1/3 h-fit dark:bg-zinc-700">
             <div className="p-6 border-b">
-              <h2 className="text-xl font-semibold">ملخص الطلب</h2>
+              <h2 className="text-xl font-semibold dark:text-white">ملخص الطلب</h2>
             </div>
             <div className="p-6 space-y-4">
               <div className=" pt-4 mt-4">
                 <div className="flex justify-between  font-bold text-lg">
-                  <span>الاجمالي :</span>
+                  <span className="dark:text-white">الاجمالي :</span>
                   <span
                     className={`text-green-500 ${
                       dataCart.totalPriceAfterDiscount
@@ -96,7 +96,7 @@ const navigate = useNavigate();
                 </div>
                 {dataCart.totalPriceAfterDiscount && (
                   <div className="flex justify-between   text-lg">
-                    <span className="font-bold">الاجمالي بعد الخصم :</span>
+                    <span className="font-bold dark:text-white">الاجمالي بعد الخصم :</span>
                     <span className="text-green-500">{dataCart.totalPriceAfterDiscount || 0}</span>
                   </div>
                 )}
@@ -104,7 +104,7 @@ const navigate = useNavigate();
 
               <div className={`flex flex-col items-start ${dataCart.totalPriceAfterDiscount && "hidden"}`}>
                 <button
-                  className={`text-blue-600 text-sm cursor-pointer hover:text-blue-300 transition-all duration-200 ${
+                  className={`text-blue-600 dark:text-black/70 text-sm cursor-pointer hover:text-blue-300 transition-all duration-200 ${
                     openCoupon && "hidden"
                   }`}
                   onClick={handleClickCoupon}
