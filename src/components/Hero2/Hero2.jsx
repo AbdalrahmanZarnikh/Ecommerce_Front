@@ -33,14 +33,14 @@ const Hero2 = () => {
         </p>
         <div className="flex gap-4">
           <button
-            className="bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium cursor-pointer flex items-center justify-center transition-transform hover:scale-105"
+            className="bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium cursor-pointer flex items-center justify-center transition-transform hover:scale-105 text-sm md:text-xl"
             onClick={() => navigate("/products")}
           >
             <FaShoppingCart className="mr-2" />
             تسوق الآن
           </button>
           <button
-            className="bg-transparent px-6 py-3 rounded-lg font-medium text-white border border-white hover:bg-white/10 cursor-pointer flex items-center justify-center transition-transform hover:scale-105"
+            className="bg-transparent px-6 py-3 rounded-lg font-medium text-white border border-white hover:bg-white/10 cursor-pointer flex items-center justify-center transition-transform hover:scale-105 text-sm md:text-xl"
             onClick={() => {
               if (!localStorage.getItem("token")) {
                 toast.error("قم بتسجيل الدخول أولاً");

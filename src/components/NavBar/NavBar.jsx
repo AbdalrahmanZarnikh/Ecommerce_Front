@@ -24,7 +24,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const [token, setToken] = useState(false);
 
-  const [ans,setAns]=useState(false);
+  const [ans, setAns] = useState(false);
 
   const location = useLocation();
 
@@ -57,9 +57,6 @@ const NavBar = () => {
   const { dataCart } = useSelector((state) => state.cartSlice);
   const { dataWishlist } = useSelector((state) => state.wishlistSlice);
 
-  const handleDarkMode=()=>{
-   
-  }
 
   return (
     <>
@@ -74,9 +71,9 @@ const NavBar = () => {
             متجري
           </h1>
 
-          <div className="hidden md:flex justify-center items-center gap-4">
+          <div className="hidden md:flex justify-center items-center  gap-4">
             <Link
-              className={`hover:scale-105 rounded-lg ${
+              className={`hover:scale-105 rounded-lg   ${
                 location.pathname === "/" ? "t bg-blue-500 text-white p-2 " : ""
               } transition-all duration-200`}
               to="/"
@@ -104,7 +101,7 @@ const NavBar = () => {
               الأقسام
             </Link>
             <Link
-              className={`hover:scale-105 rounded-lg  ${
+              className={`hover:scale-105 rounded-lg w-20  ${
                 location.pathname === "/contact"
                   ? "bg-blue-500 text-white p-2 "
                   : ""
@@ -119,7 +116,7 @@ const NavBar = () => {
             <input
               type="text"
               placeholder="البحث عن المنتجات"
-              className="p-4 w-full rounded-lg border border-gray-300 text-[11px] md:text-lg text-center"
+              className="p-4 w-full rounded-lg border border-gray-300 text-[10px] md:text-lg text-right"
               onChange={(e) => {
                 handleSearch(e);
               }}
@@ -166,8 +163,7 @@ const NavBar = () => {
               />
             </ShowNumberOfItems>
 
-
-            <ToggleMode/>
+            <ToggleMode isVisibile={false} />
             {localStorage.getItem("role") === "user" ? (
               <button
                 className="hidden md:block hover:text-blue-400 cursor-pointer"
@@ -255,6 +251,8 @@ const NavBar = () => {
           >
             اتصل بنا
           </Link>
+
+          <ToggleMode />
           {localStorage.getItem("role") === "user" ? (
             <button
               className="hover:text-blue-400 cursor-pointer"
@@ -287,7 +285,7 @@ const NavBar = () => {
               className=" text-white bg-blue-600 rounded-lg p-4 cursor-pointer hover:bg-blue-400"
               onClick={() => {
                 setToken(false);
-                setMenuBar(false)
+                setMenuBar(false);
                 navigate("/auth/login");
               }}
             >
