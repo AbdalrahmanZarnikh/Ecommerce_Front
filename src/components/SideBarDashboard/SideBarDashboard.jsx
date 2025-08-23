@@ -12,7 +12,7 @@ const SideBarDashboard = () => {
       icon: (
         <BsFillInfoSquareFill
           size={25}
-          className="hover:text-blue-400 md:hover:text-white cursor-pointer "
+          className="hover:text-blue-400 dark:text-white  md:hover:text-white cursor-pointer "
         />
       ),
     },
@@ -22,7 +22,7 @@ const SideBarDashboard = () => {
       icon: (
         <FaAddressBook
           size={25}
-          className="hover:text-blue-400 md:hover:text-white cursor-pointer"
+          className="hover:text-blue-400 dark:text-white md:hover:text-white cursor-pointer"
         />
       ),
     },
@@ -32,7 +32,7 @@ const SideBarDashboard = () => {
       icon: (
         <BsFillCartFill
           size={25}
-          className="hover:text-blue-400 md:hover:text-white  cursor-pointer "
+          className="hover:text-blue-400 dark:text-white md:hover:text-white  cursor-pointer "
         />
       ),
     },
@@ -47,7 +47,7 @@ const SideBarDashboard = () => {
           return <div onClick={()=>{navigate(`/dashboard/${ele.path}`)}}>{ele.icon}</div>;
         })}
       </div>
-      <div className="hidden md:block w-full h-[100%] flex-1/12 border-l-3 border-gray-600 bg-orange-300">
+      <div className="hidden md:block w-full h-[100%] flex-1/12 border-l-3 border-gray-600 bg-orange-300 dark:bg-zinc-600 dark:text-white">
         <h1 className="text-center  font-bold text-3xl bg-orange-700 text-white p-5 ">لوحة التحكم </h1>
         <div className="hidden md:flex flex-col justify-start items-start p-4 gap-10 mt-10">
           {links.map((ele) => {

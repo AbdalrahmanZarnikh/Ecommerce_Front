@@ -62,7 +62,7 @@ const Addresses = () => {
         {/* Form Fields */}
 
         <div className={`form-group `}>
-          <label htmlFor="Phone" className={`${!isAdd && "hidden"}`}>
+          <label htmlFor="Phone" className={`${!isAdd && "hidden"} dark:text-white`}>
             رقم الموبايل
           </label>
           <input
@@ -78,7 +78,7 @@ const Addresses = () => {
         </div>
 
         <div className={`form-group`}>
-          <label htmlFor="City" className={`${!isAdd && "hidden"}`}>
+          <label htmlFor="City" className={`${!isAdd && "hidden"} dark:text-white`}>
             المدينة
           </label>
           <input
@@ -94,7 +94,7 @@ const Addresses = () => {
         </div>
 
         <div className={`form-group`}>
-          <label htmlFor="Details" className={`${!isAdd && "hidden"}`}>
+          <label htmlFor="Details" className={`${!isAdd && "hidden"} dark:text-white`}>
             تفاصيل
           </label>
           <input

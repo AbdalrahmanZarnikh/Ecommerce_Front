@@ -107,7 +107,7 @@ const Info = () => {
         {/* Form Fields */}
 
         <div className={`form-group`}>
-          <label htmlFor="Name" className={`${passwordEdit && "hidden"}`}>
+          <label htmlFor="Name" className={`${passwordEdit && "hidden"} dark:text-white`}>
             الاسم
           </label>
           <input
@@ -115,7 +115,7 @@ const Info = () => {
             type="text"
             placeholder={`${email ? "ادخل الاسم":"الرجاء الانتظار ...."}`}
             {...register("name")}
-            className={`${passwordEdit && !infoEdit && "hidden"}`}
+            className={`${passwordEdit && !infoEdit && "hidden"} `}
           />
           {errors.name && (
             <span className="text-red-400">{errors.name.message}</span>
@@ -123,7 +123,7 @@ const Info = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="ُEmail" className={`${passwordEdit && "hidden"}`}>
+          <label htmlFor="ُEmail" className={`${passwordEdit && "hidden"} dark:text-white `}>
             البريد الالكتروني
           </label>
           <input
@@ -141,7 +141,7 @@ const Info = () => {
         <div className="form-group">
           <label
             htmlFor="Password"
-            className={`${!passwordEdit && infoEdit && "hidden"}`}
+            className={`${!passwordEdit && infoEdit && "hidden"} dark:text-white`}
           >
             كلمة المرور
           </label>
@@ -150,7 +150,7 @@ const Info = () => {
             type="password"
             placeholder="ادخل كلمة مرور ..."
             {...register("password")}
-            className={`${!passwordEdit && infoEdit && "hidden"}`}
+            className={`${!passwordEdit && infoEdit && "hidden"} `}
           />
           {errors.password && (
             <span className="text-red-400">{errors.password.message}</span>

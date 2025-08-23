@@ -158,7 +158,7 @@ const Product = () => {
                 <div className="flex  flex-row-reverse justify-between">
                   <div className="flex gap-5">
                     <button
-                      className="hover:text-blue-400 text-blue-500 cursor-pointer self-end dark:text-white"
+                      className="hover:text-blue-400 text-blue-500 cursor-pointer self-end "
                       onClick={() =>
                         setOpenUpdateReviewId(
                           openUpdateReviewId === review._id ? null : review._id
