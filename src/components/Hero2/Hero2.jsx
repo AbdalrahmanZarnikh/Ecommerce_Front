@@ -14,7 +14,7 @@ const Hero2 = () => {
 
   return (
     <div
-      className="relative bg-cover bg-center bg-no-repeat px-5 py-16 md:py-24 flex flex-col-reverse md:flex-row justify-between items-center gap-8 overflow-hidden "
+      className="relative bg-cover bg-center bg-no-repeat px-5 py-16 md:py-24 flex flex-col-reverse md:flex-row justify-between items-center gap-8 overflow-hidde "
       style={{
         backgroundImage: 'url("/images/test.avif")', 
       }}

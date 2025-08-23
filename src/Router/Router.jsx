@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "../App";
 import SignUp from "../pages/auth/SignUp";
 import Login from "../pages/auth/Login";
 import ForgotPassword from "../pages/auth/ForgotPassword";
@@ -7,7 +6,6 @@ import ResetCode from "../pages/auth/ResetCode";
 import ResetPassword from "../pages/auth/ResetPassword";
 import Products from "../pages/Products";
 import NavBar from "../components/NavBar/NavBar";
-import Container from "../components/Container/Container";
 import Product from "../pages/Product";
 import Cart from "../pages/Cart";
 import Wishlist from "../pages/Wishlist";
@@ -28,6 +26,7 @@ import Contact from "../pages/Contact";
 import CashOrder from "../pages/order/CashOrder";
 import HawalaOrder from "../pages/order/HawalaOrder";
 import { useSelector } from "react-redux";
+import Home from "../Home";
 
 const Router = () => {
 
@@ -40,7 +39,7 @@ const {darkMode}=useSelector((state)=>state.userSlice)
         <NavBar />
         <main className="flex-grow">
           <Routes>
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/dashboard" element={<Dashboard />}>
               <Route path="addresses" element={<Addresses />} />

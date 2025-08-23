@@ -6,7 +6,7 @@ import {getProducts} from "./redux/slice/product/productSlice"
 import {getCategories} from "./redux/slice/category/categorySlice"
 import {getBrands} from "./redux/slice/brand/brandSlice"
 import Hero2 from "./components/Hero2/Hero2";
-function App() {
+function Home() {
  
   return (
     <div >
@@ -21,4 +21,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
