@@ -47,9 +47,11 @@ const Product = () => {
     <>
       <Container>
         <Toaster />
-          <ButtonReverse />
+        <ButtonReverse />
         {/* links */}
-        <div className={`flex items-center text-sm text-gray-500 mb-6 dark:text-white`}>
+        <div
+          className={`flex items-center text-sm text-gray-500 mb-6 dark:text-white`}
+        >
           <Link className=" hover:text-blue-600" to="/">
             {" "}
             الرئيسية
@@ -58,7 +60,10 @@ const Product = () => {
           <Link className=" hover:text-blue-600" to="/products">
             المنتجات
           </Link>{" "}
-          /<span className="text-gray-900 dark:text-white/50 ">{data.title}</span>
+          /
+          <span className="text-gray-900 dark:text-white/50 ">
+            {data.title}
+          </span>
         </div>
         <div className={`flex flex-col md:flex-row gap-[30px] `}>
           {/* image */}
@@ -71,7 +76,9 @@ const Product = () => {
           )}
           {/* descreptions */}
           <div>
-            <h1 className="text-3xl font-bold mb-2 dark:text-white">{data.title}</h1>
+            <h1 className="text-3xl font-bold mb-2 dark:text-white">
+              {data.title}
+            </h1>
             <StarRating
               rating={data.ratingsAverage?.toFixed(1)}
               quantity={data.ratingsQuantity}
@@ -153,10 +160,11 @@ const Product = () => {
             >
               <h1 className="text-xl font-bold">{review.user?.name}</h1>
               <StarRating rating={review?.ratings} />
-              <p className="text-gray-900 mb-5 dark:text-white">{review?.title}</p>
+              <p className="text-gray-900 mb-5 dark:text-white">
+                {review?.title}
+              </p>
               {review.user._id == dataUser._id ? (
-                <div className="flex  flex-row-reverse justify-between">
-                  <div className="flex gap-5">
+                <div className="flex   justify-end gap-5 ">
                     <button
                       className="hover:text-blue-400 text-blue-500 cursor-pointer self-end "
                       onClick={() =>
@@ -173,8 +181,6 @@ const Product = () => {
                     >
                       حذف
                     </button>
-                  </div>
-                  <p className="text-gray-600 dark:text-white">{timeAgo(review?.createdAt)}</p>
                 </div>
               ) : localStorage.getItem("role") === "admin" ? (
                 <div className="flex gap-5  justify-between flex-row-reverse">
@@ -184,13 +190,14 @@ const Product = () => {
                   >
                     حذف
                   </button>
-                  <p className="text-gray-600 dark:text-white">{timeAgo(review?.createdAt)}</p>
-                  
                 </div>
               ) : (
                 ""
               )}
 
+              <p className="text-gray-600 dark:text-white">
+                {timeAgo(review?.createdAt)}
+              </p>
               {openUpdateReviewId === review._id && (
                 <ReviewUpdateForm
                   id={review._id}
@@ -214,7 +221,7 @@ const Product = () => {
     <div>
       {isLoading == "Pending" ? (
         <div className="mx-auto mt-40 w-10">
-          <Lottie animationData={loading}  />
+          <Lottie animationData={loading} />
         </div>
       ) : isLoading == "Fail" ? (
         <div className="mx-auto mt-40 w-20">
