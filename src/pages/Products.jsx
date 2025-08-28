@@ -82,7 +82,7 @@ const Products = () => {
           categories?.map((ele) => {
             return (
               <button
-                className={`p-4 ${isClicked==ele.name ? "bg-yellow-500 hover:bg-yellow-300 hover:scale-105":"bg-blue-600 hover:bg-blue-300 hover:scale-105 "} rounded-full text-white cursor-pointer `}
+                className={`p-4 ${isClicked==ele.name ? "bg-yellow-500 hover:bg-yellow-300 hover:scale-105":"bg-blue-600 hover:bg-blue-300 hover:scale-105 "} rounded-lg text-white cursor-pointer `}
                 onClick={() => {
                   handleClick(ele);
                 }}
