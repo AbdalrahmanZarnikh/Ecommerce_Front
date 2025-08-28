@@ -14,7 +14,7 @@ const ProductCard =  memo(({ name, category, price, image,brand, id ,quantity,fl
 
   return (
     <div
-      className="  flex flex-col items-start gap-4 shadow-xl rounded-xl p-5  cursor-pointer hover:scale-105 transition-all duration-300 w-80 md:w-full dark:bg-zinc-600 "
+      className="  flex flex-col items-start gap-4 shadow-xl rounded-xl p-5  cursor-pointer hover:scale-105 transition-all duration-300 w-80 md:w-full dark:bg-zinc-600  "
 
     >
       <img src={image} alt="ProductImage" className=" w-32 h-32 md:w-60 md:h-60 mx-auto  rounded-lg "       onClick={() => {
