@@ -26,6 +26,9 @@ const Products = () => {
 
   const [checkEmpty, setCheckEmpty] = useState(false);
 
+
+  const [isClicked,setIsClicked]=useState("")
+
   const { isLoading, data, paginationProducts } = useSelector(
     (state) => state.productSlice
   );
@@ -49,9 +52,9 @@ const Products = () => {
   }, []);
 
   const handleClick = async (ele) => {
+    setIsClicked(ele.name)
     if (ele.name !== "الكل") {
       await dispatch(getProductsByCategory(ele._id));
-
       if (data.length === 0) {
         setCheckEmpty(true);
       }
@@ -62,6 +65,8 @@ const Products = () => {
       }
     }
   };
+
+  console.log(isClicked)
 
   return (
     <Container>
@@ -77,7 +82,7 @@ const Products = () => {
           categories?.map((ele) => {
             return (
               <button
-                className="p-4 bg-blue-600 rounded-full text-white hover:bg-blue-300 cursor-pointer"
+                className={`p-4 ${isClicked==ele.name ? "bg-yellow-500 hover:bg-yellow-300 hover:scale-105":"bg-blue-600 hover:bg-blue-300 hover:scale-105 "} rounded-full text-white cursor-pointer `}
                 onClick={() => {
                   handleClick(ele);
                 }}
