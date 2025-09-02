@@ -45,7 +45,7 @@ const HawalaOrder = () => {
   };
 
   return (
-    <div className="flex justify-center items-center p-10 bg-blue-400">
+    <div className="flex justify-center items-center p-10 bg-blue-400 dark:bg-zinc-800">
       <form
         className="bg-white shadow-2xl h-fit flex justify-center items-start flex-col w-full md:w-1/3 gap-4 rounded-lg p-10"
         onSubmit={handleSubmit(onSubmit)}

@@ -25,6 +25,7 @@ const Pagination = ({ currentPage, next, prev,getThunk }) => {
       >
         التالي{" "}
       </button>
+
       <span className="bg-blue-800 text-xl rounded-lg text-white w-10 h-10 p-5 flex justify-center items-center">
         {currentPage}
       </span>
@@ -36,6 +37,8 @@ const Pagination = ({ currentPage, next, prev,getThunk }) => {
       >
         السابق
       </button>
+
+      
     </div>
   );
 };

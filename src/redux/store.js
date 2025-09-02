@@ -11,6 +11,7 @@ import orderSlice from "./slice/orders/orderSlice"
 import addressSlice from "./slice/address/addressSlice"
 import messageSlice from "./slice/message/messageSlice"
 import reviewSlice from "./slice/review/reviewSlice"
+import discountSlice from "./slice/discount/discountSlice"
 
 export const store=configureStore({
     reducer:{
@@ -24,7 +25,8 @@ export const store=configureStore({
         orderSlice,
         addressSlice,
         messageSlice,
-        reviewSlice
+        reviewSlice,
+        discountSlice
         
 
     }
