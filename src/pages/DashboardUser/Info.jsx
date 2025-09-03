@@ -63,9 +63,11 @@ const Info = () => {
       dispatch(updatePassword(data));
     }
     else if(infoEdit){
+      delete data.password;
       dispatch(updateLoggedUserData(data));
 
     }
+
   };
 
   const {isLoading}=useSelector((state)=>state.userSlice)
